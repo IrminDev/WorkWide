@@ -1,0 +1,488 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap");
+
+/*Variables*/
+:root {
+  --header-height: 3rem;
+
+  --first-color: #64B5F6;
+  --first-color-lighter: #ecf3f2;
+  --title-color: #5C6BC0;
+  --text-color: #9FA8DA;
+  --body-color: #f5fffe;
+
+  --body-font: "Poppins", sans-serif;
+  --biggest-font-size: 2.5rem;
+  --big-font-size: 1.5rem;
+  --normal-font-size: .9rem;
+
+  --font-medium: 500;
+  --font-semi-bold: 600;
+
+  --z-tooltip: 10;
+  --z-fixed: 100;
+}
+
+@media screen and (min-width: 1024px) {
+  :root {
+    --normal-font-size: 1rem;
+    --biggest-font-size: 3.5rem;
+    --big-font-size: 2rem;
+  }
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  text-decoration: none;
+  font-family: 'Poppins' sans-serif;
+  scroll-behavior: smooth;
+}
+
+.max-width{
+  max-width: 90%;
+  padding: 0 20px;
+  margin: auto;
+}
+
+.navbar{
+  position: fixed;
+  width: 100%;
+  padding: 20px 0;
+  padding-top: 30px;
+  font-weight: var(--font-semi-bold);
+  font-family: var(--body-font);
+  font-size: var(--normal-font-size);
+  transition: all .3s ease;
+  z-index: 100;
+}
+
+.navbar.sticky{
+  padding: 10px 0;
+  padding-top: 10px;
+  background: var(--title-color);
+}
+
+.navbar .max-width{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.navbar .logo a{
+  color: var(--first-color-lighter);
+  font-size: var(--big-font-size);
+  font-weight: var(--font-semi-bold);
+}
+
+.navbar .logo a span{
+  color: var(--title-color);
+  transition: .3s ease;
+}
+
+.navbar.sticky .logo a span{
+  color: var(--first-color-lighter);
+}
+
+.navbar .menu li{
+  list-style: none;
+  display: inline-block;
+}
+
+.navbar .menu li a{
+    color: var(--first-color-lighter);
+    font-size: var(--normal-font-size);
+    font-weight: var(--font-medium);
+    margin-left: 30px;
+    transition: 0.3s ease;
+}
+
+.navbar .menu li a:hover{
+    color: var(--title-color);
+}
+
+.navbar.sticky .menu li a:hover{
+    color: var(--first-color-lighter);
+}
+
+
+.menu-btn{
+    color: var(--first-color-lighter);
+    font-size: var(--big-font-size);
+    cursor: pointer;
+    transition: .4s ease;
+    display: none;
+}
+
+.scroll-up-btn{
+    position: fixed;
+    height: 45px;
+    width: 45px;
+    background: var(--title-color);
+    right: 30px;
+    bottom: 10px;
+    text-align: center;
+    align-items: center;
+    line-height: 30px;
+    color:  var(--first-color-lighter);
+    z-index: 98;
+    font-size: var(--big-font-size);
+    border-radius: 9px;
+    cursor: pointer;
+    opacity: 0;
+    pointer-events: none;
+    transition: .4s ease;
+}
+
+.scroll-up-btn i{
+    margin-top: 10px;
+}
+
+.scroll-up-btn.show{
+    bottom: 30px;
+    opacity: 1;
+    pointer-events: auto;
+}
+
+
+
+
+
+section{
+    padding: 100px 0;
+}
+
+section{
+    font-family: var(--body-font);
+}
+
+section .max-width{
+    max-width: 80%;
+}
+
+section .tittle{
+    position: relative;
+    text-align: center;
+    font-size: var(--biggest-font-size);
+    font-weight: var(--font-medium);
+    margin-bottom: 60px;
+    padding-bottom: 20px;
+}
+  
+section .tittle::before{
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    width: 230px;
+    height: 3px;
+    background: #000;
+    transform: translateX(-50%);
+}
+  
+section .tittle::after{
+    position: absolute;
+    bottom: -13px;
+    left: 50%;
+    padding: 5px;
+    font-size: var(--normal-font-size);
+    color: var(--title-color);
+    background: #fff;
+    transform: translateX(-50%);
+}
+
+.mision .tittle::after{
+    content: "¿Qué hacemos?";
+  }
+  
+.mision .mision-content,
+.vision .vision-content,
+.skills .skills-content
+.team .team-content{
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.mision .mision-content .text{
+    font-size: calc( var(--normal-font-size) + .5rem);
+    font-weight: var(--font-semi-bold);
+    margin-bottom: 10px;
+}
+  
+.mision .mision-content .text span{
+    color: var(--title-color);
+}
+
+.mision .mision-content p{
+    text-align: justify;
+}
+
+
+
+.vision .tittle::after{
+    content: "¿A dónde vamos?";
+}
+.vision .vision-content .text{
+    font-size: calc( var(--normal-font-size) + .5rem);
+    font-weight: var(--font-semi-bold);
+    margin-bottom: 10px;
+}
+  
+.vision .vision-content .text span{
+    color: var(--title-color);
+}
+
+.vision .vision-content p{
+    text-align: justify;
+}
+
+
+
+.filosofia .tittle::after{
+    content: "Nuestras prácticas";
+}
+.filosofia .filosofia-content .text{
+    font-size: calc( var(--normal-font-size) + .5rem);
+    font-weight: var(--font-semi-bold);
+    margin-bottom: 10px;
+}
+  
+.filosofia .filosofia-content .text span{
+    color: var(--title-color);
+}
+
+.filosofia .filosofia-content p{
+    text-align: justify;
+}
+
+
+
+
+.objetivos, .valores{
+    background-color: #000;
+    color: #fff;
+  }
+  
+  .objetivos .tittle::before,
+  .valores .tittle::before{
+    background: #fff;
+  }
+  
+  .objetivos .tittle::after{
+    background: #000;
+    content: "¿Qué queremos?";
+  }
+  
+  .objetivos-content,
+  .valores-content{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+  }
+
+  .objetivos p,
+  .valores p{
+    text-align: justify;
+    color: #fff;
+    margin-bottom: 30px;
+  }
+  
+  .objetivos .objetivos-content .card,
+  .valores .valores-content .card{
+    display: flex;
+    width: calc(50% - 30px);
+    background: #222;
+    text-align: center;
+    border-radius: 9px;
+    padding: 20px 25px;
+    margin-bottom: 30px;
+    cursor: pointer;
+    align-items: center;
+    transform: scale(1.05);
+  }
+  
+  .objetivos .objetivos-content .card:hover,
+  .valores .valores-content .card:hover{
+    background: var(--title-color);
+  }
+  
+  .objetivos .objetivos-content .card .box,
+  .valores .valores-content .card .box{
+    transition: all .3s ease;
+    align-items: center;
+  }
+  
+  .objetivos .objetivos-content .card:hover .box,
+  .valores .valores-content .card:hover .box{
+    transform: scale(1.05);
+  }
+  
+  .objetivos .objetivos-content .card i,
+  .valores .valores-content .card i{
+    font-size: calc(var(--big-font-size) + .5rem);
+    color: var(--title-color);
+    transition: all .3s ease;
+  }
+  
+  .objetivos .objetivos-content .card:hover i,
+  .valores .valores-content .card:hover i{
+    color: var(--first-color-lighter);
+  }
+  
+  .objetivos .objetivos-content .card .text,
+  .valores .valores-content .card .text{
+    font-size: calc(var(--normal-font-size) + .3rem);
+    font-weight: var(--font-semi-bold);
+    margin: 10px 0 7px 0;
+  }
+
+  .valores .tittle::after{
+    background: #000;
+    content: "¿Qué seguimos?";
+}
+
+
+
+.metas .tittle::after{
+    content: "¿Qué buscamos?";
+}
+.metas .metas-content .text{
+    font-size: calc( var(--normal-font-size) + .5rem);
+    font-weight: var(--font-semi-bold);
+    margin-bottom: 10px;
+}
+
+.metas .metas-content .text span{
+    color: var(--title-color);
+}
+
+.metas .metas-content li{
+    text-align: justify;
+    font-size: calc(var(--normal-font-size) + .2rem);
+}
+
+.metas .metas-content li span{
+    color:  var(--title-color);
+    margin-top: 25px;
+}
+
+footer{
+    font-family: var(--body-font);
+    background: var(--first-color-lighter);
+    padding: 20px 23px;
+    margin-top: 60px;
+    border-top: #222;
+    text-align: center;
+    align-items: center;
+    color: #111;
+  }
+  
+  footer span a{
+    color: var(--title-color);
+    text-decoration: none;
+  }
+  
+  footer span a:hover{
+    text-decoration: underline;
+  }
+
+
+
+
+
+
+  @media screen and (max-width: 1200px){
+    .objetivos .objetivos-content .card
+    .valores .valores-content .card{
+      min-height: 270px;
+      margin-bottom: 45px;
+    }
+  }
+
+  @media screen and (max-width: 750px){
+    .max-width{
+      padding: 0 10px;
+    }
+  
+    .menu-btn{
+      display: block;
+      z-index: 10;
+    }
+  
+    .navbar .menu{
+      position: fixed;
+      height: 100vh;
+      width: 100%;
+      left: 0;
+      top: -100%;
+      padding-top: 100px;
+      background-color: #000;
+      text-align: center;
+      transition: .4s ease;
+    }
+  
+    .navbar .menu.active{
+      top: 0;
+    }
+  
+    .navbar .menu li{
+      display: block;
+    }
+  
+    .navbar .menu li a{
+      display: inline-block;
+      margin: 20px 0;
+      font-size: var(--big-font-size);
+    }
+  
+    .navbar.sticky .menu li a:hover{
+      color: var(--title-color);
+    }
+  
+    .menu-btn i.active:before{
+      content: '\f00d';
+    }
+  
+    .objetivos .objetivos-content .card,
+    .valores .valores-content .card{
+      min-height: 250px;
+      margin-bottom: 30px;
+    }
+  
+    .objetivos .objetivos-content .card .text,
+    .valores .valores-content .card .text{
+      font-size: calc(var(--normal-font-size) + .1rem);
+      font-weight: var(--font-semi-bold);
+      margin: 10px 0 7px 0;
+    }
+  
+    .objetivos .objetivos-content .card p,
+    .valores .valores-content .card p{
+      font-size: calc(var(--normal-font-size) - .05rem);
+    }
+  }
+
+  @media screen and (max-width: 660px){
+    .objetivos .objetivos-content .card,
+    .valores .valores-content .card{
+      width: calc(100% - 20px);
+    }
+  
+    .objetivos .objetivos-content .card i,
+    .valores .valores-content .card i{
+      font-size: var(--biggest-font-size);
+    }
+  
+    .objetivos .objetivos-content .card .text,
+    .valores .valores-content .card .text{
+      font-size: calc(var(--biggest-font-size) - 1rem);
+    }
+  
+    .objetivos .objetivos-content .card p,
+    .valores .valores-content .card p{
+      font-size: calc(var(--normal-font-size) + .3rem);
+    }
+  
+  }
