@@ -330,3 +330,5 @@ DELETE FROM usuario
 where id_usu = idUsuario;
 end $$
 delimiter ;
+
+-- Se editó base de datos
