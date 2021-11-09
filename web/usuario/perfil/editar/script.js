@@ -57,6 +57,7 @@ function enviarCambios(){
 	let regexname = /^([A-ZÁÉÍÓÚ]{1}[a-zñáéíóú]+[\s]*)+$/;
     let regextel =  /^[0-9]+$/;
     let regexdesc = /(<([^>]+)>)/i;
+    let regexfiles = /(.jpg|.jpeg|.png|.gif)$/i;
 
     //Limpiamos advertencias anteriores para esperar las nuevas
     wapellido.innerHTML = "";
@@ -78,6 +79,15 @@ function enviarCambios(){
     cajacontrasenaold.classList.remove("incorrect");
     cajadescription.classList.remove("incorrect");
 
+    nombre.classList.remove("incorrect");
+    apellido.classList.remove("incorrect");
+    telefono.classList.remove("incorrect");
+    contrasenanew.classList.remove("incorrect");
+    profile.classList.remove("incorrect");
+    banner.classList.remove("incorrect");
+    cajacontrasenaold.classList.remove("incorrect");
+    description.classList.remove("incorrect");
+
     cwnombre.classList.remove("active");
     cwapellido.classList.remove("active");
     cwtelefono.classList.remove("active");
@@ -93,6 +103,7 @@ function enviarCambios(){
         warnombre = "Escoge una longitud correcta";
         entrada = false;
         cajanombre.classList.add("incorrect");
+        nombre.classList.add("incorrect");
         cwnombre.classList.add("active");
     }
     else{
@@ -100,6 +111,7 @@ function enviarCambios(){
             warnombre = "Escoge un nombre válido";
             entrada = false;
             cajanombre.classList.add("incorrect");
+            nombre.classList.add("incorrect");
             cwnombre.classList.add("active");
         }
     }
@@ -109,6 +121,7 @@ function enviarCambios(){
         warapellido = "Escoge una longitud correcta";
         entrada = false;
         cajaapellido.classList.add("incorrect");
+        apellido.classList.add("incorrect");
         cwapellido.classList.add("active");
     }
     else{
@@ -116,6 +129,7 @@ function enviarCambios(){
             warapellido = "Escoge un apellido válido";
             entrada = false;
             cajaapellido.classList.add("incorrect");
+            apellido.classList.add("incorrect");
             cwapellido.classList.add("active");
         }
     }
@@ -126,6 +140,7 @@ function enviarCambios(){
             wartelefono = "Escoge una longitud correcta";
             entrada = false;
             cajatelefono.classList.add("incorrect");
+            telefono.classList.add("incorrect");
             cwtelefono.classList.add("active");
         }
         else{
@@ -133,24 +148,48 @@ function enviarCambios(){
                 wartelefono = "Escoge un teléfono válido";
                 entrada = false;
                 cajatelefono.classList.add("incorrect");
+                telefono.classList.add("incorrect");
                 cwtelefono.classList.add("active");
             }
         }
     }
 
-    //Comprueba la contarseña
+    //Comprueba la contraseña
     if(contrasenaold.value.length < 4 || contrasenaold.value.length > 20){
         warcontravieja = "Escoge una longitud correcta";
         entrada = false;
         cajacontrasenaold.classList.add("incorrect");
+        contrasenaold.classList.add("incorrect");
         cwcontrasenaold.classList.add("active");
     }
 
-    //Comprueba la contraseña antigua
+    //Comprueba los archivos (perfil y portada respectivamente)
+    if (profile.value != 0) {
+        if (!regexfiles.exec(profile.value)) {
+            warperfile = "Ingresa un archivo en formato de imágen";
+            entrada = false;
+            cajaprofile.classList.add("incorrect");
+            profile.classList.add("incorrect");
+            cwprofile.classList.add("active");
+        }
+    }
+
+    if (banner.value != 0) {
+        if(!regexfiles.exec(banner.value)){
+            warportada = "Ingresa un archivo en formato de imágen";
+            entrada = false;
+            cajabanner.classList.add("incorrect");
+            banner.classList.add("incorrect");
+            cwbanner.classList.add("active");
+        }
+    }
+
+    //Comprueba la contraseña nueva
     if(contrasenanew.value.length < 4 || contrasenanew.value.length > 20){
         warcontranueva = "Escoge una longitud correcta";
         entrada = false;
         cajacontrasenanew.classList.add("incorrect");
+        contrasenanew.classList.add("incorrect");
         cwcontrasenanew.classList.add("active");
     }
 
@@ -159,6 +198,7 @@ function enviarCambios(){
         wardescripcion = "Escoge una longitud correcta";
         entrada = false;
         cajadescription.classList.add("incorrect");
+        description.classList.add("incorrect");
         cwdescription.classList.add("active");
     }
     else{
@@ -166,11 +206,21 @@ function enviarCambios(){
             wardescripcion = "No insertes etiquetas HTML";
             entrada = false;
             cajadescription.classList.add("incorrect");
+            description.classList.add("incorrect");
             cwdescription.classList.add("active");
         }
     }
 
+    if (!entrada) {
+        wapellido.innerHTML = warapellido;
+        wnombre.innerHTML = warnombre;
+        wtelefono.innerHTML = wartelefono;
+        wcontrasenanew.innerHTML = warcontranueva;
+        wprofile.innerHTML = warperfile;
+        wbanner.innerHTML = warportada;
+        wcontrasenaold.innerHTML = warcontravieja;
+        wdescription.innerHTML = wardescripcion;
 
-
+    }
     return entrada;
 }
