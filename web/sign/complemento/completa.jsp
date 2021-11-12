@@ -113,22 +113,33 @@
             </div>
             <div class="row">
                 <div class="column">
-                    <label for="work">Foto de perfil</label>
-                    <input type="file">
+                    <label for="work" id="cperfil">Foto de perfil</label>
+                    <input type="file" id="profile">
+                    <div class="warning" id="cwperfil">
+                        <p id="warning-perfil"></p>
+                    </div>
                 </div>
                 <div class="column">
-                    <label for="ubication">Foto de portada</label>
-                    <input type="file">
+                    <label for="ubication" id="cportada">Foto de portada</label>
+                    <input type="file" id="banner">
+                    <div class="warning" id="cwportada">
+                        <p id="warning-portada"></p>
+                    </div>
                 </div>
             </div>
             <div class="row">
                 <div class="column">
-                    <label for="description">Regálanos una descripción de tí</label>
+                    <label for="description" id="cdescripcion">Regálanos una descripción de tí</label>
                     <textarea name="" rows="10" id="description" placeholder="Describe tu persona y tu trabajo, esta descripción será la que muestres a tus potenciales clientes."></textarea>
+                    <div class="warning" id="cwdescripcion">
+                        <p id="warning-descripcion"></p>
+                    </div>
                 </div>
             </div>
-            <button class="form-button">Completar registro</button>
+            <button class="form-button" type="submit" onclick="return enviarInfo()">Completar registro</button>
         </form>
     </div>
+
+    <script src="script.js"></script>
 </body>
 </html>

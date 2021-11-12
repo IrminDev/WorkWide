@@ -54,7 +54,7 @@ function enviarCambios(){
     let entrada = true;
 
     //Expresiones regulares
-	let regexname = /^([A-ZÁÉÍÓÚ]{1}[a-zñáéíóú]+[\s]*)+$/;
+    let regexname = /^([A-ZÁÉÍÓÚ]{1}[a-zñáéíóú]+[\s]*)+$/;
     let regextel =  /^[0-9]+$/;
     let regexdesc = /(<([^>]+)>)/i;
     let regexfiles = /(.jpg|.jpeg|.png|.gif)$/i;
@@ -66,7 +66,6 @@ function enviarCambios(){
     wcontrasenanew.innerHTML = "";
     wprofile.innerHTML = "";
     wbanner.innerHTML = "";
-    wapellido.innerHTML = "";
     wcontrasenaold.innerHTML = "";
     wdescription.innerHTML = "";
 
@@ -135,7 +134,7 @@ function enviarCambios(){
     }
 
     //Comprueba el telefono
-    if(telefono.value.length != 0){
+    if(telefono.value.length !== 0){
         if(telefono.value.length < 10 || telefono.value.length > 11){
             wartelefono = "Escoge una longitud correcta";
             entrada = false;
@@ -164,7 +163,7 @@ function enviarCambios(){
     }
 
     //Comprueba los archivos (perfil y portada respectivamente)
-    if (profile.value != 0) {
+    if (profile.value !== 0) {
         if (!regexfiles.exec(profile.value)) {
             warperfile = "Ingresa un archivo en formato de imágen";
             entrada = false;
@@ -174,7 +173,7 @@ function enviarCambios(){
         }
     }
 
-    if (banner.value != 0) {
+    if (banner.value !== 0) {
         if(!regexfiles.exec(banner.value)){
             warportada = "Ingresa un archivo en formato de imágen";
             entrada = false;
