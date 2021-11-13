@@ -31,7 +31,7 @@
                         <h2 class="title">Registro</h2>
                         <div class="input-field" id="cnombre">
                             <i class="fas fa-user"></i>
-                            <input type="text" id="nombre" placeholder="Nombre">
+                            <input type="text" id="nombre" name="nombreR" placeholder="Nombre">
                         </div>
                         <div class="warning" id="cwnombre">
                             <i class="fas fa-exclamation"></i>
@@ -39,7 +39,7 @@
                         </div>
                         <div class="input-field" id="capellido">
                             <i class="fas fa-user"></i>
-                            <input type="text" id="apellido" placeholder="Apellido">
+                            <input type="text" id="apellido" name="apellidoR" placeholder="Apellido">
                         </div>
                         <div class="warning" id="cwapellido">
                             <i class="fas fa-exclamation"></i>
@@ -47,7 +47,7 @@
                         </div>
                         <div class="input-field" id="ccorreo">
                             <i class="fas fa-envelope"></i>
-                            <input type="email" id="correo" placeholder="Correo electrónico">
+                            <input type="email" id="correo" name="correoR" placeholder="Correo electrónico">
                         </div>
                         <div class="warning" id="cwcorreo">
                             <i class="fas fa-exclamation"></i>
@@ -55,7 +55,7 @@
                         </div>
                         <div class="input-field" id="ctelefono">
                             <i class="fas fa-phone"></i>
-                            <input type="text" id="telefono" placeholder="Teléfono">
+                            <input type="text" id="telefono" name="telefonoR" placeholder="Teléfono">
                         </div>
                         <div class="warning" id="cwtelefono">
                             <i class="fas fa-exclamation"></i>
@@ -63,7 +63,7 @@
                         </div>
                         <div class="input-field" id="ccontra">
                             <i class="fas fa-lock"></i>
-                            <input type="password" id="contra" placeholder="Contraseña">
+                            <input type="password" id="contra" name="contraR" placeholder="Contraseña">
                         </div>
                         <div class="warning" id="cwcontra">
                             <i class="fas fa-exclamation"></i>
@@ -73,14 +73,14 @@
                         <div class="grupo">
                             <div class="input-field">
                                 <i class="fas fa-tag" id="repair"></i>
-                                <select name="roles" id="">
+                                <select name="tipoR" id="">
                                     <optgroup label="Escoge una opción">
                                         <option value="1">Usuario</option>
                                         <option value="2">Trabajador</option>
                                     </optgroup>
                                 </select>
                             </div>
-                            <input type="submit" onclick="return enviarRegistro()" value="Registrate" class="btn solid">
+                            <input name="BtnRegistrar" type="submit" onclick="return enviarRegistro()" value="Registrate" class="btn solid">
                         </div>
 
                         <div class="inicio-link">

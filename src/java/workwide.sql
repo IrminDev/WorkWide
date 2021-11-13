@@ -37,7 +37,7 @@ id_usu int primary key not null auto_increment,
 nombre_usu nvarchar(20),
 apellido_usu nvarchar(20),
 correo_usu nvarchar(40) not null,
-contrasena_usu nvarchar(20) not null,
+contrasena_usu nvarchar not null,
 telefono_usu nvarchar(10),
 profile_usu longblob,
 banner_usu longblob,
@@ -162,14 +162,6 @@ insert into estado_soli values
 (1, "Pendiente"),
 (2, "Aceptada"),
 (3, "Rechazada");
-
-insert into region values
-(default, "Estado de México"),
-(default, "CDMX");
-
-insert into tipo_trabajo values
-(default, "Chalan"),
-(default, "Programandor");
 
 
 -- VISUALIZAR LAS TABLAS
