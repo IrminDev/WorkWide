@@ -1,30 +1,32 @@
 package com.modelo;
 
-import java.sql.Blob;
+import java.io.InputStream;
+
 
 public class Usuario {
-    public Blob perfil;
-    public Blob portada;
+    public InputStream perfil;
+    public InputStream portada;
     public int idUsu;
     public int tipoUsu;
     public String nombre;
     public String apellido;
     public String contraUsu;
     public String correoUsu;
+    public String telefono;
 
-    public Blob getPerfil() {
+    public InputStream getPerfil() {
         return perfil;
     }
 
-    public void setPerfil(Blob perfil) {
+    public void setPerfil(InputStream perfil) {
         this.perfil = perfil;
     }
 
-    public Blob getPortada() {
+    public InputStream getPortada() {
         return portada;
     }
 
-    public void setPortada(Blob portada) {
+    public void setPortada(InputStream portada) {
         this.portada = portada;
     }
 
@@ -74,6 +76,14 @@ public class Usuario {
 
     public void setCorreoUsu(String correoUsu) {
         this.correoUsu = correoUsu;
+    }
+
+    public String getTelefono() {
+        return telefono;
+    }
+
+    public void setTelefono(String telefono) {
+        this.telefono = telefono;
     }
     
     

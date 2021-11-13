@@ -27,7 +27,7 @@
                             <p class="social-text">Para regresar al inicio da clic <a href="../index/index.jsp" class="link">aquí</a></p>
                     </form>
 
-                    <form class="registroForm">
+                    <form class="registroForm" action="../ControlUsuarios" method="POST">
                         <h2 class="title">Registro</h2>
                         <div class="input-field" id="cnombre">
                             <i class="fas fa-user"></i>

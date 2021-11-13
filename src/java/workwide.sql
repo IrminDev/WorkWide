@@ -224,7 +224,7 @@ delimiter $$
 create procedure registrarUsuario(Nombre_usu nvarchar(20),
 Apellido_usu nvarchar(20),
 Correo_usu nvarchar(60),
-Contra_usu nvarchar(20),
+Contra_usu nvarchar(200),
 tipo_usu int,
 telefono_usu nvarchar(11))
 begin

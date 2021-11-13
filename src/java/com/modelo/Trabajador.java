@@ -1,7 +1,5 @@
 package com.modelo;
 
-import java.sql.Blob;
-
 public class Trabajador extends Usuario{
     public int trabajo;
     public int region;
