@@ -3,6 +3,8 @@ package com.modelo;
 public class Trabajador extends Usuario{
     public int trabajo;
     public int region;
+    public String trabajoNombre;
+    public String regionNombre;
     public String descripcion;
 
     public int getTrabajo() {
@@ -19,6 +21,22 @@ public class Trabajador extends Usuario{
 
     public void setRegion(int region) {
         this.region = region;
+    }
+
+    public String getTrabajoNombre() {
+        return trabajoNombre;
+    }
+
+    public void setTrabajoNombre(String trabajoNombre) {
+        this.trabajoNombre = trabajoNombre;
+    }
+
+    public String getRegionNombre() {
+        return regionNombre;
+    }
+
+    public void setRegionNombre(String regionNombre) {
+        this.regionNombre = regionNombre;
     }
 
     public String getDescripcion() {

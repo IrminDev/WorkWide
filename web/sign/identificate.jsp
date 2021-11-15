@@ -10,17 +10,17 @@
         <div class="container">
             <div class="forms-container">
                 <div class="inicio-registro">
-                    <form class="inicioForm">
+                    <form class="inicioForm" method="POST" action="../ControlUsuarios">
                         <h2 class="title">Inicio de sesión</h2>
                         <div class="input-field">
                             <i class="fas fa-envelope"></i>
-                            <input type="text" placeholder="Correo electrónico">
+                            <input type="text" name="correol" placeholder="Correo electrónico">
                         </div>
                         <div class="input-field">
                             <i class="fas fa-lock"></i>
-                            <input type="text" placeholder="Contraseña">
+                            <input type="password" name="contral" placeholder="Contraseña">
                         </div>
-                        <input type="submit" value="Inicia sesión" class="btn solid">
+                        <input name="accion" type="submit" value="Iniciar" class="btn solid">
                         <div class="registro-link">
                             <p class="social-text">¿No estás registrado? <a href="" class="link">Regístrate</a></p>
                         </div>
@@ -80,7 +80,7 @@
                                     </optgroup>
                                 </select>
                             </div>
-                            <input name="BtnRegistrar" type="submit" onclick="return enviarRegistro()" value="Registrate" class="btn solid">
+                            <input name="accion" type="submit" onclick="return enviarRegistro()" value="Registrar" class="btn solid">
                         </div>
 
                         <div class="inicio-link">

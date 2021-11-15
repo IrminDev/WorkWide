@@ -163,6 +163,91 @@ insert into estado_soli values
 (2, "Aceptada"),
 (3, "Rechazada");
 
+insert into region values
+(1, "Aguascalientes"),
+(2, "Baja California"),
+(3, "Baja California Sur"),
+(4, "Campeche"),
+(5, "Chiapas"),
+(6, "Chihuahua"),
+(7, "Ciudad de México"),
+(8, "Coahuila"),
+(9, "Colima"),
+(10, "Durango"),
+(11, "Estado de México"),
+(12, "Guanajuato"),
+(13, "Guerrero"),
+(14, "Hidalgo"),
+(15, "Jalisco"),
+(16, "Michoacán"),
+(17, "Morelos"),
+(18, "Nayarit"),
+(19, "Nuevo León"),
+(20, "Oaxaca"),
+(21, "Puebla"),
+(22, "Querétaro"),
+(23, "Quintana Roo"),
+(24, "San Luis Potosí"),
+(25, "Sinaloa"),
+(26, "Sonora"),
+(27, "Tabasco"),
+(28, "Tamaulipas"),
+(29, "Tlaxcala"),
+(30, "Veracruz"),
+(31, "Yucatán"),
+(32, "Zacatecas");
+
+insert into tipo_trabajo values
+(default, "Abogado"),
+(default, "Asesor"),
+(default, "Asistente"),
+(default, "Bibliotecario"),
+(default, "Bioquímico"),
+(default, "Camarógrafo"),
+(default, "Campesino"),
+(default, "Carpintero"),
+(default, "Cartógrafo"),
+(default, "Chef"),
+(default, "Chófer"),
+(default, "Científico"),
+(default, "Conserje"),
+(default, "Criminólogo"),
+(default, "Cuidador"),
+(default, "Dermatólogo"),
+(default, "Dibujante"),
+(default, "Docente"),
+(default, "Doctor"),
+(default, "Economista"),
+(default, "Electricista"),
+(default, "Estilista"),
+(default, "Fabricante"),
+(default, "Farmacéutico"),
+(default, "Guía"),
+(default, "Guarda"),
+(default, "Herborista"),
+(default, "Informático"),
+(default, "Inegeniero agrónomo"),
+(default, "Instructor"),
+(default, "Mecánico"),
+(default, "Médico"),
+(default, "Neumólogo"),
+(default, "Nutriólogo"),
+(default, "Obrero"),
+(default, "Oculista"),
+(default, "Odontólogo"),
+(default, "Ortopedista"),
+(default, "Periodista"),
+(default, "Plomero"),
+(default, "Profesor"),
+(default, "Programador"),
+(default, "Psicólogo"),
+(default, "Químico"),
+(default, "Técnico"),
+(default, "Tesorero"),
+(default, "Veterinario"),
+(default, "Vigilante"),
+(default, "Zapatero");
+
 
 -- VISUALIZAR LAS TABLAS
 
@@ -214,6 +299,34 @@ delimiter ;
 call desplegarUsuarios();
 
 
+
+drop procedure if exists desplegarPerfilPropioTrabajador;
+delimiter $$
+
+create procedure desplegarPerfilPropioTrabajador(id_usuario int)
+begin
+
+SELECT
+usuario.nombre_usu,
+usuario.apellido_usu,
+usuario.profile_usu,
+usuario.banner_usu,
+usuario.telefono_usu,
+usuario.correo_usu,
+tipo_trabajo.nombre_tipo_trab,
+region.nombre_region,
+usuario.desc_usu
+from usuario
+inner join relacion_usuario_trabajo on usuario.id_usu = relacion_usuario_trabajo.id_usu
+inner join tipo_trabajo on relacion_usuario_trabajo.id_tipo_trab = tipo_trabajo.id_tipo_trab
+inner join relacion_usuario_region on usuario.id_usu = relacion_usuario_region.id_usu
+inner join region on relacion_usuario_region.id_region = region.id_region
+where usuario.id_usu = id_usuario;
+
+
+end $$
+delimiter ;
+call desplegarPerfilPropioTrabajador(1);
 
 
 
@@ -280,7 +393,7 @@ delimiter $$
 create procedure editarPerfilComp(
 nombren nvarchar(20),
 apellidon nvarchar(20),
-contrasenan nvarchar(20),
+contrasenan nvarchar(200),
 perfiln longblob,
 portadan longblob,
 descripcionn nvarchar(2000),
@@ -323,4 +436,54 @@ where id_usu = idUsuario;
 end $$
 delimiter ;
 
--- Se editó base de datos
+
+
+
+
+DROP PROCEDURE IF EXISTS comprobarContrasena;
+delimiter $$
+CREATE PROCEDURE comprobarContrasena(
+id_usuario int,
+contrasena nvarchar(200)
+)
+begin
+SELECT * FROM usuario WHERE id_usu = id_usuario AND contrasena_usu = contrasena;
+end $$
+delimiter ;
+
+
+
+DROP PROCEDURE IF EXISTS comprobarRegistro;
+delimiter $$
+CREATE PROCEDURE comprobarRegistro(
+correo nvarchar(40),
+contrasena nvarchar(200)
+)
+begin
+SELECT
+usuario.id_usu,
+relacion_usuario_tipoUsuario.id_tipo_usu
+FROM usuario
+INNER JOIN relacion_usuario_tipoUsuario on usuario.id_usu = relacion_usuario_tipoUsuario.id_usu
+WHERE usuario.correo_usu = correo
+AND contrasena_usu = contrasena;
+end $$
+delimiter ;
+
+
+DROP PROCEDURE IF EXISTS iniciarUsuario;
+delimiter $$
+CREATE PROCEDURE iniciarUsuario(
+id int
+)
+begin
+SELECT
+nombre_usu,
+apellido_usu,
+correo_usu,
+telefono_usu,
+profile_usu,
+banner_usu
+WHERE id_usu = id;
+end $$
+delimiter ;

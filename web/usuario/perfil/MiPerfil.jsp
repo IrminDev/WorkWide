@@ -108,11 +108,8 @@
                 <div class="profile-body">
                     <div class="profile-info tab">
                         <h1>Acerca de Irmin</h1>
-                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Aperiam est similique dolor officia, vel mollitia possimus cumque quis adipisci autem iste, hic eaque aliquid labore, minus facere ea molestias fuga!
-                        Veniam animi quidem, aut cumque consequatur corrupti dolorum voluptas et nobis architecto corporis consequuntur ducimus pariatur doloremque rem nulla accusantium sint omnis libero exercitationem inventore tenetur! Magnam accusantium culpa nemo!
-                        Modi, laboriosam earum! Hic quibusdam unde nostrum maiores odit doloremque delectus dolorum natus, repellendus voluptatum aut accusamus, illum eius recusandae iusto explicabo id? Nulla reprehenderit quisquam, eaque eius iste assumenda.
-                        Facilis necessitatibus mollitia enim, quasi ratione eius alias, ad reiciendis ex a quae atque quaerat! Nam maxime exercitationem quidem est minus voluptatibus soluta error natus libero nisi adipisci, laudantium officia.
-                        Omnis voluptas a esse porro et delectus, culpa debitis nobis, dolorem optio pariatur magnam ipsam assumenda eaque reiciendis odit atque voluptatum repellat dolore quas! Sint non deserunt quasi ipsum ea?</p>
+                        <p>Contacta con <span>${dato.getNombre()}</span> mediante un mensaje, recuerda establecer un contacto previo para que puedan realizar una organización correcta en lo que respecta del trabajo, 
+                        la descripción anterior es una descripción escrita por <span>${dato.getNombre()}</span> si notas algo ofensivo contáctanos para poder encontrar una solución</p>
                     </div>
                     <div class="profile-info tab profile-btns">
                         <h1>Opciones</h1>

@@ -312,16 +312,16 @@ body{
     text-align: justify;
 }
 
+.advertencia-desc{
+    color: var(--first-color-alt);
+}
+
 .profile-btns{
     display: flex;
 }
 
 .profile-info h1{
     margin-bottom: 30px;
-}
-
-.profile-info .advertencia-desc{
-    color: var(--first-color-alt);
 }
 
 .profile-btns button{

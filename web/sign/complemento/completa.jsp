@@ -13,7 +13,7 @@
     <div class="content">
         <h1>Necesitamos más información...</h1>
         <p>Como trabajador, brindanos la siguiente información, es necesario que llenes todos los campos correctamente para que puedas tener una buena experiencia en potenciales empleos.</p>
-        <form action="../../ControlUsuarios" method="POST" enctype="multipart/form-data">
+        <form action="../../ControlUsuarios" method="POST" id="Completar" enctype="multipart/form-data">
             <div class="row">
                 <div class="column">
                     <label for="work">Trabajo</label>
@@ -130,13 +130,13 @@
             <div class="row">
                 <div class="column">
                     <label for="description" id="cdescripcion">Regálanos una descripción de tí</label>
-                    <textarea name="" rows="10" name="description" id="description" placeholder="Describe tu persona y tu trabajo, esta descripción será la que muestres a tus potenciales clientes."></textarea>
+                    <textarea form="Completar" rows="10" name="description" id="description" placeholder="Describe tu persona y tu trabajo, esta descripción será la que muestres a tus potenciales clientes."></textarea>
                     <div class="warning" id="cwdescripcion">
                         <p id="warning-descripcion"></p>
                     </div>
                 </div>
             </div>
-            <button class="form-button" name="BtnCompletar" type="submit" onclick="return enviarInfo()">Completar registro</button>
+            <button class="form-button" name="accion" type="submit" value="Completar" onclick="return enviarInfo()">Completar registro</button>
         </form>
     </div>
 

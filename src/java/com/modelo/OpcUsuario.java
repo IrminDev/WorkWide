@@ -1,6 +1,13 @@
 
 package com.modelo;
+import java.io.BufferedInputStream;
+import java.io.BufferedOutputStream;
+import java.io.InputStream;
+import java.io.OutputStream;
 import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
+import javax.servlet.http.HttpServletResponse;
         
 //Clase que ejecutará el CRUD de usuario
 public class OpcUsuario extends conexion{
@@ -76,5 +83,234 @@ public class OpcUsuario extends conexion{
             System.out.print(e);
             throw e;
         }
+    }
+    
+    //Método para obtener los datos del perfil
+    public List listarPerfilTrabajador(int id){
+        List<Trabajador> lista = new ArrayList<>();
+        String sql = "CALL desplegarPerfilPropioTrabajador("+ id +")";
+        PreparedStatement ps;
+        ResultSet rs;
+        try{
+            this.conectar();
+            ps = this.getCon().prepareCall(sql);
+            rs = ps.executeQuery();
+            if(rs.next()){
+                Trabajador traba = new Trabajador();
+                traba.setIdUsu(id);
+                traba.setNombre(rs.getString(1));
+                traba.setApellido(rs.getString(2));
+                traba.setPerfil(rs.getBinaryStream(3));
+                traba.setPortada(rs.getBinaryStream(4));
+                traba.setTelefono(rs.getString(5));
+                traba.setCorreoUsu(rs.getString(6));
+                traba.setTrabajoNombre(rs.getString(7));
+                traba.setRegionNombre(rs.getString(8));
+                traba.setDescripcion(rs.getString(9));
+                lista.add(traba);
+            }
+        }
+        catch(Exception e){
+            
+        }
+        
+        return lista;
+    }
+    
+    public void mostrarPerfil(int id, HttpServletResponse response){
+        String sql = "SELECT * FROM usuario WHERE id_usu=" + id;
+        InputStream perfil = null;
+        OutputStream perfilSalida = null;
+        BufferedInputStream buferPerfilEntrada = null;
+        BufferedOutputStream buferPerfilSalida = null;
+        response.setContentType("image/*");
+        PreparedStatement ps;
+        ResultSet rs;
+        try{
+            perfilSalida = response.getOutputStream();
+            this.conectar();
+            ps = this.getCon().prepareStatement(sql);
+            rs = ps.executeQuery();
+            if(rs.next()){
+                perfil = rs.getBinaryStream(7);   
+            }
+            buferPerfilEntrada = new BufferedInputStream(perfil);
+            buferPerfilSalida = new BufferedOutputStream(perfilSalida);
+            int escrito = 0;
+            while((escrito=buferPerfilEntrada.read()) != -1){
+                buferPerfilSalida.write(escrito);
+            }
+        }
+        catch(Exception e){
+            
+        }
+    }
+    
+    public void mostrarPortada(int id, HttpServletResponse response){
+        String sql = "SELECT * FROM usuario WHERE id_usu=" + id;
+        InputStream portada = null;
+        OutputStream portadaSalida = null;
+        BufferedInputStream buferPortadaEntrada = null;
+        BufferedOutputStream buferPortadaSalida = null;
+        response.setContentType("image/*");
+        PreparedStatement ps;
+        ResultSet rs;
+        try{
+            portadaSalida = response.getOutputStream();
+            this.conectar();
+            ps = this.getCon().prepareStatement(sql);
+            rs = ps.executeQuery();
+            if(rs.next()){
+                portada = rs.getBinaryStream(8);   
+            }
+            buferPortadaEntrada = new BufferedInputStream(portada);
+            buferPortadaSalida = new BufferedOutputStream(portadaSalida);
+            int escrito = 0;
+            while((escrito=buferPortadaEntrada.read()) != -1){
+                buferPortadaSalida.write(escrito);
+            }
+        }
+        catch(Exception e){
+            
+        }
+    }
+    
+    public void editarPerfilTrabajador(Trabajador trab){
+        String sql = "CALL editarPerfilComp(?, ?, ?, ?, ?, ?, ?, ?, ?);";
+        PreparedStatement ps;
+        try{
+            this.conectar();
+            ps = this.getCon().prepareCall(sql);
+            ps.setString(1, trab.getNombre());
+            ps.setString(2, trab.getApellido());
+            ps.setString(3, trab.getContraUsu());
+            ps.setBlob(4, trab.getPerfil());
+            ps.setBlob(5, trab.getPortada());
+            ps.setString(6, trab.getDescripcion());
+            ps.setString(7,trab.getTelefono());
+            ps.setInt(8, trab.getIdUsu());
+            ps.setInt(9, trab.getRegion());
+            ps.executeUpdate();
+        }
+        catch(Exception e){
+            
+        }
+    }
+    
+    public boolean validarContrasena(int id, String contra){
+        boolean validado = false;
+        String sql = "CALL comprobarContrasena(?, ?);";
+        PreparedStatement ps;
+        ResultSet rs;
+        try{
+            this.conectar();
+            ps = this.getCon().prepareCall(sql);
+            ps.setInt(1, id);
+            ps.setString(2, contra);
+            rs = ps.executeQuery();
+            if(rs.next()){
+                validado = true;
+            }
+        }
+        catch(Exception e){
+            
+        }
+        return validado;
+    }
+    
+    public Trabajador datosAntiguosTrabajador(int id){
+        Trabajador traba = new Trabajador();
+        String sql = "CALL desplegarPerfilPropioTrabajador("+ id +")";
+        PreparedStatement ps;
+        ResultSet rs;
+        try{
+            this.conectar();
+            ps = this.getCon().prepareCall(sql);
+            rs = ps.executeQuery();
+            if(rs.next()){
+                traba.setIdUsu(id);
+                traba.setNombre(rs.getString(1));
+                traba.setApellido(rs.getString(2));
+                traba.setPerfil(rs.getBinaryStream(3));
+                traba.setPortada(rs.getBinaryStream(4));
+                traba.setTelefono(rs.getString(5));
+                traba.setCorreoUsu(rs.getString(6));
+                traba.setTrabajoNombre(rs.getString(7));
+                traba.setRegionNombre(rs.getString(8));
+                traba.setDescripcion(rs.getString(9));
+            }
+        }
+        catch(Exception e){
+            
+        }
+        
+        return traba;
+    }
+    
+    public void eliminarPerfil(int id){
+        String sql = "CALL eliminarPerfil(?)";
+        PreparedStatement ps;
+        
+        try{
+            this.conectar();
+            ps = this.getCon().prepareCall(sql);
+            ps.setInt(1, id);
+            ps.executeUpdate();
+        }
+        catch(Exception e){
+            
+        }
+    }
+    
+    public int[] iniciarSesion(String correo, String contra){
+        int[] datos = new int[2];
+        String sql = "CALL comprobarRegistro(?, ?);";
+        PreparedStatement ps;
+        ResultSet rs;
+        try{
+            this.conectar();
+            ps = this.getCon().prepareCall(sql);
+            ps.setString(1, correo);
+            ps.setString(2, contra);
+            rs = ps.executeQuery();
+            if(rs.next()){
+                datos[0] = rs.getInt(1);
+                datos[1] = rs.getInt(2);
+            }
+            else{
+                datos[0] = 0;
+                datos[1] = 0;
+            }
+        }
+        catch(Exception e){
+            System.out.println(e);
+        }
+        return datos;
+    }
+    
+    public Usuario iniciarUsuario(int id){
+        Usuario datosUsuario = new Usuario();
+        String sql = "CALL iniciarUsuario(?)";
+        PreparedStatement ps;
+        ResultSet rs;
+        try{
+            this.conectar();
+            ps = this.getCon().prepareCall(sql);
+            ps.setInt(1, id);
+            rs = ps.executeQuery();
+            if(rs.next()){
+                datosUsuario.setNombre(rs.getString(1));
+                datosUsuario.setApellido(rs.getString(2));
+                datosUsuario.setCorreoUsu(rs.getString(3));
+                datosUsuario.setTelefono(rs.getString(4));
+                datosUsuario.setPerfil(rs.getBinaryStream(5));
+                datosUsuario.setPortada(rs.getBinaryStream(6));
+            }
+        }
+        catch(Exception e){
+            
+        }
+        
+        return datosUsuario;
     }
 }
