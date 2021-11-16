@@ -487,3 +487,41 @@ banner_usu
 WHERE id_usu = id;
 end $$
 delimiter ;
+
+
+
+
+DROP PROCEDURE IF EXISTS altaSolicitud;
+delimiter $$
+CREATE PROCEDURE altaSolicitud(
+id_emisor int,
+id_receptor int,
+fecha_inicio date,
+fecha_fin date,
+titulo nvarchar(50),
+descripcion nvarchar(500)
+)
+begin
+
+INSERT INTO
+solicitud
+VALUES
+(default, fecha_inicio, fecha_fin, descripcion, titulo);
+
+INSERT INTO
+envia_solicitud
+VALUES
+(default, id_emisor);
+
+INSERT INTO
+recibe_solicitud
+VALUES
+(default, id_receptor);
+
+INSERT INTO 
+relacion_solicitud_estado
+VALUES
+(default, 1);
+
+end $$
+delimiter ;
