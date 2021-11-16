@@ -71,6 +71,12 @@
     
     <c:forEach var="dato" items="${PerfilTrabajador}">
         <div class="container-card">
+            <style>
+                .profile-header{
+                    background: url("ControladorPortada?id=${dato.getIdUsu()}");
+                    background-size: cover;
+                }
+            </style>
             <div class="profile-header">
                 <div class="profile-img">
                     <img src="ControladorImagen?id=${dato.getIdUsu()}" alt="perfil">
@@ -117,7 +123,7 @@
                             <p>${dato.getDescripcion()}</p>
                             <br><br>
                             <p class="advertencia-desc">Tu descripción es lo que le da idea a los usuarios de quién eres, a qué te dedicas y qué tareas puedes hacer, así como tus habilidades. WorkWide no se hace responsable de usar
-                            esta sección como un lugar para ofensas, contenido explícito o cualquier otor contenido que pueda infringir nuestras normas. Si es necesario eliminar tu cuenta por esto, así lo haremos.</p>
+                            esta sección como un lugar para ofensas, contenido explícito o cualquier otro contenido que pueda infringir nuestras normas. Si es necesario eliminar tu cuenta por esto, así lo haremos.</p>
                         </div> 
                         <div class="profile-info tab profile-btns">
                             <h1>Opciones</h1>

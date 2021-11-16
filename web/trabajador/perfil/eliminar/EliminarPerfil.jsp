@@ -10,6 +10,10 @@
     <link rel="stylesheet" href="style.css">
     <title>Edita tu perfil</title>
 </head>
+    <%
+        HttpSession objSesion = request.getSession();
+        String id = objSesion.getAttribute("id").toString();
+    %>
 <body>
     <!-- HEADER CON EL QUE SE TRABAJARÁ -->
     <header class="header scroll-header" id="header">
@@ -57,7 +61,7 @@
                 </ul>
             </div>
             <!-- ICONO DEL USUARIO -->
-            <img src="user.jpg" alt="user" class="nav_img">
+            <img src="../../../ControladorImagen?id=<% out.print(id); %>" alt="user" class="nav_img">
         </nav>
     </header>
     <div class="content">
