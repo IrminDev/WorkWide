@@ -10,7 +10,7 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Html.html to edit thi
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet"href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css">
 
-        <link rel="stylesheet" href="CSS/style3.css" type="text/css"/>
+        <link rel="stylesheet" href="style.css" type="text/css"/>
       
 
 
