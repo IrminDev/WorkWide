@@ -69,6 +69,18 @@ public class ControlUsuarios extends HttpServlet {
                 System.out.println(e);
             }
         }
+        else{
+            if(accion.equals("Perfiles")){
+                try{
+                    List<Trabajador> perfiles = auxiliar.mostrarPerfiles();
+                    request.setAttribute("Perfiles", perfiles);
+                    request.getRequestDispatcher("usuario/listado/Encuentra.jsp").forward(request, response);
+                }
+                catch(Exception e){
+                    
+                }
+            }
+        }
     }
 
     /**
@@ -153,7 +165,7 @@ public class ControlUsuarios extends HttpServlet {
                             else{
                                 //Si el usuario es un usuaerio, lo llevamos al lsitado de los trabajadores
                                 if(tipoUsu == 1){
-                                    response.sendRedirect("usuario/listado/Encuentra.jsp");
+                                    response.sendRedirect("ControlUsuarios?accion=Perfiles");
                                 }
                             }
                         }
@@ -195,6 +207,7 @@ public class ControlUsuarios extends HttpServlet {
                                 objSesion.setAttribute("tipo", datos[1]);
                                 objSesion.setAttribute("telefono", data.getTelefono());
                                 objSesion.setAttribute("id", datos[0]);
+                                response.sendRedirect("ControlUsuarios?accion=Perfiles");
                             }
                             else{
                                 if(datos[1] == 2){
@@ -206,10 +219,11 @@ public class ControlUsuarios extends HttpServlet {
                                     objSesion.setAttribute("correo", traba.getCorreoUsu());
                                     objSesion.setAttribute("tipo", datos[1]);
                                     objSesion.setAttribute("telefono", traba.getTelefono());
-                                    objSesion.setAttribute("id", datos[0]);
+                                    objSesion.setAttribute("id", datos[0]);  
                                     if(traba.getRegionNombre() != null){
                                         objSesion.setAttribute("descripcion", traba.getDescripcion());
                                         response.sendRedirect("ControlUsuarios?accion=MiPerfilTrabajador");
+                                        return;
                                     }
                                     else{
                                         response.sendRedirect("sign/complemento/completa.jsp");

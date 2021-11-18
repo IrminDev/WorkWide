@@ -117,6 +117,35 @@ public class OpcUsuario extends conexion{
         return lista;
     }
     
+    public List mostrarPerfiles(){
+        List<Trabajador> lista = new ArrayList<>();
+        String sql = "CALL desplegarUsuarios()";
+        PreparedStatement ps;
+        ResultSet rs;
+        try{
+            this.conectar();
+            ps = this.getCon().prepareCall(sql);
+            rs = ps.executeQuery();
+            while(rs.next()){
+                if(rs.getString(4) != null){
+                    Trabajador plantilla = new Trabajador();
+                    plantilla.setNombre(rs.getString(1));
+                    plantilla.setApellido(rs.getString(2));
+                    plantilla.setIdUsu(rs.getInt(3));
+                    plantilla.setTrabajoNombre(rs.getString(4));
+                    plantilla.setRegionNombre(rs.getString(5));
+                    plantilla.setCorreoUsu(rs.getString(6));
+                    lista.add(plantilla);
+                }
+            }
+        }
+        catch(Exception e){
+            
+        }
+        
+        return lista;
+    }
+    
     public void mostrarPerfil(int id, HttpServletResponse response){
         String sql = "SELECT * FROM usuario WHERE id_usu=" + id;
         InputStream perfil = null;

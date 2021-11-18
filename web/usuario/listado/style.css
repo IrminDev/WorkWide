@@ -294,6 +294,8 @@ img {
 }
 
 /* Imagen de fondo de las cartas*/
+
+/*
 .card__cover {
   width: 100%;
   height: 12rem;
@@ -303,6 +305,8 @@ img {
   background-size: cover;
   clip-path: polygon(0 0, 100% 0, 100% 80%, 0% 100%);
 }
+*/
+
 /* ESTILO DE LA FOTO DE PERFIL*/
 .card__user-pic {
   position: relative;
