@@ -106,6 +106,7 @@ img{
 
 /* ESTILO DEL FORMULARIO */
 body {
+    height: 100vh;
     background: url(wave.svg);
     background-size: cover;
 }
@@ -206,6 +207,25 @@ body {
   .form-button:hover {
     color: #2c9ce2;
     background: #fff;
+  }
+  
+  .warning {
+    display: none;
+  }
+  
+  .warning.active,
+  .warning.active p {
+    display: block;
+    color: crimson;
+  }
+  
+  label.incorrect {
+    color: crimson;
+    font-weight: 600;
+  }
+  
+  input.incorrect {
+    border: 1px solid crimson;
   }
   
 

@@ -117,6 +117,63 @@ public class OpcUsuario extends conexion{
         return lista;
     }
     
+    public List listarPerfilUsuario(int id){
+        List<Usuario> lista = new ArrayList<>();
+        String sql = "CALL perfilUsuario("+ id +")";
+        PreparedStatement ps;
+        ResultSet rs;
+        try{
+            this.conectar();
+            ps = this.getCon().prepareCall(sql);
+            rs = ps.executeQuery();
+            if(rs.next()){
+                Usuario usu = new Usuario();
+                usu.setIdUsu(id);
+                usu.setNombre(rs.getString(1));
+                usu.setApellido(rs.getString(2));
+                usu.setCorreoUsu(rs.getString(3));
+                usu.setTelefono(rs.getString(4));
+                lista.add(usu);
+            }
+        }
+        catch(Exception e){
+            
+        }
+        return lista;
+    }
+    
+    public List busquedaPefiles(String texto){
+        List<Trabajador> lista = new ArrayList<>();
+        String sql = "CALL buscar(?)";
+        PreparedStatement ps;
+        ResultSet rs;
+        try{
+            this.conectar();
+            ps = this.getCon().prepareCall(sql);
+            ps.setString(1, texto);
+            rs = ps.executeQuery();
+            while(rs.next()){
+                if(rs.getString(6) != null){
+                    Trabajador traba = new Trabajador();
+                    traba.setNombre(rs.getString(1));
+                    traba.setApellido(rs.getString(2));
+                    traba.setPerfil(rs.getBinaryStream(3));
+                    traba.setPortada(rs.getBinaryStream(4));
+                    traba.setDescripcion(rs.getString(5));
+                    traba.setTrabajoNombre(rs.getString(6));
+                    traba.setRegionNombre(rs.getString(7));
+                    traba.setIdUsu(rs.getInt(8));
+                    traba.setCorreoUsu(rs.getString(9));
+                    lista.add(traba);
+                }
+            }
+        }
+        catch(Exception e){
+            
+        }
+        return lista;
+    }
+    
     public List mostrarPerfiles(){
         List<Trabajador> lista = new ArrayList<>();
         String sql = "CALL desplegarUsuarios()";

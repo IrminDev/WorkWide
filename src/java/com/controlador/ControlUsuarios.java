@@ -56,28 +56,30 @@ public class ControlUsuarios extends HttpServlet {
         String accion;
         OpcUsuario auxiliar = new OpcUsuario();
         accion = request.getParameter("accion");
-        if(accion.equals("MiPerfilTrabajador")){
-            System.out.println("entró al flujo GET");
-            HttpSession objSesion = request.getSession();
-            int idTrabajador = Integer.parseInt(objSesion.getAttribute("id").toString());
-            try{
-                List<Trabajador> lista = auxiliar.listarPerfilTrabajador(idTrabajador);
-                request.setAttribute("PerfilTrabajador", lista);
-                request.getRequestDispatcher("trabajador/perfil/MiPerfil.jsp").forward(request, response);
-            }
-            catch(Exception e){
-                System.out.println(e);
-            }
-        }
-        else{
-            if(accion.equals("Perfiles")){
+        if(accion != null){
+            if(accion.equals("MiPerfilTrabajador")){
+                System.out.println("entró al flujo GET");
+                HttpSession objSesion = request.getSession();
+                int idTrabajador = Integer.parseInt(objSesion.getAttribute("id").toString());
                 try{
-                    List<Trabajador> perfiles = auxiliar.mostrarPerfiles();
-                    request.setAttribute("Perfiles", perfiles);
-                    request.getRequestDispatcher("usuario/listado/Encuentra.jsp").forward(request, response);
+                    List<Trabajador> lista = auxiliar.listarPerfilTrabajador(idTrabajador);
+                    request.setAttribute("PerfilTrabajador", lista);
+                    request.getRequestDispatcher("trabajador/perfil/MiPerfil.jsp").forward(request, response);
                 }
                 catch(Exception e){
-                    
+                    System.out.println(e);
+                }
+            }
+            else{
+                if(accion.equals("Perfiles")){
+                    try{
+                        List<Trabajador> perfiles = auxiliar.mostrarPerfiles();
+                        request.setAttribute("Perfiles", perfiles);
+                        request.getRequestDispatcher("usuario/listado/Encuentra.jsp").forward(request, response);
+                    }
+                    catch(Exception e){
+
+                    }
                 }
             }
         }
@@ -455,6 +457,19 @@ public class ControlUsuarios extends HttpServlet {
                                             }
                                             catch(Exception e){
                                                 
+                                            }
+                                        }
+                                        else{
+                                            if(accion.equals("Buscar")){
+                                                String busqueda = request.getParameter("Busqueda");
+                                                if(!busqueda.equals("")){
+                                                    List<Trabajador> perfiles = auxiliar.busquedaPefiles(busqueda);
+                                                    request.setAttribute("Perfiles", perfiles);
+                                                    request.getRequestDispatcher("usuario/listado/Encuentra.jsp").forward(request, response);
+                                                }
+                                                else{
+                                                    response.sendRedirect("ControlUsuarios?accion=Perfiles");
+                                                }
                                             }
                                         }
                                     }

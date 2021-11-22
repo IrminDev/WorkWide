@@ -27,7 +27,7 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Html.html to edit thi
                 <div class="nav_menu">
                     <ul class="nav_list">
                         <li class="nav_item">
-                            <a href="" class="nav_link active-link">
+                            <a href="ControlUsuarios?accion=Perfiles" class="nav_link active-link">
                                 <i class='bx bx-home-alt nav_icon' ></i>
                                 <span class="nav_name">Inicio</span>
                             </a>
@@ -55,7 +55,7 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Html.html to edit thi
                         </li>
 
                         <li class="nav_item">
-                            <a href="" class="nav_link">
+                            <a href="ControlNuevo?accion=MiPerfil" class="nav_link">
                                 <i class='bx bx-user-circle nav_icon' ></i>
                                 <span class="nav_name">Perfil</span>
                             </a>
@@ -69,16 +69,21 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Html.html to edit thi
         </header>
         <main>
             
-             <!-- ICONO DE BUSQUEDA -->
-            <div class="search">
-                <div class="icon">
-                    
+              <!-- ICONO DE BUSQUEDA -->
+              <form action="ControlUsuarios" method="POST">
+                <div class="form">
+                    <div class="search">
+                        <div class="icon">
+                            
+                        </div>
+                        <div class="input">
+                            <input type="text" name="Busqueda" placeholder="Coloca tu búsqueda" id="mysearch">
+                        </div>
+                        <span class="clear" onclick="document.getElementById('mysearch').value = '' "></span>
+                    </div>
+                    <button type="submit" class="buscar" name="accion" value="Buscar">Buscar</button>
                 </div>
-                <div class="input">
-                    <input type="text" placeholder="Search" id="mysearch">
-                </div>
-                <span class="clear" onclick="document.getElementById('mysearch').value = '' "></span>
-            </div>
+            </form>
                 
                 
         
@@ -88,13 +93,12 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Html.html to edit thi
                 <div class="card__grid">
                     <c:forEach var="trabajador" items="${Perfiles}">
                         <div class="card">
-                            <div class="card__cover ${trabajador.getIdUsu()}" id="${trabajador.getIdUsu()}"></div>
+                            <div class="card__cover usu${trabajador.getIdUsu()}" id="${trabajador.getIdUsu()}"></div>
                             <style>
-                                .card__cover .${trabajador.getIdUsu()}{
+                                .card__cover.usu${trabajador.getIdUsu()}{
                                     width: 100%;
                                     height: 12rem;
-                                    background-image: linear-gradient(120deg, #37ecba7e 0%, #72afd398 100%),
-                                      url("ControladorPortada?id=${trabajador.getIdUsu()}");
+                                    background-image: linear-gradient(120deg, #37ecba7e 0%, #72afd398 100%), url("ControladorPortada?id=${trabajador.getIdUsu()}");
                                     background-size: cover;
                                     clip-path: polygon(0 0, 100% 0, 100% 80%, 0% 100%);
                                 }
@@ -107,7 +111,7 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Html.html to edit thi
                                 </div>
                                 <!-- datos del trabajador-->
                                 <h1 class="heading">
-                                    <a href="#" class="heading--sup">${trabajador.getNombre()} ${trabajador.getApellido()}</a>
+                                    <a href="ControlPerfiles?id=${trabajador.getIdUsu()}" class="heading--sup">${trabajador.getNombre()} ${trabajador.getApellido()}</a>
                                     <span class="heading--sub">${trabajador.getTrabajoNombre()}</span>
                                     <span class="heading--sub">${trabajador.getRegionNombre()}</span>
                                     <span class="heading--suc">Contáctame a: ${trabajador.getCorreoUsu()}</span>

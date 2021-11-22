@@ -6,7 +6,7 @@ const contrasenanew = document.getElementById("contrasenanew");
 const profile = document.getElementById("profile");
 const banner = document.getElementById("banner");
 const contrasenaold = document.getElementById("contrasenaold");
-const description = document.getElementById("description");
+
 
 //Labels de los inputs
 const cajanombre = document.getElementById("cnombre");
@@ -16,7 +16,7 @@ const cajacontrasenanew = document.getElementById("ccontranueva");
 const cajaprofile = document.getElementById("cperfil");
 const cajabanner = document.getElementById("cportada");
 const cajacontrasenaold = document.getElementById("ccontravieja");
-const cajadescription = document.getElementById("cdescripcion");
+
 
 //textos de las advertencias
 const wnombre = document.getElementById("warning-nombre");
@@ -26,7 +26,6 @@ const wcontrasenanew = document.getElementById("warning-contranueva");
 const wprofile = document.getElementById("warning-perfil");
 const wbanner = document.getElementById("warning-portada");
 const wcontrasenaold = document.getElementById("warning-contravieja");
-const wdescription = document.getElementById("warning-descripcion");
 
 //Cajas de las advertencias
 const cwnombre = document.getElementById("cwnombre");
@@ -36,7 +35,7 @@ const cwcontrasenanew = document.getElementById("cwcontranueva");
 const cwprofile = document.getElementById("cwperfil");
 const cwbanner = document.getElementById("cwportada");
 const cwcontrasenaold = document.getElementById("cwcontravieja");
-const cwdescription = document.getElementById("cwdescripcion");
+
 
 //Función ejecutada al enviar el formulario
 function enviarCambios(){
@@ -48,15 +47,14 @@ function enviarCambios(){
     let warperfile = "";
     let warportada = "";
     let warcontravieja = "";
-    let wardescripcion = "";
+
 
     //Variable que indicará el acceso
     let entrada = true;
 
     //Expresiones regulares
-    let regexname = /^([A-ZÁÉÍÓÚ]{1}[a-zñáéíóú]+[\s]*)+$/;
+	let regexname = /^([A-ZÁÉÍÓÚ]{1}[a-zñáéíóú]+[\s]*)+$/;
     let regextel =  /^[0-9]+$/;
-    let regexdesc = /(<([^>]+)>)/i;
     let regexfiles = /(.jpg|.jpeg|.png|.gif)$/i;
 
     //Limpiamos advertencias anteriores para esperar las nuevas
@@ -67,7 +65,6 @@ function enviarCambios(){
     wprofile.innerHTML = "";
     wbanner.innerHTML = "";
     wcontrasenaold.innerHTML = "";
-    wdescription.innerHTML = "";
 
     cajanombre.classList.remove("incorrect");
     cajaapellido.classList.remove("incorrect");
@@ -76,7 +73,6 @@ function enviarCambios(){
     cajaprofile.classList.remove("incorrect");
     cajabanner.classList.remove("incorrect");
     cajacontrasenaold.classList.remove("incorrect");
-    cajadescription.classList.remove("incorrect");
 
     nombre.classList.remove("incorrect");
     apellido.classList.remove("incorrect");
@@ -84,8 +80,7 @@ function enviarCambios(){
     contrasenanew.classList.remove("incorrect");
     profile.classList.remove("incorrect");
     banner.classList.remove("incorrect");
-    contrasenaold.classList.remove("incorrect");
-    description.classList.remove("incorrect");
+    cajacontrasenaold.classList.remove("incorrect");
 
     cwnombre.classList.remove("active");
     cwapellido.classList.remove("active");
@@ -94,7 +89,6 @@ function enviarCambios(){
     cwprofile.classList.remove("active");
     cwbanner.classList.remove("active");
     cwcontrasenaold.classList.remove("active");
-    cwdescription.classList.remove("active");
 
     //Algoritmo que comprueba cada campo
     //Comprueba nombre
@@ -134,7 +128,7 @@ function enviarCambios(){
     }
 
     //Comprueba el telefono
-    if(telefono.value.length !== 0){
+    if(telefono.value.length != 0){
         if(telefono.value.length < 10 || telefono.value.length > 11){
             wartelefono = "Escoge una longitud correcta";
             entrada = false;
@@ -192,24 +186,6 @@ function enviarCambios(){
         cwcontrasenanew.classList.add("active");
     }
 
-    //Comprueba la descripción
-    if(description.value.length > 5000){
-        wardescripcion = "Escoge una longitud correcta";
-        entrada = false;
-        cajadescription.classList.add("incorrect");
-        description.classList.add("incorrect");
-        cwdescription.classList.add("active");
-    }
-    else{
-        if(regexdesc.test(description.value)){
-            wardescripcion = "No insertes etiquetas HTML";
-            entrada = false;
-            cajadescription.classList.add("incorrect");
-            description.classList.add("incorrect");
-            cwdescription.classList.add("active");
-        }
-    }
-
     if (!entrada) {
         wapellido.innerHTML = warapellido;
         wnombre.innerHTML = warnombre;
@@ -218,8 +194,6 @@ function enviarCambios(){
         wprofile.innerHTML = warperfile;
         wbanner.innerHTML = warportada;
         wcontrasenaold.innerHTML = warcontravieja;
-        wdescription.innerHTML = wardescripcion;
-
     }
     return entrada;
 }

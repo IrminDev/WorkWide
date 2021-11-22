@@ -1,17 +1,15 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mi perfil</title>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css">
-    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
-    <link rel="stylesheet" href="usuario/perfil/style.css" type="text/css">
-</head>
-<body>
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <title>Perfil</title>
+        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css">
+        <link rel="Stylesheet" href="usuario/listado/perfil/style.css" type="text/css">
+    </head>
+    <body>
     <%
         HttpSession objSesion = request.getSession();
         String id = objSesion.getAttribute("id").toString();
@@ -55,7 +53,7 @@
                     </li>
 
                     <li class="nav_item">
-                        <a href="ControlNuevo?accion=MiPerfil" class="nav_link active-link">
+                        <a href="" class="nav_link active-link">
                             <i class='bx bx-user-circle nav_icon' ></i>
                             <span class="nav_name">Perfil</span>
                         </a>
@@ -69,7 +67,7 @@
     </header>
 
     
-    <c:forEach var="dato" items="${PerfilUsuario}">
+    <c:forEach var="dato" items="${PerfilTrabajador}">
         <div class="container-card">
             <style>
                 .profile-header{
@@ -83,6 +81,10 @@
                 </div>
                 <div class="profile-nav-info">
                     <h3 class="username">${dato.getNombre()} ${dato.getApellido()}</h3>
+                    <div class="address">
+                        <p class="state">${dato.getRegionNombre()},</p>
+                        <span class="country"> México.</span>
+                    </div>
                 </div>
             </div>
             <div class="main-bd">
@@ -90,6 +92,12 @@
                     <div class="profile-side">
                         <p class="mobile-number"><i class='bx bxs-phone'></i>+52 ${dato.getTelefono()}</p>
                         <p><i class='bx bxs-envelope' ></i>${dato.getCorreoUsu()}</p>
+                        <div class="user-work">
+                            <h3>Trabajo</h3>
+                            <p class="work">
+                                ${dato.getTrabajoNombre()}
+                            </p>
+                        </div>
                         <div class="profile-btn">
                             <button class="profile-chat">
                                 <i class='bx bxs-message' ></i>Chat
@@ -103,27 +111,22 @@
                 <div class="right-side">
                     <div class="nav-profile">
                         <ul>
-                            <li onclick="tabs(0)" class="user-info">Opciones</li>
+                            <li onclick="tabs(0)" class="user-info">Acerca de</li>
                         </ul>
                     </div>
                     <div class="profile-body">
-                        <div class="profile-info tab profile-btns">
-                            <h1>Opciones</h1>
-                            <form method="POST" action="ControlNuevo">
-                                <button class="profile-conf" name="accion" value="Cambiar"><i class='bx bxs-cog' ></i>Configuración de cuenta</button>
-                                <button class="profile-del" name="accion" value="Eliminar"><i class='bx bxs-trash '></i>Eliminar perfil</button>
-                                <button class="profile-close" name="accion" value="Cerrar"><i class='bx bx-log-out  ' ></i>Cerrar sesión</button>
-                            </form>
-                            <p>En esta sección podrás escoger entre modificar tu perfil, eliminar tu cuenta definitivamente (implica que se borarrán mensajes y solicitudes) y cerrar sesión. En el apartado de modificar perfil no podrás modificar el trabajo al que te dedicas ni tu correo electrónico, esto por cuestiones de seguridad, a su vez si no requieres cambiar tu foto de perfil o portada
-                            tendrás que dejar esos espacios en blanco. Si tu contraseña planeas que sea la misma, será necesario que en la nueva contraseña teclees la misma.<br>
-                            El apartado de eliminar perfil solicitará tu contraseña dos veces para confirmar, si requieres eliminar tu perfil, recuerda que debes teclear ambas contraseñas correctamente, siendo estas las mismas.</p>
-                        </div>
+                        <div class="profile-info tab">
+                            <h1>Acerca de ${dato.getNombre()}</h1>
+                            <p>${dato.getDescripcion()}</p>
+                            <br><br>
+                            <p class="advertencia-desc">Esta descripción fue proporcionada por ${dato.getNombre()} ${dato.getApellido()}, si detectas alguna irregularidad o algo que incumpla nuestras normas, haznos saber acerca de este perfil reportándolo.</p>
+                        </div> 
                     </div>
                 </div>
             </div>
         </div>
     </c:forEach>
 
-    <script src="usuario/perfil/script.js"></script>
+    <script src="usuario/listado/perfil/main.js"></script>
 </body>
 </html>

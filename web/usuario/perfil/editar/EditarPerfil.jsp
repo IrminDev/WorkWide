@@ -1,9 +1,3 @@
-<%-- 
-    Document   : EditarPerfil
-    Created on : 4 nov. 2021, 19:29:21
-    Author     : IRMIN
---%>
-
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="es">
@@ -16,6 +10,13 @@
     <title>Edita tu perfil</title>
 </head>
 <body>
+    <%
+        HttpSession objSesion = request.getSession();
+        String id = objSesion.getAttribute("id").toString();
+        String nombre = objSesion.getAttribute("nombre").toString();
+        String apellido = objSesion.getAttribute("apellido").toString();
+        String telefono = objSesion.getAttribute("telefono").toString();
+    %>
     <!-- HEADER CON EL QUE SE TRABAJARÁ -->
     <header class="header scroll-header" id="header">
         <nav class="nav container">
@@ -26,7 +27,7 @@
             <div class="nav_menu">
                 <ul class="nav_list">
                     <li class="nav_item">
-                        <a href="" class="nav_link active-link">
+                        <a href="../../../ControlUsuarios?accion=Perfiles" class="nav_link">
                             <i class='bx bx-home-alt nav_icon' ></i>
                             <span class="nav_name">Inicio</span>
                         </a>
@@ -54,7 +55,7 @@
                     </li>
 
                     <li class="nav_item">
-                        <a href="" class="nav_link">
+                        <a href="../../../ControlNuevo?accion=MiPerfil" class="nav_link active-link">
                             <i class='bx bx-user-circle nav_icon' ></i>
                             <span class="nav_name">Perfil</span>
                         </a>
@@ -62,26 +63,26 @@
                 </ul>
             </div>
             <!-- ICONO DEL USUARIO -->
-            <img src="user.jpg" alt="user" class="nav_img">
+            <img src="../../../ControladorImagen?id=<% out.print(id); %>" alt="user" class="nav_img">
         </nav>
     </header>
     <div class="content">
         <h1>Edita tu perfil</h1>
         <p>¿Necesitas hacer algunas modificaciones? Sin problema podrás realizarlas desde aquí, recuerda que sino quieres modificar algunos campos los puedes dejar tal cual o llenarlos con la misma información, para el caso de la contraseña será necesario que la llenes de nuevo.</p>
-        <form action="">
+        <form action="../../../ControlNuevo" method="POST">
             <div class="row">
                 <div class="column">
                     <label for="nombre" id="cnombre">Nombre</label>
-                    <input type="text" id="nombre">
+                    <input type="text" id="nombre" value="<% out.print(nombre); %>">
                     <div class="warning" id="cwnombre">
-                        <p id="warning-nombre">Apoco</p>
+                        <p id="warning-nombre"></p>
                     </div>
                 </div>
                 <div class="column">
                     <label for="apellido" id="capellido">Apellido</label>
-                    <input type="text" id="apellido">
+                    <input type="text" id="apellido" value="<% out.print(apellido); %>">
                     <div class="warning" id="cwapellido">
-                        <p id="warning-apellido">Apoco</p>
+                        <p id="warning-apellido"></p>
                     </div>
                 </div>
             </div>
@@ -89,16 +90,16 @@
             <div class="row">
                 <div class="column">
                     <label for="telefono" id="ctelefono">Teléfono</label>
-                    <input type="text" id="telefono">
+                    <input type="text" id="telefono" value="<% out.print(telefono); %>">
                     <div class="warning" id="cwtelefono">
-                        <p id="warning-telefono">Apoco</p>
+                        <p id="warning-telefono"></p>
                     </div>
                 </div>
                 <div class="column">
                     <label for="contrasenanew" id="ccontranueva">Contraseña nueva</label>
                     <input type="password" id="contrasenanew" placeholder="Si no deseas cambiarla coloca la misma">
                     <div class="warning" id="cwcontranueva">
-                        <p id="warning-contranueva">Apoco</p>
+                        <p id="warning-contranueva"></p>
                     </div>
                 </div>
             </div>
@@ -108,14 +109,14 @@
                     <label for="profile" id="cperfil">Foto de perfil</label>
                     <input type="file" id="profile">
                     <div class="warning" id="cwperfil">
-                        <p id="warning-perfil">Apoco</p>
+                        <p id="warning-perfil"></p>
                     </div>
                 </div>
                 <div class="column">
                     <label for="banner" id="cportada">Foto de portada</label>
                     <input type="file" id="banner">
                     <div class="warning" id="cwportada">
-                        <p id="warning-portada">Apoco</p>
+                        <p id="warning-portada"></p>
                     </div>
                 </div>
             </div>
@@ -125,60 +126,11 @@
                     <label for="contrasenaold"  id="ccontravieja">Contraseña antigua</label>
                     <input type="password" id="contrasenaold" placeholder="Escribe la contraseña antigua">
                     <div class="warning" id="cwcontravieja">
-                        <p id="warning-contravieja">Apoco</p>
+                        <p id="warning-contravieja"></p>
                     </div>
                 </div>
-                <div class="column">
-                    <label for="ubication" id="cregion">Región</label>
-                    <select name="ubication" id="ubication">
-                        <optgroup label="Escoge una región">
-                            <option value="Aguascalientes">Aguascalientes</option>
-                            <option value="Baja California">Baja California</option>
-                            <option value="Baja California Sur">Baja California Sur</option>
-                            <option value="Campeche">Campeche</option>
-                            <option value="Chiapas">Chiapas</option>
-                            <option value="Chihuahua">Chihuahua</option>
-                            <option value="CDMX">Ciudad de México</option>
-                            <option value="Coahuila">Coahuila</option>
-                            <option value="Colima">Colima</option>
-                            <option value="Durango">Durango</option>
-                            <option value="Estado de México">Estado de México</option>
-                            <option value="Guanajuato">Guanajuato</option>
-                            <option value="Guerrero">Guerrero</option>
-                            <option value="Hidalgo">Hidalgo</option>
-                            <option value="Jalisco">Jalisco</option>
-                            <option value="Michoacán">Michoacán</option>
-                            <option value="Morelos">Morelos</option>
-                            <option value="Nayarit">Nayarit</option>
-                            <option value="Nuevo León">Nuevo León</option>
-                            <option value="Oaxaca">Oaxaca</option>
-                            <option value="Puebla">Puebla</option>
-                            <option value="Querétaro">Querétaro</option>
-                            <option value="Quintana Roo">Quintana Roo</option>
-                            <option value="San Luis Potosí">San Luis Potosí</option>
-                            <option value="Sinaloa">Sinaloa</option>
-                            <option value="Sonora">Sonora</option>
-                            <option value="Tabasco">Tabasco</option>
-                            <option value="Tamaulipas">Tamaulipas</option>
-                            <option value="Tlaxcala">Tlaxcala</option>
-                            <option value="Veracruz">Veracruz</option>
-                            <option value="Yucatán">Yucatán</option>
-                            <option value="Zacatecas">Zacatecas</option>
-                        </optgroup>
-                    </select>
-                </div>
+                <button class="form-button" type="submit" onclick="return enviarCambios()" name="accion" value="HacerCambios">Editar perfil</button>
             </div>
-
-            <div class="row">
-                <div class="column">
-                    <label for="description" id="cdescripcion">Regálanos una descripción de tí</label>
-                    <textarea name="" rows="10" id="description" placeholder="Describe tu persona y tu trabajo, esta descripción será la que muestres a tus potenciales clientes."></textarea>
-                    <div class="warning" id="cwdescripcion">
-                        <p id="warning-descripcion">Apoco</p>
-                    </div>
-                </div>
-            </div>
-            <button class="form-button" type="submit" onclick="return enviarCambios()">Editar perfil</button>
         </form>
     </div>
 

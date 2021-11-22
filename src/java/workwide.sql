@@ -525,3 +525,54 @@ VALUES
 
 end $$
 delimiter ;
+
+
+DROP PROCEDURE IF EXISTS buscar;
+delimiter $$
+CREATE PROCEDURE buscar(
+texto nvarchar(20)
+)
+
+begin
+
+select
+usuario.nombre_usu,
+usuario.apellido_usu,
+usuario.profile_usu,
+usuario.banner_usu,
+usuario.desc_usu,
+tipo_trabajo.nombre_tipo_trab,
+region.nombre_region,
+usuario.id_usu,
+usuario.correo_usu
+from relacion_usuario_tipoUsuario
+inner join usuario on usuario.id_usu = relacion_usuario_tipoUsuario.id_usu
+inner join relacion_usuario_trabajo on usuario.id_usu = relacion_usuario_trabajo.id_usu
+inner join tipo_trabajo on relacion_usuario_trabajo.id_tipo_trab = tipo_trabajo.id_tipo_trab
+inner join relacion_usuario_region on usuario.id_usu = relacion_usuario_region.id_usu
+inner join region on relacion_usuario_region.id_region = region.id_region
+WHERE  id_tipo_usu = 2 and nombre_region like texto
+or nombre_tipo_trab like texto
+or apellido_usu like texto
+or nombre_usu like texto;
+end $$
+delimiter ;
+
+call buscar("Irmin");
+call buscar("Programador");
+
+
+DROP PROCEDURE IF EXISTS perfilUsuario;
+delimiter $$
+CREATE PROCEDURE perfilUsuario(id int)
+begin
+SELECT
+nombre_usu,
+apellido_usu,
+correo_usu,
+telefono_usu
+FROM usuario
+WHERE id_usu = id;
+end $$
+delimiter ;
+call perfilUsuario(27);

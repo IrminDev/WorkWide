@@ -162,12 +162,12 @@ body {
 
 /* GENERAL DE BUSQUEDA*/
 .search {
-  margin-top: 8rem;
   position: relative;
   width: 60px;
   height: 60px;
   background: var(--first-color);
   border-radius: 60px;
+  color: #eee;
   transition: 0.5s;
   box-shadow: 0 0 0 5px #fff;
   overflow: hidden;
@@ -197,6 +197,10 @@ body {
   outline: none;
   font-size: 18px;
   padding: 10px 0;
+}
+
+.search .input input::placeholder{
+  color: #eee;
 }
 
 /* CUANDO SE TOCA LA LUPA*/
@@ -265,6 +269,33 @@ body {
   height: 15px;
   background: #fff;
   transform: rotate(315deg);
+}
+
+
+.form{
+  margin-top: 8rem;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+
+.form .buscar{
+  height: 40px;
+  width: 120px;
+  margin-top: 15px;
+  border: 2px solid var(--first-color);
+  background-color: var(--first-color);
+  color: #eee;
+  font-size: var(--normal-font-size);
+  font-weight: 500;
+  cursor: pointer;
+  transition: .3s ease;
+}
+
+.form .buscar:hover{
+  background-color: #eee;
+  color: var(--first-color);
 }
 
 /* ESTILOS GENERALES*/
@@ -448,7 +479,7 @@ img {
     }
 
     .search.active {
-      width: 100%;
+      width: 60%;
     }
   }
 }
@@ -456,7 +487,7 @@ img {
 @media screen and (max-width: 510px) {
   @media screen and (min-width: 200px) {
     .card__grid .card {
-      height: 70vh;
+      height: 60vh;
     }
     .btns {
       display: flex;
@@ -467,6 +498,22 @@ img {
     .btn {
       display: flex;
       width: 100%;
+    }
+    
+    .form{
+      align-items: center;
+      justify-content: center ;
+    }
+
+    .search{
+      width: 100%;
+    }
+
+    .search.active{
+      width: 100%;
+    }
+    .search .input input::placeholder{
+      font-size: .9rem;
     }
   }
 }
