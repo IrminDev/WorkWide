@@ -576,3 +576,27 @@ WHERE id_usu = id;
 end $$
 delimiter ;
 call perfilUsuario(27);
+
+
+DROP PROCEDURE IF EXISTS editarUsuarioPerfil;
+delimiter $$
+CREATE PROCEDURE editarUsuarioPerfil(
+id int,
+nombre nvarchar(20),
+apellido nvarchar(20),
+telefono nvarchar(20),
+portada longblob,
+perfil longblob,
+contra nvarchar(200)
+)
+BEGIN
+UPDATE usuario
+SET nombre_usu = nombre,
+apellido_usu = apellido,
+telefono_usu = telefono,
+contrasena_usu = contra,
+banner_usu = portada,
+profile_usu = perfil
+WHERE id_usu = id;
+END $$
+delimiter ;

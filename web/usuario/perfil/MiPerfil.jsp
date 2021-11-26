@@ -21,7 +21,7 @@
     <header class="header scroll-header" id="header">
         <nav class="nav container">
             <!-- LOGO DE LA APLICACIÓN -->
-            <a href="" class="nav_logo"><span>W</span>ork<span>W</span>ide</a>
+            <a href="ControlUsuarios?accion=Perfiles" class="nav_logo"><span>W</span>ork<span>W</span>ide</a>
 
             <!-- LISTA DE LOS LINKS DEL NAV -->
             <div class="nav_menu">
@@ -64,7 +64,7 @@
             </div>
 
             <!-- ICONO DEL USUARIO -->
-            <img src="ControladorImagen?id=<% out.print(id); %>" alt="user" class="nav_img">
+            <img src="ControladorImagen?id=<% out.print(id); %>" alt="user" class="nav_img" onerror=this.src="user.svg">
         </nav>
     </header>
 
@@ -79,7 +79,7 @@
             </style>
             <div class="profile-header">
                 <div class="profile-img">
-                    <img src="ControladorImagen?id=${dato.getIdUsu()}" alt="perfil">
+                    <img src="ControladorImagen?id=${dato.getIdUsu()}" alt="perfil" onerror=this.src="user.svg"> 
                 </div>
                 <div class="profile-nav-info">
                     <h3 class="username">${dato.getNombre()} ${dato.getApellido()}</h3>

@@ -13,7 +13,10 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Html.html to edit thi
 
         <link rel="stylesheet" href="usuario/listado/style.css" type="text/css"/>
       
-
+    <%
+        HttpSession objSesion = request.getSession();
+        String id = objSesion.getAttribute("id").toString();
+    %>
 
     </head>
     <body>
@@ -21,7 +24,7 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Html.html to edit thi
         <header class="header scroll-header" id="header">
             <nav class="nav container">
                 <!-- LOGO DE LA APLICACIÓN -->
-                <a href="" class="nav_logo"><span>W</span>ork<span>W</span>ide</a>
+                <a href="ControlUsuarios?accion=Perfiles" class="nav_logo"><span>W</span>ork<span>W</span>ide</a>
 
                 <!-- LISTA DE LOS LINKS DEL NAV -->
                 <div class="nav_menu">
@@ -64,7 +67,7 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Html.html to edit thi
                 </div>
 
                 <!-- ICONO DEL USUARIO -->
-                <img src="user.jpg" alt="user" class="nav_img">
+                <img src="ControladorImagen?id=<% out.print(id); %>" alt="user" class="nav_img" onerror=this.src="user.svg">
             </nav>
         </header>
         <main>
@@ -120,7 +123,7 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Html.html to edit thi
                                 <!-- botones-->
                                 <div class="btns">
                                     <a href="#" class="btn btn--msg">Mensaje</a>
-                                    <a href="ControlSolicitudes?id=${trabajador.getIdUsu()}" class="btn btn--follow">Solicitud</a>
+                                    <a href="ControlSolicitudes?idEnviar=${trabajador.getIdUsu()}" class="btn btn--follow">Solicitud</a>
 
                                 </div>
 

@@ -19,13 +19,13 @@
     <header class="header scroll-header" id="header">
         <nav class="nav container">
             <!-- LOGO DE LA APLICACIÓN -->
-            <a href="" class="nav_logo"><span>W</span>ork<span>W</span>ide</a>
+            <a href="ControlUsuarios?accion=Perfiles" class="nav_logo"><span>W</span>ork<span>W</span>ide</a>
 
             <!-- LISTA DE LOS LINKS DEL NAV -->
             <div class="nav_menu">
                 <ul class="nav_list">
                     <li class="nav_item">
-                        <a href="ControlUsuarios?accion=Perfiles" class="nav_link">
+                        <a href="ControlUsuarios?accion=Perfiles" class="nav_link active-link">
                             <i class='bx bx-home-alt nav_icon' ></i>
                             <span class="nav_name">Inicio</span>
                         </a>
@@ -53,7 +53,7 @@
                     </li>
 
                     <li class="nav_item">
-                        <a href="" class="nav_link active-link">
+                        <a href="ControlNuevo?accion=MiPerfil" class="nav_link">
                             <i class='bx bx-user-circle nav_icon' ></i>
                             <span class="nav_name">Perfil</span>
                         </a>
@@ -62,7 +62,7 @@
             </div>
 
             <!-- ICONO DEL USUARIO -->
-            <img src="ControladorImagen?id=<% out.print(id); %>" alt="user" class="nav_img">
+            <img src="ControladorImagen?id=<% out.print(id); %>" alt="user" class="nav_img" onerror=this.src="user.svg">
         </nav>
     </header>
 
@@ -99,12 +99,12 @@
                             </p>
                         </div>
                         <div class="profile-btn">
-                            <button class="profile-chat">
+                            <a href="" class="profile-chat">
                                 <i class='bx bxs-message' ></i>Chat
-                            </button>
-                            <button class="profile-req">
+                            </a>
+                            <a href="ControlSolicitudes?idEnviar=${dato.getIdUsu()}" class="profile-req" >
                                 <i class='bx bxs-file-plus' ></i>Solicitud
-                            </button>
+                            </a>
                         </div>
                     </div>
                 </div>
