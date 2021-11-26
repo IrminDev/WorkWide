@@ -399,4 +399,26 @@ public class OpcUsuario extends conexion{
         
         return datosUsuario;
     }
+    
+    
+    
+    public void actualizarUsuario(Usuario usu){
+        String sql = "CALL editarUsuarioPerfil(?, ?, ?, ?, ?, ?, ?)";
+        PreparedStatement ps;
+        try{
+            this.conectar();
+            ps = this.getCon().prepareCall(sql);
+            ps.setInt(1, usu.getIdUsu());
+            ps.setString(2, usu.getNombre());
+            ps.setString(3, usu.getApellido());
+            ps.setString(4, usu.getTelefono());
+            ps.setBlob(5, usu.getPortada());
+            ps.setBlob(6, usu.getPerfil());
+            ps.setString(7, usu.getContraUsu());
+            ps.executeUpdate();
+        }
+        catch(Exception e){
+            
+        }
+    }
 }

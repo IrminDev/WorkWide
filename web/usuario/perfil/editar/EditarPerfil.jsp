@@ -69,18 +69,18 @@
     <div class="content">
         <h1>Edita tu perfil</h1>
         <p>¿Necesitas hacer algunas modificaciones? Sin problema podrás realizarlas desde aquí, recuerda que sino quieres modificar algunos campos los puedes dejar tal cual o llenarlos con la misma información, para el caso de la contraseña será necesario que la llenes de nuevo.</p>
-        <form action="../../../ControlNuevo" method="POST">
+        <form action="../../../ControlNuevo" method="POST" enctype="multipart/form-data">
             <div class="row">
                 <div class="column">
                     <label for="nombre" id="cnombre">Nombre</label>
-                    <input type="text" id="nombre" value="<% out.print(nombre); %>">
+                    <input type="text" name="nombre" id="nombre" value="<% out.print(nombre); %>">
                     <div class="warning" id="cwnombre">
                         <p id="warning-nombre"></p>
                     </div>
                 </div>
                 <div class="column">
                     <label for="apellido" id="capellido">Apellido</label>
-                    <input type="text" id="apellido" value="<% out.print(apellido); %>">
+                    <input type="text" name="apellido" id="apellido" value="<% out.print(apellido); %>">
                     <div class="warning" id="cwapellido">
                         <p id="warning-apellido"></p>
                     </div>
@@ -90,14 +90,14 @@
             <div class="row">
                 <div class="column">
                     <label for="telefono" id="ctelefono">Teléfono</label>
-                    <input type="text" id="telefono" value="<% out.print(telefono); %>">
+                    <input type="text" name="telefono" id="telefono" value="<% out.print(telefono); %>">
                     <div class="warning" id="cwtelefono">
                         <p id="warning-telefono"></p>
                     </div>
                 </div>
                 <div class="column">
                     <label for="contrasenanew" id="ccontranueva">Contraseña nueva</label>
-                    <input type="password" id="contrasenanew" placeholder="Si no deseas cambiarla coloca la misma">
+                    <input type="password" name="contranueva" id="contrasenanew" placeholder="Si no deseas cambiarla coloca la misma">
                     <div class="warning" id="cwcontranueva">
                         <p id="warning-contranueva"></p>
                     </div>
@@ -107,14 +107,14 @@
             <div class="row">
                 <div class="column">
                     <label for="profile" id="cperfil">Foto de perfil</label>
-                    <input type="file" id="profile">
+                    <input type="file" name="perfil" id="profile">
                     <div class="warning" id="cwperfil">
                         <p id="warning-perfil"></p>
                     </div>
                 </div>
                 <div class="column">
                     <label for="banner" id="cportada">Foto de portada</label>
-                    <input type="file" id="banner">
+                    <input type="file" name="portada" id="banner">
                     <div class="warning" id="cwportada">
                         <p id="warning-portada"></p>
                     </div>
@@ -124,7 +124,7 @@
             <div class="row">
                 <div class="column">
                     <label for="contrasenaold"  id="ccontravieja">Contraseña antigua</label>
-                    <input type="password" id="contrasenaold" placeholder="Escribe la contraseña antigua">
+                    <input type="password" name="contravieja" id="contrasenaold" placeholder="Escribe la contraseña antigua">
                     <div class="warning" id="cwcontravieja">
                         <p id="warning-contravieja"></p>
                     </div>
