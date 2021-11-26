@@ -6,7 +6,7 @@ import java.sql.PreparedStatement;
 public class OpcSolicitud extends conexion{
     
     public void altaSolicitud(Solicitud soli) throws Exception{
-        String sql = "CALL complementarRegistro(?, ?, ?, ?, ?, ?, ?);";
+        String sql = "CALL altaSolicitud(?, ?, ?, ?, ?, ?);";
        //Variable que va a preparar nuestra sentencia
         PreparedStatement ps;
        //Intentamos conectar a la base de datos
@@ -16,13 +16,12 @@ public class OpcSolicitud extends conexion{
             //A partir de la conexión preparamos nuestro procedimiento almacenado
             ps = this.getCon().prepareCall(sql);
             //Asignamos las variables necesarias a subir
-            ps.setDate(1, soli.getInicio());
-            ps.setDate(2, soli.getFin());
-            ps.setInt(3, soli.getIdEmisor());
-            ps.setInt(4, soli.getIdReceptor());
-            ps.setInt(5, soli.getIdSoli());
-            ps.setString(6, soli.getTitulo());
-            ps.setString(7, soli.getDescripcion());
+            ps.setInt(1, soli.getIdEmisor());
+            ps.setInt(2, soli.getIdReceptor());
+            ps.setDate(3, soli.getInicio());
+            ps.setDate(4, soli.getFin());
+            ps.setString(5, soli.getTitulo());
+            ps.setString(6, soli.getDescripcion());
             
             //Ejecutamos nuestra sentencia ya lista
             ps.executeUpdate();            
