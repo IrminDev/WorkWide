@@ -484,6 +484,7 @@ correo_usu,
 telefono_usu,
 profile_usu,
 banner_usu
+FROM usuario
 WHERE id_usu = id;
 end $$
 delimiter ;

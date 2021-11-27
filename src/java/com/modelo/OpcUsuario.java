@@ -394,7 +394,7 @@ public class OpcUsuario extends conexion{
             }
         }
         catch(Exception e){
-            
+            System.out.println(e);
         }
         
         return datosUsuario;
@@ -420,5 +420,27 @@ public class OpcUsuario extends conexion{
         catch(Exception e){
             
         }
+    }
+    
+    public int obtenerIdCoreeo(String correo){
+        int id = 543;
+        String sql = "call idApartirCorreo(?)";
+        PreparedStatement ps;
+        ResultSet rs;
+        try{
+            this.conectar();
+            ps = this.getCon().prepareCall(sql);
+            ps.setString(1, correo);
+            rs = ps.executeQuery();
+            System.out.println("Ejecutó");
+            if(rs.next()){
+                id = rs.getInt(1);
+            }
+        }
+        catch(Exception e){
+            System.out.println(e);
+        }
+        
+        return id;
     }
 }

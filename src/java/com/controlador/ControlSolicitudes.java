@@ -1,9 +1,15 @@
 package com.controlador;
 
+import com.modelo.OpcSolicitud;
 import com.modelo.OpcUsuario;
+import com.modelo.Solicitud;
 import com.modelo.Trabajador;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.Date;
+import java.text.SimpleDateFormat;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -18,6 +24,7 @@ import javax.servlet.http.HttpSession;
 @WebServlet(name = "ControlSolicitudes", urlPatterns = {"/ControlSolicitudes"})
 public class ControlSolicitudes extends HttpServlet {
     OpcUsuario aux = new OpcUsuario();
+    OpcSolicitud auxSoli = new OpcSolicitud();
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -69,7 +76,38 @@ public class ControlSolicitudes extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        String accion = request.getParameter("accion");
+        if(accion != null){
+            if(accion.equals("enviar")){
+                String correoRem = request.getParameter("correo");
+                String correoDes = request.getParameter("corrreo2");
+                String titulo = request.getParameter("titulo");
+                String descripcion = request.getParameter("description");
+                String cadFechaIn = request.getParameter("fecha");
+                String cadFechaFin = request.getParameter("fecha2");
+                try {
+                    Date fechaInit = Date.valueOf(cadFechaIn);                
+                    Date fechaFin = Date.valueOf(cadFechaFin);
+                    int idDes = aux.obtenerIdCoreeo(correoDes);
+                    HttpSession objSesion = request.getSession();
+                    int idEmisor = Integer.parseInt(objSesion.getAttribute("id").toString());
+                    System.out.println(idDes);
+                    System.out.println(idEmisor);
+                    Solicitud soli = new Solicitud();
+                    soli.setDescripcion(descripcion);
+                    soli.setFin(fechaFin);
+                    soli.setIdEmisor(idEmisor);
+                    soli.setIdReceptor(idDes);
+                    soli.setInicio(fechaInit);
+                    soli.setTitulo(titulo);
+                    auxSoli.altaSolicitud(soli);
+                    response.sendRedirect("ControlUsuarios?accion=Perfiles");
+                } catch (Exception ex) {
+                    request.getRequestDispatcher("usuario/Form/solicitud.jsp").forward(request, response);
+                }
+                
+            }
+        }
     }
 
     /**

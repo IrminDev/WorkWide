@@ -23,6 +23,8 @@
         String telefono = objSesion.getAttribute("telefono").toString();
         String descripcion = objSesion.getAttribute("descripcion").toString();
         int idUsuario = Integer.parseInt(objSesion.getAttribute("id").toString());
+        
+
     %>
     <!-- HEADER CON EL QUE SE TRABAJARÁ -->
     <header class="header scroll-header" id="header">
@@ -62,7 +64,7 @@
                     </li>
 
                     <li class="nav_item">
-                        <a href="" class="nav_link active-link">
+                        <a href="../../../ControlUsuarios?accion=MiPerfilTrabajador" class="nav_link active-link">
                             <i class='bx bx-user-circle nav_icon' ></i>
                             <span class="nav_name">Perfil</span>
                         </a>

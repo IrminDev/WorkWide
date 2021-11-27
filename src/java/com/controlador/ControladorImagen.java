@@ -58,12 +58,11 @@ public class ControladorImagen extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        System.out.println("Llegó a las listas");
+        System.out.println("Imagen de perfil");
         OpcUsuario ayuda = new OpcUsuario();
         int id = Integer.parseInt(request.getParameter("id"));
         try{
             ayuda.mostrarPerfil(id, response);
-            ayuda.mostrarPortada(id, response);
         }
         catch(Exception e){
             System.out.println(e);

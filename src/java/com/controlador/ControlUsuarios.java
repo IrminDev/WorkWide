@@ -275,6 +275,12 @@ public class ControlUsuarios extends HttpServlet {
                                     objSesion.setAttribute("descripcion", description);
                                     //Obtenemos la ID del usuario desde donde está registrando sus cambios
                                     int idTrab = Integer.parseInt(objSesion.getAttribute("id").toString());
+                                    Trabajador traba = auxiliar.datosAntiguosTrabajador(idTrab);
+                                    objSesion.setAttribute("nombre", traba.getNombre());
+                                    objSesion.setAttribute("apellido", traba.getApellido());
+                                    objSesion.setAttribute("correo", traba.getCorreoUsu());
+                                    objSesion.setAttribute("tipo", 2);
+                                    objSesion.setAttribute("telefono", traba.getTelefono());
 
                                     //Guardamos en el objeto trab(Trabajador) la información recopilada
                                     trab.setPerfil(bytesPerfil);

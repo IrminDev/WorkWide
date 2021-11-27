@@ -110,14 +110,16 @@ public class ControlNuevo extends HttpServlet {
                             System.out.println(telefono);
                             if(perfil.getSize() != 0){
                                 bytesPerfil = perfil.getInputStream();
+                                System.out.println("Hay perfil");
                             }
                             else{
                                 try{
-                                    Usuario datos;
+                                    Usuario datosPerfil = new Usuario();
                                     HttpSession objSesion = request.getSession();
                                     int id = Integer.parseInt(objSesion.getAttribute("id").toString());
-                                    datos = auxiliar.iniciarUsuario(id);
-                                    bytesPerfil = datos.getPerfil();
+                                    datosPerfil = auxiliar.iniciarUsuario(id);
+                                    bytesPerfil = datosPerfil.getPerfil();
+                                    System.out.println("Perfil antiguo " + id + datosPerfil.getPerfil());
                                 }
                                 catch(Exception e){
                                     System.out.println(e);
@@ -125,14 +127,16 @@ public class ControlNuevo extends HttpServlet {
                             }
                             if(portada.getSize() != 0){
                                 bytesPortada = portada.getInputStream();
+                                System.out.println("Hay portada");
                             }
                             else{
                                 try{
-                                    Usuario datos;
+                                    Usuario datosPortada = new Usuario();
                                     HttpSession objSesion = request.getSession();
                                     int id = Integer.parseInt(objSesion.getAttribute("id").toString());
-                                    datos = auxiliar.iniciarUsuario(id);
-                                    bytesPortada = datos.getPortada();
+                                    datosPortada = auxiliar.iniciarUsuario(id);
+                                    bytesPortada = datosPortada.getPortada();
+                                    System.out.println("Portada antigua " + id + datosPortada.getPortada());
                                 }
                                 catch(Exception e){
                                     System.out.println(e);

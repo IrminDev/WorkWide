@@ -103,7 +103,7 @@
                 <div class="panel right-panel">
                     <div class="content">
                         <h3>¿Ya tienes una cuenta?</h3>
-                        <p>¡Inicia seión con tu cuenta! Entra a tu cuenta para observar a los distintos trabajadores y sus servicios que ofrecen en nuestra plataforma o para seguir potenciando tu negocio con posibles clientes interesados en lo que mejor haces.</p>
+                        <p>¡Inicia sesión con tu cuenta! Entra a tu cuenta para observar a los distintos trabajadores y sus servicios que ofrecen en nuestra plataforma o para seguir potenciando tu negocio con posibles clientes interesados en lo que mejor haces.</p>
                         <button class="btn transparent" id="inicio-btn">Inicia sesión</button>
                     </div>
                     <img src="assets/undraw_Spreadsheets_re_alt0.svg" class="image" alt="inicio">

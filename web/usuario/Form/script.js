@@ -8,6 +8,7 @@ const profile = document.getElementById("profile");
 const banner = document.getElementById("banner");
 const contrasenaold = document.getElementById("contrasenaold");
 const description = document.getElementById("description");
+const soli = document.getElementById("soli");
 const correo = document.getElementById("correo");
 const correo2 = document.getElementById("correo2");
 
@@ -23,6 +24,7 @@ const cajaprofile = document.getElementById("cperfil");
 const cajabanner = document.getElementById("cportada");
 
 const cajadescription = document.getElementById("cdescripcion");
+const cajasoli = document.getElementById("csoli");
 
 //textos de las advertencias
 const wnombre = document.getElementById("warning-nombre");
@@ -36,6 +38,7 @@ const wfecha2 = document.getElementById("warning-fecha2");
 const wbanner = document.getElementById("warning-portada");
 const wcontrasenaold = document.getElementById("warning-contravieja");
 const wdescription = document.getElementById("warning-descripcion");
+const wsoli = document.getElementById("warning-soli");
 
 //Cajas de las advertencias
 const cwnombre = document.getElementById("cwnombre");
@@ -51,6 +54,7 @@ const cwfecha2 = document.getElementById("cwfecha2");
 const cwbanner = document.getElementById("cwportada");
 const cwcontrasenaold = document.getElementById("cwcontravieja");
 const cwdescription = document.getElementById("cwdescripcion");
+const cwsoli = document.getElementById("cwsoli");
 
 //Función ejecutada al enviar el formulario
 function enviarCambios(){
@@ -61,6 +65,7 @@ function enviarCambios(){
     let warcorreo2 = "";
     let warfecha = "";
     let warfecha2 = "";
+    let warsoli = "";
 
     //Preparaciones para comparar fechas
     var fecha_intput = document.getElementById('fecha').value;
@@ -102,7 +107,8 @@ function enviarCambios(){
 
 
     wdescription.innerHTML = "";
-
+    wsoli.innerHTML = "";
+    
     cajanombre.classList.remove("incorrect");
     cajaapellido.classList.remove("incorrect");
     cajacorreo.classList.remove("incorrect");;
@@ -112,7 +118,7 @@ function enviarCambios(){
 
 
    
-  
+    cajasoli.classList.remove("incorrect");  
     cajadescription.classList.remove("incorrect");
 
     nombre.classList.remove("incorrect");
@@ -123,7 +129,7 @@ function enviarCambios(){
     fecha2.classList.remove("incorrect");
     
 
-
+    soli.classList.remove("incorrect");
     description.classList.remove("incorrect");
 
     cwnombre.classList.remove("active");
@@ -133,7 +139,7 @@ function enviarCambios(){
     cwfecha.classList.remove("active");
     cwfecha2.classList.remove("active");
 
- 
+    cwsoli.classList.remove("active"); 
     cwdescription.classList.remove("active");
 
     //Algoritmo que comprueba cada campo
@@ -262,7 +268,7 @@ function enviarCambios(){
 
 
     //Comprueba la descripción
-    if(description.value.length > 5000){
+    if(description.value.length > 500){
         wardescripcion = "Escoge una longitud correcta";
         entrada = false;
         cajadescription.classList.add("incorrect");
@@ -278,6 +284,23 @@ function enviarCambios(){
             cwdescription.classList.add("active");
         }
     }
+        //Comprueba el titulo
+    if(soli.value.length > 50){
+        wardescripcion = "Escoge una longitud correcta";
+        entrada = false;
+        cajasoli.classList.add("incorrect");
+        soli.classList.add("incorrect");
+        cwsoli.classList.add("active");
+    }
+    else{
+        if(regexdesc.test(soli.value)){
+            warsoli = "No insertes etiquetas HTML";
+            entrada = false;
+            cajasoli.classList.add("incorrect");
+            soli.classList.add("incorrect");
+            cwsoli.classList.add("active");
+        }
+    }
 
     if (!entrada) {
         wapellido.innerHTML = warapellido;
@@ -287,6 +310,7 @@ function enviarCambios(){
         wcorreo.innerHTML = warcorreo;
         wcorreo2.innerHTML = warcorreo2;
         wdescription.innerHTML = wardescripcion;
+        wsoli.innerHTML = warsoli;
 
     }
     return entrada;
