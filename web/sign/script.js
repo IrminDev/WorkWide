@@ -141,7 +141,7 @@ function enviarRegistro(){
         wapellido.innerHTML = warapellido;
         wtelefono.innerHTML = wartelefono;
         wcorreo.innerHTML = warcorreo;
-        wcontra.innerHTML = warcontra
+        wcontra.innerHTML = warcontra;
     }
 
     return entrada;

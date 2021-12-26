@@ -6,21 +6,41 @@
         <link rel="stylesheet" href="style.css">
         <script src="https://kit.fontawesome.com/64d58efce2.js" crossorigin="anonymous"></script>
     </head>
+    <%
+        HttpSession objSesion = request.getSession();
+        if(objSesion.getAttribute("id") != null){
+            if(objSesion.getAttribute("tipont").toString().equals("1")){
+                response.sendRedirect("../trabajador/index/index.jsp");
+            }
+            else{
+                response.sendRedirect("../usuario/listado/Encuentra.jsp");
+            }
+        }
+    %>
     <body>
         <div class="container">
             <div class="forms-container">
                 <div class="inicio-registro">
-                    <form class="inicioForm" method="POST" action="../ControlUsuarios">
+                    <form class="inicioForm" method="POST" action="#">
                         <h2 class="title">Inicio de sesión</h2>
-                        <div class="input-field">
+                        <div class="error-text"></div>
+                        <div class="input-field" id="ccorreol">
                             <i class="fas fa-envelope"></i>
-                            <input type="text" name="correol" placeholder="Correo electrónico">
+                            <input type="text" id="correol" name="correol" placeholder="Correo electrónico">
                         </div>
-                        <div class="input-field">
+                        <div class="warning" id="cwcorreol">
+                            <i class="fas fa-exclamation"></i>
+                            <p id="warning-correol"></p>
+                        </div>
+                        <div class="input-field" id="ccontral">
                             <i class="fas fa-lock"></i>
-                            <input type="password" name="contral" placeholder="Contraseña">
+                            <input type="password" id="contral" name="contral" placeholder="Contraseña">
                         </div>
-                        <input name="accion" type="submit" value="Iniciar" class="btn solid">
+                        <div class="warning" id="cwcontral">
+                            <i class="fas fa-exclamation"></i>
+                            <p id="warning-contral"></p>
+                        </div>
+                        <input name="accion" id="BtnIniciar" type="submit" value="Iniciar" class="btn solid">
                         <div class="registro-link">
                             <p class="social-text">¿No estás registrado? <a href="" class="link">Regístrate</a></p>
                         </div>
@@ -29,6 +49,7 @@
 
                     <form class="registroForm" action="../ControlUsuarios" method="POST">
                         <h2 class="title">Registro</h2>
+                        <div class="error-text">Este es un mensaje de error</div>
                         <div class="input-field" id="cnombre">
                             <i class="fas fa-user"></i>
                             <input type="text" id="nombre" name="nombreR" placeholder="Nombre">
@@ -112,5 +133,8 @@
         </div>
         <script src="app.js"></script>
         <script src="script.js"></script>
+        <script src="verify.js"></script>
+        <script src="../JS/registro.js"></script>
+        <script src="../JS/login.js"></script>
     </body>
 </html>

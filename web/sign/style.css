@@ -249,6 +249,41 @@ form.registroForm{
 
 
 
+#ccorreol.incorrect{
+    border: 1px solid red;
+    background-color: #FFE8E8;
+}
+
+#ccorreol.incorrect i,
+#ccorreol.incorrect input,
+#ccorreol.incorrect input::placeholder{
+    color: #FF6967;
+}
+
+#ccorreol.active i{
+    display: inline;
+}
+
+#ccontral.incorrect{
+    border: 1px solid red;
+    background-color: #FFE8E8;
+}
+
+#ccontral.incorrect i,
+#ccontral.incorrect input,
+#ccontral.incorrect input::placeholder{
+    color: #FF6967;
+}
+
+#ccontral.active i{
+    display: inline;
+}
+
+
+
+
+
+
 .social-text{
     padding: .7rem 0;
     font-size: 1rem;
@@ -365,6 +400,17 @@ form.registroForm{
 .container.registro-mode form.registroForm{
     z-index: 2;
     opacity: 1;
+}
+
+.error-text{
+    height: auto;
+    width: 90%;
+    background: #FFD9D9;
+    border: 1px solid #E30000;
+    color: #960000;
+    text-align: center;
+    display: none;
+    padding: 10px
 }
 
 @media (max-width: 870px){

@@ -8,12 +8,23 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
     <title>Necesitamos más información</title>
+    <%
+        HttpSession objSesion = request.getSession();
+        if(objSesion.getAttribute("id") == null){
+            response.sendRedirect("../../index/index.jsp");
+        }
+        else{
+            if(objSesion.getAttribute("tipont").toString().equals("2")){
+                response.sendRedirect("../../usuario/listado/Encuentra.jsp");
+            }
+        }
+    %>
 </head>
 <body>
     <div class="content">
         <h1>Necesitamos más información...</h1>
         <p>Como trabajador, brindanos la siguiente información, es necesario que llenes todos los campos correctamente para que puedas tener una buena experiencia en potenciales empleos.</p>
-        <form action="../../ControlUsuarios" method="POST" id="Completar" enctype="multipart/form-data">
+        <form action="#" method="POST" id="Completar" enctype="multipart/form-data">
             <div class="row">
                 <div class="column">
                     <label for="work">Trabajo</label>
@@ -141,5 +152,6 @@
     </div>
 
     <script src="script.js"></script>
+    <script src="../../JS/completar.js"></script>
 </body>
 </html>

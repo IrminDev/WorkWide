@@ -19,8 +19,8 @@
             <div class="nav_menu" id="nav-menu">
                 <ul class="nav_list">
                     <li class="nav_item"><a href="#" class="nav_link">Inicio</a></li>
-                    <li class="nav_item"><a href="../quienesomos/quienesomos.jsp" class="nav_link">Quiénes somos</a></li>
                     <li class="nav_item"><a href="../about/acerca.jsp" class="nav_link">Acerca de</a></li>
+                    <li class="nav_item"><a href="../quienesomos/quienesomos.jsp" class="nav_link">Quiénes somos</a></li>
                     <li class="nav_item"><a href="../sign/identificate.jsp" class="nav_link">Idéntificate</a></li>
                 </ul>
             </div>
@@ -61,7 +61,7 @@
                         <div class="highlight_data">
                             <h2 class="highlight_subtitle">WorkWide</h2>
                             <h1 class="highlight_title">Demuestra tus habilidades</h1>
-                            <p class="highlight_desc">Enséñale al mundo de lo que eres capaz con tuperfil de trabajo, entre más habilidades más posibilidades dde gente que quiera trabajar junto a tí.</p>
+                            <p class="highlight_desc">Enséñale al mundo de lo que eres capaz con tu perfil de trabajo, entre más habilidades más posibilidades de gente que quiera trabajar junto a tí.</p>
                             <a href="../sign/identificate.jsp" class="highlight_button">Vamos allá <i class="bx bx-right-arrow-alt highlight_button-icon"></i></a>
                         </div>
 

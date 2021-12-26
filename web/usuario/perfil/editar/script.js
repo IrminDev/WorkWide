@@ -58,37 +58,7 @@ function enviarCambios(){
     let regexfiles = /(.jpg|.jpeg|.png|.gif)$/i;
 
     //Limpiamos advertencias anteriores para esperar las nuevas
-    wapellido.innerHTML = "";
-    wnombre.innerHTML = "";
-    wtelefono.innerHTML = "";
-    wcontrasenanew.innerHTML = "";
-    wprofile.innerHTML = "";
-    wbanner.innerHTML = "";
-    wcontrasenaold.innerHTML = "";
-
-    cajanombre.classList.remove("incorrect");
-    cajaapellido.classList.remove("incorrect");
-    cajatelefono.classList.remove("incorrect");
-    cajacontrasenanew.classList.remove("incorrect");
-    cajaprofile.classList.remove("incorrect");
-    cajabanner.classList.remove("incorrect");
-    cajacontrasenaold.classList.remove("incorrect");
-
-    nombre.classList.remove("incorrect");
-    apellido.classList.remove("incorrect");
-    telefono.classList.remove("incorrect");
-    contrasenanew.classList.remove("incorrect");
-    profile.classList.remove("incorrect");
-    banner.classList.remove("incorrect");
-    cajacontrasenaold.classList.remove("incorrect");
-
-    cwnombre.classList.remove("active");
-    cwapellido.classList.remove("active");
-    cwtelefono.classList.remove("active");
-    cwcontrasenanew.classList.remove("active");
-    cwprofile.classList.remove("active");
-    cwbanner.classList.remove("active");
-    cwcontrasenaold.classList.remove("active");
+    limpiar();
 
     //Algoritmo que comprueba cada campo
     //Comprueba nombre
@@ -196,4 +166,48 @@ function enviarCambios(){
         wcontrasenaold.innerHTML = warcontravieja;
     }
     return entrada;
+}
+
+
+function contraIncorrecta(){
+    limpiar();
+    cajacontrasenaold.classList.add("incorrect");
+    contrasenaold.classList.add("incorrect");
+    cwcontrasenaold.classList.add("active");
+    
+    wcontrasenaold.innerHTML = "La contraseña es incorrecta";
+}
+
+function limpiar(){
+    wapellido.innerHTML = "";
+    wnombre.innerHTML = "";
+    wtelefono.innerHTML = "";
+    wcontrasenanew.innerHTML = "";
+    wprofile.innerHTML = "";
+    wbanner.innerHTML = "";
+    wcontrasenaold.innerHTML = "";
+
+    cajanombre.classList.remove("incorrect");
+    cajaapellido.classList.remove("incorrect");
+    cajatelefono.classList.remove("incorrect");
+    cajacontrasenanew.classList.remove("incorrect");
+    cajaprofile.classList.remove("incorrect");
+    cajabanner.classList.remove("incorrect");
+    cajacontrasenaold.classList.remove("incorrect");
+
+    nombre.classList.remove("incorrect");
+    apellido.classList.remove("incorrect");
+    telefono.classList.remove("incorrect");
+    contrasenanew.classList.remove("incorrect");
+    profile.classList.remove("incorrect");
+    banner.classList.remove("incorrect");
+    cajacontrasenaold.classList.remove("incorrect");
+
+    cwnombre.classList.remove("active");
+    cwapellido.classList.remove("active");
+    cwtelefono.classList.remove("active");
+    cwcontrasenanew.classList.remove("active");
+    cwprofile.classList.remove("active");
+    cwbanner.classList.remove("active");
+    cwcontrasenaold.classList.remove("active");
 }

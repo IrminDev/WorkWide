@@ -24,17 +24,7 @@ function eliminarPerfil(){
     let entrada = true;
 
     //Limpiamos advertencias
-    wcontra.innerHTML = "";
-    wcontraconfirm.innerHTML = "";
-
-    cajacontra.classList.remove("incorrect");
-    cajacontraconfirm.classList.remove("incorrect");
-
-    contra.classList.remove("incorrect");
-    contraconfirm.classList.remove("incorrect");
-
-    cwcontra.classList.remove("active");
-    cwcontraconfirm.classList.remove("active");
+    limpiar();
 
     //Algoritmo que comprueba las contraseñas
     if(contra.value.length < 4 || contra.value.length > 20){
@@ -68,4 +58,27 @@ function eliminarPerfil(){
     }
 
     return entrada;
+}
+
+function contraIncorrecta(){
+    limpiar();
+    cajacontra.classList.add("incorrect");
+    contra.classList.add("incorrect");
+    cwcontra.classList.add("active");
+    
+    wcontra.innerHTML = "La contraseña es incorrecta";
+}
+
+function limpiar(){
+    wcontra.innerHTML = "";
+    wcontraconfirm.innerHTML = "";
+
+    cajacontra.classList.remove("incorrect");
+    cajacontraconfirm.classList.remove("incorrect");
+
+    contra.classList.remove("incorrect");
+    contraconfirm.classList.remove("incorrect");
+
+    cwcontra.classList.remove("active");
+    cwcontraconfirm.classList.remove("active");
 }

@@ -247,7 +247,7 @@ body{
     display: flex;
 }
 
-.profile-btn a{
+.profile-btn button{
     border: 2px solid var(--first-color-alt);
     padding: 10px;
     width: 100%;

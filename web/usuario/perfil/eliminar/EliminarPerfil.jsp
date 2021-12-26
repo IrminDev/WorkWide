@@ -12,20 +12,31 @@
 </head>
     <%
         HttpSession objSesion = request.getSession();
-        String id = objSesion.getAttribute("id").toString();
+        String id = "";
+        if(objSesion.getAttribute("id") != null){
+            if(objSesion.getAttribute("tipont").toString().equals("2")){
+                id = objSesion.getAttribute("id").toString();
+            }
+            else{
+                response.sendRedirect("../../../trabajador/index/index.jsp");
+            }
+        }
+        else{
+            response.sendRedirect("../../../index/index.jsp");
+        }
     %>
 <body>
     <!-- HEADER CON EL QUE SE TRABAJARÁ -->
     <header class="header scroll-header" id="header">
         <nav class="nav container">
             <!-- LOGO DE LA APLICACIÓN -->
-            <a href="" class="nav_logo"><span>W</span>ork<span>W</span>ide</a>
+            <a href="../../listado/Encuentra.jsp" class="nav_logo"><span>W</span>ork<span>W</span>ide</a>
 
             <!-- LISTA DE LOS LINKS DEL NAV -->
             <div class="nav_menu">
                 <ul class="nav_list">
                     <li class="nav_item">
-                        <a href="../../../ControlUsuarios?accion=Perfiles" class="nav_link">
+                        <a href="../../listado/Encuentra.jsp" class="nav_link">
                             <i class='bx bx-home-alt nav_icon' ></i>
                             <span class="nav_name">Inicio</span>
                         </a>
@@ -53,7 +64,7 @@
                     </li>
 
                     <li class="nav_item">
-                        <a href="../../../ControlNuevo?accion=MiPerfil" class="nav_link active-link">
+                        <a href="../MiPerfil.jsp" class="nav_link active-link">
                             <i class='bx bx-user-circle nav_icon' ></i>
                             <span class="nav_name">Perfil</span>
                         </a>
@@ -67,7 +78,7 @@
     <div class="content">
         <h1>Elimina tu perfil</h1>
         <p>Podrás eliminar toda información que se haya dejado en la aplicación. Si realizas la opción de eliminar no podrás recuperar tus datos ¿Estás seguro de eliminar?</p>
-        <form action="../../../ControlNuevo" method="POST">
+        <form action="#" method="POST">
             <div class="row">
                 <div class="column">
                     <label for="contra" id="ccontra">Contraseña</label>
@@ -89,5 +100,6 @@
     </div>
 
     <script src="script.js"></script>
+    <script src="../../../JS/eliminar.js"></script>
 </body>
 </html>

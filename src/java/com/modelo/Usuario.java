@@ -13,7 +13,16 @@ public class Usuario {
     public String contraUsu;
     public String correoUsu;
     public String telefono;
+    public String estado;
 
+    public String getEstado() {
+        return estado;
+    }
+
+    public void setEstado(String estado) {
+        this.estado = estado;
+    }
+    
     public InputStream getPerfil() {
         return perfil;
     }

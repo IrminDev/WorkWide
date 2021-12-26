@@ -86,8 +86,8 @@ public class OpcUsuario extends conexion{
     }
     
     //Método para obtener los datos del perfil
-    public List listarPerfilTrabajador(int id){
-        List<Trabajador> lista = new ArrayList<>();
+    public Trabajador listarPerfilTrabajador(int id){
+        Trabajador traba = new Trabajador();
         String sql = "CALL desplegarPerfilPropioTrabajador("+ id +")";
         PreparedStatement ps;
         ResultSet rs;
@@ -96,7 +96,6 @@ public class OpcUsuario extends conexion{
             ps = this.getCon().prepareCall(sql);
             rs = ps.executeQuery();
             if(rs.next()){
-                Trabajador traba = new Trabajador();
                 traba.setIdUsu(id);
                 traba.setNombre(rs.getString(1));
                 traba.setApellido(rs.getString(2));
@@ -107,18 +106,17 @@ public class OpcUsuario extends conexion{
                 traba.setTrabajoNombre(rs.getString(7));
                 traba.setRegionNombre(rs.getString(8));
                 traba.setDescripcion(rs.getString(9));
-                lista.add(traba);
             }
         }
         catch(Exception e){
             
         }
         
-        return lista;
+        return traba;
     }
     
-    public List listarPerfilUsuario(int id){
-        List<Usuario> lista = new ArrayList<>();
+    public Usuario listarPerfilUsuario(int id){
+        Usuario usu = new Usuario();
         String sql = "CALL perfilUsuario("+ id +")";
         PreparedStatement ps;
         ResultSet rs;
@@ -127,19 +125,17 @@ public class OpcUsuario extends conexion{
             ps = this.getCon().prepareCall(sql);
             rs = ps.executeQuery();
             if(rs.next()){
-                Usuario usu = new Usuario();
                 usu.setIdUsu(id);
                 usu.setNombre(rs.getString(1));
                 usu.setApellido(rs.getString(2));
                 usu.setCorreoUsu(rs.getString(3));
                 usu.setTelefono(rs.getString(4));
-                lista.add(usu);
             }
         }
         catch(Exception e){
             
         }
-        return lista;
+        return usu;
     }
     
     public List busquedaPefiles(String texto){
@@ -391,6 +387,7 @@ public class OpcUsuario extends conexion{
                 datosUsuario.setTelefono(rs.getString(4));
                 datosUsuario.setPerfil(rs.getBinaryStream(5));
                 datosUsuario.setPortada(rs.getBinaryStream(6));
+                datosUsuario.setEstado(rs.getString(7));
             }
         }
         catch(Exception e){
@@ -418,12 +415,12 @@ public class OpcUsuario extends conexion{
             ps.executeUpdate();
         }
         catch(Exception e){
-            
+             
         }
     }
     
     public int obtenerIdCoreeo(String correo){
-        int id = 543;
+        int id = 0;
         String sql = "call idApartirCorreo(?)";
         PreparedStatement ps;
         ResultSet rs;
@@ -442,5 +439,90 @@ public class OpcUsuario extends conexion{
         }
         
         return id;
+    }
+    
+    
+    public void IniciarSesion(int id){
+        String sql = "CALL iniciarSesion(" + id + ")";
+        PreparedStatement ps;
+        try{
+            this.conectar();
+            ps = this.getCon().prepareCall(sql);
+            ps.executeUpdate();
+        }
+        catch(Exception e){
+            e.printStackTrace();
+        }
+    }
+    
+    public void CerrarSesion(int id){
+        String sql = "CALL cerrarSesion(" + id + ")";
+        PreparedStatement ps;
+        try{
+            this.conectar();
+            ps = this.getCon().prepareCall(sql);
+            ps.executeUpdate();
+        }
+        catch(Exception e){
+            e.printStackTrace();
+        }
+    }
+    
+    public List listarChats(int tipo, String entrada){
+        List<Usuario>  lista = new ArrayList<>();
+        String sql = "";
+        if(entrada.equals("")){
+            sql = "CALL listarChats(" + tipo + ")";
+        }
+        else{
+            sql = "CALL buscarUsuarios('" + entrada + "', " + tipo + ")";
+        }
+        PreparedStatement ps;
+        ResultSet rs;
+        try{
+            this.conectar();
+            ps = this.getCon().prepareCall(sql);
+            rs = ps.executeQuery();
+            while(rs.next()){
+                Usuario usu = new Usuario();
+                usu.setIdUsu(rs.getInt(1));
+                usu.setNombre(rs.getString(2));
+                usu.setApellido(rs.getString(3));
+                usu.setEstado(rs.getString(4));
+                lista.add(usu);
+            }
+        }
+        catch(Exception e){
+            e.printStackTrace();
+        }
+        
+        
+        return lista;
+    }
+    
+    
+    public Mensaje ultimMsg(int idEmisor, int idReceptor){
+        Mensaje msg = new Mensaje();
+        PreparedStatement ps;
+        ResultSet rs;
+        String sql = "CALL ultimoMsg(?, ?)";
+        try{
+            this.conectar();
+            ps = this.getCon().prepareCall(sql);
+            ps.setInt(1, idEmisor);
+            ps.setInt(2, idReceptor);
+            rs = ps.executeQuery();
+            if(rs.next()){
+                msg.setMensaje(rs.getString(2));
+                msg.setIdEmisor(rs.getInt(3));
+                msg.setIdReceptor(rs.getInt(4));
+            }
+        }
+        catch(Exception e){
+            e.printStackTrace();
+        }
+        
+        
+        return msg;
     }
 }
