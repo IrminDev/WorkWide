@@ -1,2 +1,2 @@
 # WorkWide
-WorkWide es una aplicación web desarrollada por un equipo de programadores que tiene el objetivo principal de crear una red social especializada para trabajadores para que muestren sus habilidades a un público interesado en contratar sus servicios.
+WorkWide is the second project I have done, this project consists of a web application that drives workers to get a job or have people hire them. The application was made with java and javascript, in addition to having a database with MySQL.
