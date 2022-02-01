@@ -14,7 +14,7 @@ public class conexion {
     public void conectar() throws Exception{
         try{
            Class.forName("com.mysql.jdbc.Driver");
-           String url = "jdbc:mysql://localhost:3306/workwide?useSSL=false&zeroDateTimeBehavior=convertToNull&useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC";
+           String url = "jdbc:mysql://localhost:3306/workwide?allowPublicKeyRetrieval=true&useSSL=false&zeroDateTimeBehavior=convertToNull&useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC";
            String user = "root";
            String pass = "n0m3l0";
            con = DriverManager.getConnection(url, user, pass);

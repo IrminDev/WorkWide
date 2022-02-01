@@ -10,6 +10,11 @@ id_tipo_usu int primary key not null auto_increment,
 desc_tipo_usu nvarchar(20)
 );
 
+CREATE TABLE estado_usu(
+id_estado_usu int primary key not null auto_increment,
+estado_usu nvarchar(20)
+);
+
 create table estado_trabajo(
 id_est_trab int primary key not null auto_increment,
 estado_trab nvarchar(20)
@@ -54,7 +59,7 @@ titulo_soli nvarchar(50)
 
 create table mensaje(
 id_msg int primary key not null auto_increment,
-content_msg nvarchar(1000)
+content_msg nvarchar(3000)
 );
 
 create table trabajo(
@@ -144,13 +149,20 @@ foreign key (id_est_soli) references estado_soli(id_est_soli),
 foreign key (id_soli) references solicitud(id_soli)
 );
 
+CREATE TABLE relacion_usuario_estado(
+id_estado_usu int,
+id_usu int,
+FOREIGN KEY (id_estado_usu) REFERENCES estado_usu(id_estado_usu),
+FOREIGN KEY (id_usu) REFERENCES usuario(id_usu) ON DELETE CASCADE
+);
+
 
 -- DATOS PREVIOS NECESARIOS
 
 insert into tipo_usuario values
-(1, "Administrador"),
-(2, "Usuario"),
-(3, "Trabajador"),
+(1, "Usuario"),
+(2, "Trabajador"),
+(3, "Administrador"),
 (4, "Empresa");
 
 insert into estado_trabajo values
@@ -162,6 +174,10 @@ insert into estado_soli values
 (1, "Pendiente"),
 (2, "Aceptada"),
 (3, "Rechazada");
+
+INSERT INTO estado_usu values
+(1, "Activo"),
+(2, "Inactivo");
 
 insert into region values
 (1, "Aguascalientes"),
@@ -269,7 +285,7 @@ select * from recibe_solicitud;
 select * from relacion_usuario_tipoUsuario;
 select * from relacion_usuario_trabajo;
 select * from relacion_usuario_region;
-
+select * from relacion_usuario_estado;
 
 
 -- PROCEDIMIENTOS ALMACENADOS
@@ -282,10 +298,10 @@ begin
 select
 usuario.nombre_usu,
 usuario.apellido_usu,
-usuario.profile_usu,
-usuario.banner_usu,
+usuario.id_usu,
 tipo_trabajo.nombre_tipo_trab,
-region.nombre_region
+region.nombre_region,
+usuario.correo_usu
 from relacion_usuario_tipoUsuario
 inner join usuario on usuario.id_usu = relacion_usuario_tipoUsuario.id_usu
 inner join relacion_usuario_trabajo on usuario.id_usu = relacion_usuario_trabajo.id_usu
@@ -296,7 +312,6 @@ where id_tipo_usu = 2;
 
 end $$
 delimiter ;
-call desplegarUsuarios();
 
 
 
@@ -326,7 +341,6 @@ where usuario.id_usu = id_usuario;
 
 end $$
 delimiter ;
-call desplegarPerfilPropioTrabajador(1);
 
 
 
@@ -342,10 +356,15 @@ tipo_usu int,
 telefono_usu nvarchar(11))
 begin
 
-insert into usuario (nombre_usu, apellido_usu, correo_usu, contrasena_usu, telefono_usu) values
-(Nombre_usu, Apellido_usu, Correo_usu, Contra_usu, telefono_usu);
+insert into usuario (id_usu, nombre_usu, apellido_usu, correo_usu, contrasena_usu, telefono_usu) values
+(default, Nombre_usu, Apellido_usu, Correo_usu, Contra_usu, telefono_usu);
+SET @id_usu = last_insert_id();
+
 insert into relacion_usuario_tipoUsuario values 
-(default, tipo_usu);
+(@id_usu, tipo_usu);
+
+insert into relacion_usuario_estado values
+(1, @id_usu);
 
 end $$
 delimiter ;
@@ -478,16 +497,20 @@ id int
 )
 begin
 SELECT
-nombre_usu,
-apellido_usu,
-correo_usu,
-telefono_usu,
-profile_usu,
-banner_usu
+usuario.nombre_usu,
+usuario.apellido_usu,
+usuario.correo_usu,
+usuario.telefono_usu,
+usuario.profile_usu,
+usuario.banner_usu,
+estado_usu.estado_usu
 FROM usuario
-WHERE id_usu = id;
+INNER JOIN relacion_usuario_estado ON relacion_usuario_estado.id_usu = usuario.id_usu
+INNER JOIN estado_usu ON estado_usu.id_estado_usu = relacion_usuario_estado.id_estado_usu
+WHERE usuario.id_usu = id;
 end $$
 delimiter ;
+
 
 
 
@@ -509,23 +532,26 @@ solicitud
 VALUES
 (default, fecha_inicio, fecha_fin, descripcion, titulo);
 
+SET @id_soli = last_insert_id();
+
 INSERT INTO
 envia_solicitud
 VALUES
-(default, id_emisor);
+(@id_soli, id_emisor);
 
 INSERT INTO
 recibe_solicitud
 VALUES
-(default, id_receptor);
+(@id_soli, id_receptor);
 
 INSERT INTO 
 relacion_solicitud_estado
 VALUES
-(default, 1);
+(@id_soli, 1);
 
 end $$
 delimiter ;
+
 
 
 DROP PROCEDURE IF EXISTS buscar;
@@ -559,9 +585,6 @@ or nombre_usu like texto;
 end $$
 delimiter ;
 
-call buscar("Irmin");
-call buscar("Programador");
-
 
 DROP PROCEDURE IF EXISTS perfilUsuario;
 delimiter $$
@@ -576,7 +599,7 @@ FROM usuario
 WHERE id_usu = id;
 end $$
 delimiter ;
-call perfilUsuario(27);
+
 
 
 DROP PROCEDURE IF EXISTS editarUsuarioPerfil;
@@ -600,4 +623,180 @@ banner_usu = portada,
 profile_usu = perfil
 WHERE id_usu = id;
 END $$
+delimiter ;
+
+DROP PROCEDURE IF EXISTS idApartirCorreo;
+delimiter $$
+CREATE PROCEDURE idApartirCorreo(
+correo nvarchar(60)
+)
+BEGIN
+SELECT id_usu
+FROM usuario 
+WHERE correo_usu = correo;
+END $$
+delimiter ;
+
+
+
+
+DROP PROCEDURE IF EXISTS enviarMsg;
+delimiter &&
+CREATE PROCEDURE enviarMsg(
+emisor int,
+receptor int,
+mensaje nvarchar(3000)
+)
+BEGIN
+
+INSERT INTO mensaje VALUES(
+default,
+mensaje
+);
+
+SET @id_msg = last_insert_id();
+
+INSERT INTO envia_mensaje VALUES(
+@id_msg,
+emisor
+);
+
+INSERT INTO recibe_mensaje VALUES(
+@id_msg,
+receptor
+);
+
+END &&
+delimiter ;
+
+
+
+
+DROP PROCEDURE IF EXISTS ultimoMsg;
+delimiter &&
+CREATE PROCEDURE ultimoMsg(
+emisor int,
+receptor int
+)
+BEGIN
+
+SELECT
+mensaje.id_msg,
+mensaje.content_msg,
+envia_mensaje.id_usu,
+recibe_mensaje.id_usu
+FROM envia_mensaje
+INNER JOIN recibe_mensaje ON envia_mensaje.id_msg = recibe_mensaje.id_msg
+INNER JOIN mensaje ON recibe_mensaje.id_msg = mensaje.id_msg
+WHERE (envia_mensaje.id_usu = emisor OR recibe_mensaje.id_usu = emisor) AND
+(envia_mensaje.id_usu = receptor OR recibe_mensaje.id_usu = receptor)
+ORDER BY mensaje.id_msg DESC LIMIT 1;
+
+END &&
+delimiter ;
+
+
+
+
+DROP PROCEDURE IF EXISTS getMsgs;
+delimiter &&
+CREATE PROCEDURE getMsgs(
+emisor int,
+receptor int
+)
+BEGIN
+
+SELECT
+mensaje.id_msg,
+mensaje.content_msg,
+envia_mensaje.id_usu,
+recibe_mensaje.id_usu
+FROM envia_mensaje
+INNER JOIN recibe_mensaje ON envia_mensaje.id_msg = recibe_mensaje.id_msg
+INNER JOIN mensaje ON recibe_mensaje.id_msg = mensaje.id_msg
+WHERE (envia_mensaje.id_usu = emisor AND recibe_mensaje.id_usu = receptor) OR
+(envia_mensaje.id_usu = receptor AND recibe_mensaje.id_usu = emisor)
+ORDER BY mensaje.id_msg ASC;
+
+END &&
+delimiter ;
+
+
+DROP PROCEDURE IF EXISTS cerrarSesion;
+delimiter &&
+CREATE PROCEDURE cerrarSesion(
+idUsuario int
+)
+BEGIN
+
+UPDATE relacion_usuario_estado SET
+id_estado_usu = 2
+WHERE id_usu = idUsuario;
+
+END &&
+delimiter ;
+
+
+
+
+DROP PROCEDURE IF EXISTS buscarUsuarios;
+delimiter &&
+CREATE PROCEDURE buscarUsuarios(
+entrada nvarchar(255),
+tipo int
+)
+BEGIN
+
+SELECT
+usuario.id_usu,
+usuario.nombre_usu,
+usuario.apellido_usu,
+estado_usu.estado_usu 
+FROM usuario
+INNER JOIN relacion_usuario_estado ON relacion_usuario_estado.id_usu = usuario.id_usu
+INNER JOIN estado_usu ON estado_usu.id_estado_usu = relacion_usuario_estado.id_estado_usu
+INNER JOIN relacion_usuario_tipoUsuario ON relacion_usuario_tipoUsuario.id_usu = usuario.id_usu
+WHERE relacion_usuario_tipoUsuario.id_tipo_usu = tipo AND
+(usuario.nombre_usu LIKE entrada OR usuario.apellido_usu LIKE entrada);
+
+END &&
+delimiter ;
+-- USAR % PARA QUE BUSQUE CORRECTAMENTE
+
+
+DROP PROCEDURE IF EXISTS iniciarSesion;
+delimiter &&
+CREATE PROCEDURE iniciarSesion(
+idUsuario int
+)
+BEGIN
+
+UPDATE relacion_usuario_estado
+SET id_estado_usu = 1
+WHERE id_usu = idUsuario;
+
+END &&
+delimiter ;
+
+
+
+DROP PROCEDURE IF EXISTS listarChats;
+delimiter &&
+CREATE PROCEDURE listarChats(
+tipo int
+)
+BEGIN
+
+SELECT 
+usuario.id_usu,
+usuario.nombre_usu,
+usuario.apellido_usu,
+estado_usu.estado_usu
+FROM usuario
+INNER JOIN relacion_usuario_estado ON relacion_usuario_estado.id_usu = usuario.id_usu
+INNER JOIN estado_usu ON estado_usu.id_estado_usu = relacion_usuario_estado.id_estado_usu
+INNER JOIN relacion_usuario_tipoUsuario ON relacion_usuario_tipoUsuario.id_usu = usuario.id_usu
+WHERE relacion_usuario_tipoUsuario.id_tipo_usu = tipo;
+
+END &&
 delimiter ;
