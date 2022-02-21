@@ -1,4 +1,6 @@
 
+<%@page import="com.modelo.Usuario"%>
+<%@page import="com.modelo.OpcUsuario"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="es">
@@ -7,17 +9,37 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css">
-    <link rel="stylesheet" href="usuario/Form/style.css">
+    <link rel="stylesheet" href="style.css">
     <title>Enviar Solicitud</title>
     <%
         HttpSession objSesion = request.getSession();
-        HttpSession objTmp = request.getSession();
+        String id = "";
+        String receptor = "";
         
-        String receptor = objTmp.getAttribute("correoReceptor").toString();
-        String emisor = objSesion.getAttribute("correo").toString();
-        String nombre = objSesion.getAttribute("nombre").toString();
-        String apellido = objSesion.getAttribute("apellido").toString();
-        String id = objSesion.getAttribute("id").toString();
+        OpcUsuario aux = new OpcUsuario(); 
+        Usuario usu = new Usuario();
+        
+        if(objSesion.getAttribute("id") != null){
+            if(objSesion.getAttribute("tipont").toString().equals("2")){
+                if(request.getParameter("idEnviar") != null){
+                    id = objSesion.getAttribute("id").toString();
+                    receptor = request.getParameter("idEnviar");
+                    usu = aux.iniciarUsuario(Integer.parseInt(receptor));
+                    if(usu.getNombre() == null){
+                        response.sendRedirect("../listado/Encuentra.jsp");
+                    }
+                }
+                else{
+                    response.sendRedirect("../listado/Encuentra.jsp");
+                }
+            }
+            else{
+                response.sendRedirect("../listado/Encuentra.jsp");
+            }
+        }
+        else{
+            response.sendRedirect("../../index/index.jsp");
+        }
     %>
 </head>
 <body>
@@ -67,24 +89,24 @@
                 </ul>
             </div>
             <!-- ICONO DEL USUARIO -->
-            <img src="ControladorImagen?id=<% out.print(id); %>" alt="user" class="nav_img" onerror=this.src="user.svg">
+            <img src="ControladorImagen?id=<% out.print(id); %>" alt="user" class="nav_img" onerror=this.src="../../user.svg">
         </nav>
     </header>
     <div class="content">
         <h1><span class="Form_span">E</span>nvia tu solicitud</h1>
         <p>Envia una solicitud de manera rapida y sencilla desde aquí, llena los datos solicitados debajo y al instante le haremos llegar tu solicitud.</p>
-        <form action="ControlSolicitudes" method="POST">
+        <form action="" method="POST" id="solicitudForm" >
             <div class="row">
                 <div class="column">
                     <label for="nombre" id="cnombre">Nombre</label>
-                    <input type="text" readonly value="<% out.print(nombre); %>" id="nombre">
+                    <input type="text" readonly value="<% out.print(usu.getNombre()); %>" id="nombre">
                     <div class="warning" id="cwnombre">
                         <p id="warning-nombre"></p>
                     </div>
                 </div>
                 <div class="column">
                     <label for="apellido" id="capellido">Apellido</label>
-                    <input type="text" readonly value="<% out.print(apellido); %>" id="apellido">
+                    <input type="text" readonly value="<% out.print(usu.getApellido()); %>" id="apellido">
                     <div class="warning" id="cwapellido">
                         <p id="warning-apellido"></p>
                     </div>
@@ -94,14 +116,14 @@
             <div class="row">
                 <div class="column">
                     <label for="correo" id="ccorreo">Correo remitente</label>
-                    <input type="email" name="correo" readonly value="<% out.print(emisor); %>" id="correo" placeholder="Escriba el correo desde el cual deseas enviar la solicitud">
+                    <input type="email" name="correo" readonly value="<% out.print(objSesion.getAttribute("correo")); %>" id="correo" placeholder="Escriba el correo desde el cual deseas enviar la solicitud">
                     <div class="warning" id="cwcorreo">
                         <p id="warning-correo"></p>
                     </div>
                 </div>
                 <div class="column">
                     <label for="correo2" id="ccorreo2">Correo del destinatario</label>
-                    <input type="email" name="corrreo2" readonly value="<% out.print(receptor); %>" id="correo2" placeholder="Escriba el correo al deseea enviar su solicitud">
+                    <input type="email" name="corrreo2" readonly value="<% out.print(usu.getCorreoUsu()); %>" id="correo2" placeholder="Escriba el correo al deseea enviar su solicitud">
                     <div class="warning" id="cwcorreo2">
                         <p id="warning-correo2"></p>
                     </div>
@@ -144,10 +166,11 @@
                     </div>
                 </div>
             </div>
-                    <button class="form-button" type="submit" onclick="return enviarCambios()" name="accion" value="enviar">Enviar solicitud</button>
+                    <button class="form-button" id="enviarSoli" type="submit" name="accion" value="enviar">Enviar solicitud</button>
         </form>
     </div>
 
-    <script src="usuario/Form/script.js"></script>
+    <script src="script.js"></script>
+    <<script src="../../JS/enviarSolicitud.js"></script>
 </body>
 </html>

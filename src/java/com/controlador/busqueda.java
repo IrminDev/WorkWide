@@ -63,7 +63,7 @@ public class busqueda extends HttpServlet {
 "                                <!-- botones-->\n" +
 "                                <div class=\"btns\">\n" +
 "                                    <a href=\"../chat/chat.jsp?id=" + lista.get(i).getIdUsu() + "\" class=\"btn btn--msg\">Mensaje</a>\n" +
-"                                    <a href=\"Form/solicitud.jsp?idEnviar=" + lista.get(i).getIdUsu() + "\" class=\"btn btn--follow\">Solicitud</a>\n" +
+"                                    <a href=\"../Form/solicitud.jsp?idEnviar=" + lista.get(i).getIdUsu() + "\" class=\"btn btn--follow\">Solicitud</a>\n" +
 "\n" +
 "                                </div>\n" +
 "\n" +

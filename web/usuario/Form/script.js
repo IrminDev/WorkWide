@@ -57,7 +57,7 @@ const cwdescription = document.getElementById("cwdescripcion");
 const cwsoli = document.getElementById("cwsoli");
 
 //Función ejecutada al enviar el formulario
-function enviarCambios(){
+function comprobarSolicitud(){
     //Advertencias de cada campo (Strings)
     let warnombre = "";
     let warapellido = "";
