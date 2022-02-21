@@ -14,8 +14,11 @@ import javax.servlet.http.HttpSession;
 
 /**
  *
- * @author IRMIN
+ * @author IrminDev
+ * 
+ * Servlet de registro donde se darán de alta a usuarios nuevos emdiante la información que proporcionen en el formulario
  */
+//Anotación multipart para la comunicación con javascript
 @MultipartConfig(location = "G:/tmp", fileSizeThreshold=1024*1024*5, maxFileSize = 1024*1024*5*5, maxRequestSize = 1024*1024*5*5*5)
 @WebServlet(name = "registrar", urlPatterns = {"/registrar"})
 public class registrar extends HttpServlet {
@@ -34,9 +37,12 @@ public class registrar extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        
+        //Configuramos el response(respuesta del servlet) y request(petición del servlet) en caracteres UTF-8
         response.setContentType("text/plain");
         response.setCharacterEncoding("UTF-8");
         request.setCharacterEncoding("UTF-8");
+        
          //Objeto usuario que guardará los datos del registro
         Usuario usu = new Usuario();
 
@@ -83,14 +89,14 @@ public class registrar extends HttpServlet {
                 else{
                     //Si el usuario todavía no estaba registrado, creamos su sesión
                     objSesion.setAttribute("id", estado[1]);
-                    aux.IniciarSesion(Integer.parseInt(estado[1]));
+                    aux.cambiarEstado(Integer.parseInt(estado[1]));
                     //Si el usuario es un trabajador, lo mandamos a completar su registro
                     if(tipoUsu == 2){
                         response.getWriter().write("Trabajador");
                         objSesion.setAttribute("tipont", 1);
                     }
                     else{
-                        //Si el usuario es un usuaerio, lo llevamos al lsitado de los trabajadores
+                        //Si el usuario es un usuario, lo llevamos al lsitado de los trabajadores
                         if(tipoUsu == 1){
                             response.getWriter().write("Usuario");
                             objSesion.setAttribute("tipont", 2);
@@ -100,6 +106,7 @@ public class registrar extends HttpServlet {
 
             }
             catch(Exception e){
+                //Si hay error al registar el suaurio, imprimimos el error
                 e.printStackTrace();
             }
         }

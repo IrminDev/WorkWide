@@ -20,11 +20,14 @@ import javax.servlet.http.HttpSession;
 /**
  *
  * @author IRMIN
+ * 
+ * Servlet encargado de enviar solicitudesy tomar los datos enviados por el formulario de solicitud
  */
 @MultipartConfig(location = "G:/tmp", fileSizeThreshold=1024*1024*5, maxFileSize = 1024*1024*5*5, maxRequestSize = 1024*1024*5*5*5)
 @WebServlet(name = "enviarSolicitud", urlPatterns = {"/enviarSolicitud"})
 public class enviarSolicitud extends HttpServlet {
     
+    //Objetos útiles para la ejecución de métodos
     OpcUsuario aux = new OpcUsuario();
     OpcSolicitud auxSoli = new OpcSolicitud();
 
@@ -43,11 +46,12 @@ public class enviarSolicitud extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
+        //Codificiación UTF-8 del request y response
         response.setContentType("text/plain");
         response.setCharacterEncoding("UTF-8");
         request.setCharacterEncoding("UTF-8");
         
+        //Datos del formulario
         String correoDes = request.getParameter("corrreo2");
         String titulo = request.getParameter("titulo");
         String descripcion = request.getParameter("description");
@@ -55,39 +59,38 @@ public class enviarSolicitud extends HttpServlet {
         String cadFechaFin = request.getParameter("fecha2");
         
         try {
-            System.out.println(cadFechaIn);
-            System.out.println(cadFechaFin);
-            System.out.println(correoDes);
-            System.out.println(titulo);
-            
+            //Creamos un objeto java util Date paralas fechas
             DateFormat df = new SimpleDateFormat("yyyy-mm-dd");
             java.util.Date fechaInitaux = df.parse(cadFechaIn);
             java.util.Date fechaFinaux = df.parse(cadFechaFin);
             
-            
+            //Convertimos las fechas a formato de fecha de SQL
             Date fechaInit = new Date(fechaInitaux.getTime());            
             Date fechaFin = new Date(fechaFinaux.getTime()); 
             
-            System.out.println("Fechas convertidas");
+            //Obtenemos IDs del receptor y emisor, respectivamente
             int idDes = aux.obtenerIdCoreeo(correoDes);
             HttpSession objSesion = request.getSession();
             int idEmisor = Integer.parseInt(objSesion.getAttribute("id").toString());
             
-            System.out.println(idDes);
-            System.out.println(idEmisor);
-            
+            //Creamosel objeto solicitud
             Solicitud soli = new Solicitud();
             
+            //Guardamos los datos en el objeto solicitud
             soli.setDescripcion(descripcion);
             soli.setFin(fechaFin);
             soli.setIdEmisor(idEmisor);
             soli.setIdReceptor(idDes);
             soli.setInicio(fechaInit);
             soli.setTitulo(titulo);
+            
+            //Damos de alta la solicitud
             auxSoli.altaSolicitud(soli);
-            System.out.println("Datos recibidos");
+            
+            //Mandamos el estado de enviado
             response.getWriter().write("Enviado");
         } catch (Exception ex) {
+            //Impresión de errores
             System.out.println(ex);
             response.getWriter().write(ex.toString());
             

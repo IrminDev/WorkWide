@@ -14,16 +14,18 @@ import javax.servlet.http.Part;
 
 /**
  *
- * @author IRMIN
+ * @author IrminDev
+ * 
+ * 
  */
+
+//Anotación multipart para la comunicación con javascript
 @MultipartConfig(location = "G:/tmp", fileSizeThreshold=1024*1024*5, maxFileSize = 1024*1024*5*5, maxRequestSize = 1024*1024*5*5*5)
 @WebServlet(name = "completar", urlPatterns = {"/completar"})
 public class completar extends HttpServlet {
+    //Instanciamos la clase opcUsuario para utilizar ciertos métodos que nos serán útiles
     OpcUsuario auxiliar = new OpcUsuario();
-    
-    protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-    }
+
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
@@ -34,9 +36,11 @@ public class completar extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        //Configuramos el response(respuesta del servlet) y request(petición del servlet) en caracteres UTF-8
         response.setContentType("text/plain");
         response.setCharacterEncoding("UTF-8");
         request.setCharacterEncoding("UTF-8");
+        
         //Creamos un objeto trabajador ya que para este formulario solo serán trabajadores
         Trabajador trab = new Trabajador();
         //Obtenemos los datos primitivos de Java que están en el formulario
