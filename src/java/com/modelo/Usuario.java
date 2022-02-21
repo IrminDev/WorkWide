@@ -2,8 +2,14 @@ package com.modelo;
 
 import java.io.InputStream;
 
+/**
+ * 
+ * @author IRMIN
+ * Clase usuario exclusivamente con los atributos de usuario y sus respectivos setters and getters
+ */
 
 public class Usuario {
+    //Atributos de la clase usuario
     public InputStream perfil;
     public InputStream portada;
     public int idUsu;
@@ -14,7 +20,8 @@ public class Usuario {
     public String correoUsu;
     public String telefono;
     public String estado;
-
+    
+    //Setters and getters de los atributos de la clase usuario
     public String getEstado() {
         return estado;
     }

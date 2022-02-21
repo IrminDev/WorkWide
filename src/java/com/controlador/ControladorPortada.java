@@ -15,82 +15,47 @@ import javax.servlet.http.HttpServletResponse;
 
 /**
  *
- * @author IRMIN
+ * @author IrminDev
+ * 
+ * Servlet encargado de mostrar las imágenes de portada que sean requeridas
  */
+
 @WebServlet(name = "ControladorPortada", urlPatterns = {"/ControladorPortada"})
 public class ControladorPortada extends HttpServlet {
 
-    /**
-     * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
-     * methods.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
-    protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
-        try (PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet ControladorPortada</title>");            
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>Servlet ControladorPortada at " + request.getContextPath() + "</h1>");
-            out.println("</body>");
-            out.println("</html>");
-        }
-    }
-
-    // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
-    /**
-     * Handles the HTTP <code>GET</code> method.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        System.out.println("Llegó a las listas");
+        /**
+         * 
+         * MÉTODO DENTRO DEL GET YA QUE NO RECIBIMOS INFORMACIÓN DE UN FORMULARIO
+         * 
+         */
+        
+        //Instanciamos la clase opcUsuario para tener acceso a los métodos que nos serán de ayuda
         OpcUsuario ayuda = new OpcUsuario();
+        //Obtenemos el id que es pasado apartir de la solicitud de un recurso (Ej. src="ControladorPortada?id=19" donde el id es 19)
         int id = Integer.parseInt(request.getParameter("id"));
+        //Abrimos un try-ctach para hacer la conversión de bytes a una imágen
         try{
+            //Ejecutamos el método que mostrará la imágen de portada
             ayuda.mostrarPortada(id, response);
         }
         catch(Exception e){
+            //En caso de una excepción, mostramos la excepción en pantalla
             System.out.println(e);
         }
     }
 
-    /**
-     * Handles the HTTP <code>POST</code> method.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        
     }
 
-    /**
-     * Returns a short description of the servlet.
-     *
-     * @return a String containing servlet description
-     */
     @Override
     public String getServletInfo() {
         return "Short description";
-    }// </editor-fold>
+    }
 
 }

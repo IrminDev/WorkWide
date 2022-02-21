@@ -4,14 +4,18 @@ import javax.crypto.*;
 import javax.crypto.spec.*;
 import java.util.Base64;
 
+/**
+ * 
+ * @author IrminDev
+ * 
+ * Clase cifrado con métodos para realizar un cifrado y descifrado apartir del algoritmo DES
+ */
+
 public class Cifrado {
+    //Declaramos la variable que será la clave que se usará para el cifrado
     private final String claveCifradoContra = "Pr0gr4Ma5i0N";
     
-
-    public String getClaveCifradoContra() {
-        return claveCifradoContra;
-    }
-    
+    //Método para encriptar una cadena de caracteres con cifrado DES
     public String encriptar(String texto)throws Exception{
         //Declaranos lo que nos va a regresar
         String nuevaCad = "";
@@ -45,7 +49,9 @@ public class Cifrado {
         return nuevaCad;
     }
     
+    //Método para descifrar cadenas cifradas con el algoritmo DES
     public String desencriptar(String escondido)throws Exception{
+        //Declaramos el string qu contendrá la cadena descifrada
         String desencriptado = "";
         
         try{
@@ -59,18 +65,26 @@ public class Cifrado {
             SecretKeyFactory skf = SecretKeyFactory.getInstance("DES");
             SecretKey llave = skf.generateSecret(dks);
             
+            //Instanciamos la clase Cipher con el algoritmo DES
             Cipher descifrado = Cipher.getInstance("DES");
+            
+            //El objeto de la clase cipher lo inicializamos con modo de descifrar, la secretKey y una fuente confiable de números aleatorios
             descifrado.init(Cipher.DECRYPT_MODE, llave, sr);
             
+            //Creamos un array de bytes dónde primero desciframos el texto que se encriptó en base 64
             byte[] datoDES = Base64.getDecoder().decode(escondido);
+            //El array de bytes del texto nuevo ahora lo desciframos con el algoritmo DES
             byte[] datoFinal = descifrado.doFinal(datoDES);
             
+            //A la cadena que contendrá el texto desencriptado será ese array de bytes completamente desenciptado, y usaremos la codificación UTF-8 para caracteres especiales
             desencriptado = new String(datoFinal, "UTF-8");
         }
         catch(Exception e){
+            //Tiramos los errores si es que hubo uno en el proceso
             throw e;
         }
         
+        //Retornamos el texto desencriptado
         return desencriptado;
     }
 }

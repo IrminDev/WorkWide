@@ -1,12 +1,19 @@
 package com.modelo;
-
+/**
+ * 
+ * @author IrminDev
+ * 
+ * Clase trabajador que extiende de la clase usuario solo agregando los atributos y setters and getters correpondientes
+ */
 public class Trabajador extends Usuario{
-    public int trabajo;
-    public int region;
-    public String trabajoNombre;
-    public String regionNombre;
-    public String descripcion;
-
+    //Atributos de la clase trabajador
+    private int trabajo;
+    private int region;
+    private String trabajoNombre;
+    private String regionNombre;
+    private String descripcion;
+    
+    //Setters and getters de los atributos de la clase trabajador
     public int getTrabajo() {
         return trabajo;
     }

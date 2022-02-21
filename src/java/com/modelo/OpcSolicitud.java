@@ -2,10 +2,17 @@
 package com.modelo;
 
 import java.sql.PreparedStatement;
-
+/**
+ * 
+ * @author IrminDev
+ * 
+ * Clase esclusiva para los métodos para las solicitudes de usuario
+ */
 public class OpcSolicitud extends conexion{
     
+    //Método altaSolicitud para dar de alta nuevas solicitudes
     public void altaSolicitud(Solicitud soli) throws Exception{
+        //Declaramos la sentencia SQL en string, que será laque vamos a jecutar
         String sql = "CALL altaSolicitud(?, ?, ?, ?, ?, ?);";
        //Variable que va a preparar nuestra sentencia
         PreparedStatement ps;
@@ -27,6 +34,7 @@ public class OpcSolicitud extends conexion{
             ps.executeUpdate();            
         } 
         catch(Exception e){
+            //Imprimimos posibles errores
             System.out.println(e);
             throw e;
         }

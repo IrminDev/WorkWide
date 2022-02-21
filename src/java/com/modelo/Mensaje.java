@@ -1,10 +1,20 @@
 package com.modelo;
+
+/**
+ * 
+ * @author IrminDev
+ * 
+ * Clase Mensaje que contendrá solo los atributos de un mensaje con sus respectivos Setters and Getters
+ */
 public class Mensaje {
-    public int idMensaje;
-    public int idReceptor;
-    public int idEmisor;
-    public String mensaje;
     
+    //Atributos de cada mensaje
+    private int idMensaje;
+    private int idReceptor;
+    private int idEmisor;
+    private String mensaje;
+    
+    //Setters and getters
     public int getIdMensaje() {
         return idMensaje;
     }

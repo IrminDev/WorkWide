@@ -1,16 +1,23 @@
 package com.modelo;
 
 import java.sql.Date;
-
+/**
+ * 
+ * @author IrminDev
+ * 
+ * Clase soliciutd que contiene esclusivamente los atributos de cada solicitud y sus setters and getters
+ */
 public class Solicitud {
-    public Date inicio;
-    public Date fin;
-    public int idEmisor;
-    public int idReceptor;
-    public int idSoli;
-    public String titulo;
-    public String descripcion;
+    //Atributos de la clase solicitud
+    private Date inicio;
+    private Date fin;
+    private int idEmisor;
+    private int idReceptor;
+    private int idSoli;
+    private String titulo;
+    private String descripcion;
 
+    //Setters and getters de los atributos de la clase
     public Date getInicio() {
         return inicio;
     }
