@@ -2,6 +2,9 @@
 package com.modelo;
 
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.util.ArrayList;
+import java.util.List;
 /**
  * 
  * @author IrminDev
@@ -38,5 +41,63 @@ public class OpcSolicitud extends conexion{
             System.out.println(e);
             throw e;
         }
+    }
+    
+    public List listarSoliUsuario(int id){
+        List<Solicitud> lista = new ArrayList<>();
+        String sql = "CALL listarSolicitudesUsuario(?)";
+        PreparedStatement ps;
+        ResultSet rs;
+        try{
+            this.conectar();
+            ps = this.getCon().prepareCall(sql);
+            ps.setInt(1, id);
+            rs = ps.executeQuery();
+            while(rs.next()){
+                Solicitud soli = new Solicitud();
+                soli.setIdSoli(rs.getInt(1));
+                soli.setInicio(rs.getDate(2));
+                soli.setFin(rs.getDate(3));
+                soli.setDescripcion(rs.getString(4));
+                soli.setTitulo(rs.getString(5));
+                soli.setNombreReceptor(rs.getString(6) + " " + rs.getString(7));
+                soli.setIdReceptor(rs.getInt(8));
+                soli.setEstado(rs.getString(9));
+            }
+        }
+        catch(Exception e){
+            e.printStackTrace();
+        }
+        
+        return lista;
+    }
+    
+    public List listarSoliTrabajador(int id){
+        List<Solicitud> lista = new ArrayList<>();
+        String sql = "CALL listarSolicitudesTrabajador(?)";
+        PreparedStatement ps;
+        ResultSet rs;
+        try{
+            this.conectar();
+            ps = this.getCon().prepareCall(sql);
+            ps.setInt(1, id);
+            rs = ps.executeQuery();
+            while(rs.next()){
+                Solicitud soli = new Solicitud();
+                soli.setIdSoli(rs.getInt(1));
+                soli.setInicio(rs.getDate(2));
+                soli.setFin(rs.getDate(3));
+                soli.setDescripcion(rs.getString(4));
+                soli.setTitulo(rs.getString(5));
+                soli.setNombreEmisor(rs.getString(6) + " " + rs.getString(7));
+                soli.setIdEmisor(rs.getInt(8));
+                soli.setEstado(rs.getString(9));
+            }
+        }
+        catch(Exception e){
+            e.printStackTrace();
+        }
+        
+        return lista;
     }
 }

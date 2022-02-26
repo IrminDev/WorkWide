@@ -14,10 +14,38 @@ public class Solicitud {
     private int idEmisor;
     private int idReceptor;
     private int idSoli;
+    private String estado;
+    private String nombreEmisor;
+    private String nombreReceptor;
     private String titulo;
     private String descripcion;
 
     //Setters and getters de los atributos de la clase
+    
+    public String getEstado() {
+        return estado;
+    }
+
+    public void setEstado(String estado) {
+        this.estado = estado;
+    }
+
+    public String getNombreEmisor() {
+        return nombreEmisor;
+    }
+
+    public void setNombreEmisor(String nombreEmisor) {
+        this.nombreEmisor = nombreEmisor;
+    }
+
+    public String getNombreReceptor() {
+        return nombreReceptor;
+    }
+
+    public void setNombreReceptor(String nombreReceptor) {
+        this.nombreReceptor = nombreReceptor;
+    }
+    
     public Date getInicio() {
         return inicio;
     }
