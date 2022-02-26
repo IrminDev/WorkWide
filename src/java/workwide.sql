@@ -800,3 +800,61 @@ WHERE relacion_usuario_tipoUsuario.id_tipo_usu = tipo;
 
 END &&
 delimiter ;
+
+DROP PROCEDURE IF EXISTS listarSolicitudesTrabajador;
+delimiter &&
+CREATE PROCEDURE listarSolicitudesTrabajador(
+idTrabajador int
+)
+BEGIN
+
+SELECT 
+solicitud.id_soli,
+solicitud.fecha_inicio_soli,
+solicitud.fecha_fin_soli,
+solicitud.desc_soli,
+solicitud.titulo_soli,
+usuario.nombre_usu,
+usuario.apellido_usu,
+usuario.id_usu,
+estado_soli.estado_soli
+FROM solicitud
+INNER JOIN recibe_solicitud ON recibe_solicitud.id_soli = solicitud.id_soli
+INNER JOIN relacion_solicitud_estado ON relacion_solicitud_estado.id_soli = solicitud.id_soli
+INNER JOIN estado_soli ON estado_soli.id_est_soli = relacion_solicitud_estado.id_est_soli
+INNER JOIN envia_solicitud ON envia_solicitud.id_soli = solicitud.id_soli
+INNER JOIN usuario ON usuario.id_usu = envia_solicitud.id_usu
+WHERE recibe_solicitud.id_usu = idTrabajador;
+
+END
+&& delimiter ;
+
+
+
+DROP PROCEDURE IF EXISTS listarSolicitudesUsuario;
+delimiter &&
+CREATE PROCEDURE listarSolicitudesUsuario(
+idUsuario int
+)
+BEGIN
+
+SELECT 
+solicitud.id_soli,
+solicitud.fecha_inicio_soli,
+solicitud.fecha_fin_soli,
+solicitud.desc_soli,
+solicitud.titulo_soli,
+usuario.nombre_usu,
+usuario.apellido_usu,
+usuario.id_usu,
+estado_soli.estado_soli
+FROM solicitud
+INNER JOIN envia_solicitud ON envia_solicitud.id_soli = solicitud.id_soli
+INNER JOIN relacion_solicitud_estado ON relacion_solicitud_estado.id_soli = solicitud.id_soli
+INNER JOIN estado_soli ON estado_soli.id_est_soli = relacion_solicitud_estado.id_est_soli
+INNER JOIN recibe_solicitud ON recibe_solicitud.id_soli = solicitud.id_soli
+INNER JOIN usuario ON usuario.id_usu = recibe_solicitud.id_usu
+WHERE envia_solicitud.id_usu = idUsuario;
+
+END
+&& delimiter ;
