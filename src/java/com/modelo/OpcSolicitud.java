@@ -63,6 +63,7 @@ public class OpcSolicitud extends conexion{
                 soli.setNombreReceptor(rs.getString(6) + " " + rs.getString(7));
                 soli.setIdReceptor(rs.getInt(8));
                 soli.setEstado(rs.getString(9));
+                lista.add(soli);
             }
         }
         catch(Exception e){
@@ -92,6 +93,7 @@ public class OpcSolicitud extends conexion{
                 soli.setNombreEmisor(rs.getString(6) + " " + rs.getString(7));
                 soli.setIdEmisor(rs.getInt(8));
                 soli.setEstado(rs.getString(9));
+                lista.add(soli);
             }
         }
         catch(Exception e){

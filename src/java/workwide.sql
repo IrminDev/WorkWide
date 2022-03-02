@@ -858,3 +858,107 @@ WHERE envia_solicitud.id_usu = idUsuario;
 
 END
 && delimiter ;
+
+DROP PROCEDURE IF EXISTS aceptarSolicitud;
+
+delimiter &&
+CREATE PROCEDURE aceptarSolicitud(
+idSoli int,
+tituloTrab nvarchar(50),
+descTrab nvarchar(500),
+fechaInicio date,
+fechaFin date,
+id_emisor int,
+id_receptor int
+)
+
+BEGIN
+
+INSERT INTO
+trabajo
+VALUES
+(defaulT,tituloTrab,descTrab,fechaInicio,fechaFin);
+
+SET @id_trab = last_insert_id();
+
+INSERT INTO acepta_trabajo values(@id_trab, id_receptor);
+
+INSERT INTO provee_trabajo values(@id_trab, id_emisor);
+
+INSERT INTO relacion_trabajo_estado VALUES(@id_trab, 1);
+
+
+UPDATE relacion_solicitud_estado
+SET 
+id_est_soli = 2
+WHERE
+id_soli = idSoli;
+
+
+END
+&& delimiter ;
+
+
+DROP PROCEDURE IF EXISTS listarTrabajosUsuario;
+delimiter &&
+CREATE PROCEDURE listarTrabajosUsuario(
+idUsuario int
+)
+BEGIN
+
+SELECT
+trabajo.id_trab,
+trabajo.titulo_trab,
+trabajo.desc_trab,
+trabajo.fecha_inicio_trab,
+trabajo.fecha_fin_trab,
+estado_trabajo.estado_trab,
+usuario.nombre_usu,
+usuario.apellido_usu,
+usuario.id_usu
+FROM provee_trabajo
+INNER JOIN trabajo ON trabajo.id_trab = provee_trabajo.id_trab
+INNER JOIN acepta_trabajo ON acepta_trabajo.id_trab = trabajo.id_trab
+INNER JOIN usuario ON usuario.id_usu = acepta_trabajo.id_usu
+INNER JOIN relacion_trabajo_estado ON relacion_trabajo_estado.id_trab = trabajo.id_trab
+INNER JOIN estado_trabajo ON estado_trabajo.id_est_trab = relacion_trabajo_estado.id_est_trab
+WHERE provee_trabajo.id_usu = idUsuario;
+
+END &&
+delimiter ;
+
+CALL listarTrabajosUsuario(1);
+
+
+
+
+
+DROP PROCEDURE IF EXISTS listarTrabajosTrabajador;
+delimiter &&
+CREATE PROCEDURE listarTrabajosTrabajador(
+idTrabajador int
+)
+BEGIN
+
+SELECT
+trabajo.id_trab,
+trabajo.titulo_trab,
+trabajo.desc_trab,
+trabajo.fecha_inicio_trab,
+trabajo.fecha_fin_trab,
+estado_trabajo.estado_trab,
+usuario.nombre_usu,
+usuario.apellido_usu,
+usuario.id_usu
+FROM acepta_trabajo
+INNER JOIN trabajo ON trabajo.id_trab = acepta_trabajo.id_trab
+INNER JOIN provee_trabajo ON provee_trabajo.id_trab = trabajo.id_trab
+INNER JOIN usuario ON usuario.id_usu = acepta_trabajo.id_usu
+INNER JOIN relacion_trabajo_estado ON relacion_trabajo_estado.id_trab = trabajo.id_trab
+INNER JOIN estado_trabajo ON estado_trabajo.id_est_trab = relacion_trabajo_estado.id_est_trab
+WHERE acepta_trabajo.id_usu = idTrabajador;
+
+END &&
+delimiter ;
+
+CALL listarTrabajosTrabajador(1)
