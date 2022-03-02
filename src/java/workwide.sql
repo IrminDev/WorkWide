@@ -859,6 +859,8 @@ WHERE envia_solicitud.id_usu = idUsuario;
 END
 && delimiter ;
 
+
+
 DROP PROCEDURE IF EXISTS aceptarSolicitud;
 
 delimiter &&
@@ -871,7 +873,6 @@ fechaFin date,
 id_emisor int,
 id_receptor int
 )
-
 BEGIN
 
 INSERT INTO
@@ -880,11 +881,8 @@ VALUES
 (defaulT,tituloTrab,descTrab,fechaInicio,fechaFin);
 
 SET @id_trab = last_insert_id();
-
 INSERT INTO acepta_trabajo values(@id_trab, id_receptor);
-
 INSERT INTO provee_trabajo values(@id_trab, id_emisor);
-
 INSERT INTO relacion_trabajo_estado VALUES(@id_trab, 1);
 
 
@@ -897,6 +895,25 @@ id_soli = idSoli;
 
 END
 && delimiter ;
+
+
+DROP PROCEDURE IF EXISTS rechazarSolicitud;
+delimiter &&
+CREATE PROCEDURE rechazarSolicitud(
+idSoli int
+)
+BEGIN
+
+UPDATE relacion_solicitud_estado
+SET 
+id_est_soli = 3
+WHERE
+id_soli = idSoli;
+
+END
+&& delimiter ;
+
+
 
 
 DROP PROCEDURE IF EXISTS listarTrabajosUsuario;
@@ -961,4 +978,28 @@ WHERE acepta_trabajo.id_usu = idTrabajador;
 END &&
 delimiter ;
 
-CALL listarTrabajosTrabajador(1)
+CALL listarTrabajosTrabajador(1);
+
+
+DROP PROCEDURE IF EXISTS getSolicitud;
+delimiter &&
+CREATE PROCEDURE getSolicitud(
+idSoli int
+)
+BEGIN
+
+SELECT 
+solicitud.fecha_inicio_soli,
+solicitud.fecha_fin_soli,
+solicitud.desc_soli,
+solicitud.titulo_soli,
+envia_solicitud.id_usu,
+recibe_solicitud.id_usu
+FROM solicitud
+INNER JOIN envia_solicitud ON envia_solicitud.id_soli = solicitud.id_soli
+INNER JOIN recibe_solicitud ON recibe_solicitud.id_soli = envia_solicitud.id_soli
+WHERE solicitud.id_soli = idSoli;
+
+END
+&& delimiter ;
+CALL getSolicitud(1);

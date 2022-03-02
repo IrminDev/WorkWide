@@ -49,7 +49,7 @@ public class listarSolicitudesUsuario extends HttpServlet {
             for(int i=0; i<index; i++){
                 java.sql.Date date = new java.sql.Date(Calendar.getInstance().getTime().getTime());
                 if(lista.get(i).getInicio().before(date)){
-                    
+                    AUX.rechazarSolicitud(lista.get(i).getIdSoli());
                 }
                 else{
                     output += "<div class=\"container\">\n" +
