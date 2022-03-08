@@ -58,15 +58,17 @@ public class enviarSolicitud extends HttpServlet {
         String cadFechaIn = request.getParameter("fecha");
         String cadFechaFin = request.getParameter("fecha2");
         
+        System.out.print(cadFechaIn);
+        System.out.print(cadFechaFin);
+        
         try {
-            //Creamos un objeto java util Date paralas fechas
-            DateFormat df = new SimpleDateFormat("yyyy-mm-dd");
-            java.util.Date fechaInitaux = df.parse(cadFechaIn);
-            java.util.Date fechaFinaux = df.parse(cadFechaFin);
             
             //Convertimos las fechas a formato de fecha de SQL
-            Date fechaInit = new Date(fechaInitaux.getTime());            
-            Date fechaFin = new Date(fechaFinaux.getTime()); 
+            Date fechaInit = Date.valueOf(cadFechaIn);
+            Date fechaFin = Date.valueOf(cadFechaFin);
+            
+            System.out.println(fechaInit);
+            System.out.println(fechaFin);
             
             //Obtenemos IDs del receptor y emisor, respectivamente
             int idDes = aux.obtenerIdCoreeo(correoDes);

@@ -1,4 +1,4 @@
-<%@page import="com.modelo.Trabajador"%>
+<%@page import="com.modelo.Usuario"%>
 <%@page import="com.modelo.OpcUsuario"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -14,15 +14,16 @@
     <%
         HttpSession objSesion = request.getSession();
         String id = "";
+        
         OpcUsuario aux = new OpcUsuario(); 
-        Trabajador traba = new Trabajador();
+        Usuario usu = new Usuario();
         if(objSesion.getAttribute("id") != null){
-            if(objSesion.getAttribute("tipont").toString().equals("1")){
+            if(objSesion.getAttribute("tipont").toString().equals("2")){
                 id = objSesion.getAttribute("id").toString();
-                traba = aux.listarPerfilTrabajador(Integer.parseInt(id));
+                usu = aux.listarPerfilUsuario(Integer.parseInt(id));
             }
             else{
-                response.sendRedirect("../../usuario/solicitudes/solicitudes.jsp");
+                response.sendRedirect("../../trabajador/index/index.jsp");
             }
         }
         else{
@@ -77,33 +78,29 @@
             </div>
 
             <!-- ICONO DEL USUARIO -->
-            <img src="../../ControladorImagen?id=<% out.print(id); %>" alt="user" class="nav_img">
+            <img src="../../ControladorImagen?id=<% out.print(id); %>" alt="user" class="nav_img" onerror=this.src="../../user.svg">
         </nav>
     </header>
           
-    <main>
-              
-              
-           <!-- CONTADOR -->    
-        <section class="contador">
-                       
-        </section>
+        <main> 
+            <!-- CONTADOR -->    
+            <section class="contador">
+                           
+            </section>
            
-        <!-- CARTAS DE TRABAJO --> 
-              
-        <section class="trabajos-container">  
+            <!-- CARTAS DE TRABAJO --> 
+            <section class="trabajos-container">  
              
-           <!--DIFERENTES TRABAJOS --> 
-            
-        </section>
-    </main>
-    <!-- SCRIPT DE LAS CARTAS DE TRABAJO-->    
-    <script>
-        const trunc = document.querySelector('.p-trunc');
-        trunc.innerText =
-        trunc.innerText.substring(0, 100) +
-        '...'
-    </script>
-    <script src="../../JS/listarSolicitudes.js"></script>
-  </body>
+                
+            </section>
+        </main>
+        <!-- SCRIPT DE LAS CARTAS DE TRABAJO-->
+        <script <script src="../../JS/listarSolicitudes.js"></script>
+        <script>
+            const trunc = document.querySelector('.p-trunc');
+            trunc.innerText =
+            trunc.innerText.substring(0, 100) +
+            '...'
+        </script>
+    </body>
 </html>

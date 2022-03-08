@@ -43,7 +43,6 @@ public class listarSolicitudesUsuario extends HttpServlet {
         String output = "";
         //Si no es un usuario...
         if(tipont == 1){
-            System.out.println(id);
             List<Solicitud> lista = AUX.listarSoliTrabajador(id);
             int index = lista.size();
             for(int i=0; i<index; i++){
@@ -64,8 +63,8 @@ public class listarSolicitudesUsuario extends HttpServlet {
         "                        <h3><span>Fecha de inicio: " + lista.get(i).getInicio() + "</span> </h3>\n" +
         "                        <h3>Fecha de finalización: " + lista.get(i).getFin() + "</h3>\n" +
         "                        <p class=\"p-trunc\">" + lista.get(i).getDescripcion() + "</p>\n" +
-        "                        <a href=\"\" class=\"btn\">Aceptar</a>\n" +
-        "                        <a href=\"\" class=\"btn2\">Rechazar</a>\n" +
+        "                        <a href=\"../../evaluarSolicitud?id=" + lista.get(i).getIdSoli() + "&accion=2\" class=\"btn\">Aceptar</a>\n" +
+        "                        <a href=\"../../evaluarSolicitud?id=" + lista.get(i).getIdSoli() + "&accion=3\" class=\"btn2\">Rechazar</a>\n" +
         "                    </div>\n" +
         "                </div>\n" +
         "            </div>";
@@ -75,6 +74,52 @@ public class listarSolicitudesUsuario extends HttpServlet {
         }
         else{
             List<Solicitud> lista = AUX.listarSoliUsuario(id);
+            int size = lista.size();
+            for(int i=0; i<size; i++ ){
+                java.sql.Date date = new java.sql.Date(Calendar.getInstance().getTime().getTime());
+                System.out.print(date + " junto con " + lista.get(i).getInicio());
+                if(lista.get(i).getInicio().before(date)){
+                    AUX.rechazarSolicitud(lista.get(i).getIdSoli());
+                    output += "<div class=\"container\">\n" +
+            "                    <div class=\"course\">\n" +
+            "                        <div class=\"preview\">\n" +
+            "                            <h6>Solicitud</h6>\n" +
+            "                            <h2>" + lista.get(i).getNombreReceptor() + "</h2>\n" +
+            "                            <a href=\"../chat/chat.jsp?id=" + lista.get(i).getIdReceptor() + "\" >Mensaje</a>\n" +
+            "                        </div>\n" +
+            "                        <div class=\"info\">\n" +
+            "                            <h6>Contacto</h6>\n" +
+            "                            <h2>" + lista.get(i).getTitulo() + "</h2>\n" +
+            "                            <h3>Estado: <span class=\"Status\">Rechazado</span></h3>\n" +
+            "                            <h3><span>Fecha de inicio: </span>" + lista.get(i).getInicio() + "</h3>\n" +
+            "                            <h3>Fecha de finalización: " + lista.get(i).getFin() + "</h3>\n" +
+            "                            <p class=\"p-trunc\">" + lista.get(i).getDescripcion() + "</p>\n" +
+            "\n" +
+            "                        </div>\n" +
+            "                    </div>\n" +
+            "                </div>";
+                }
+                else{
+                    output += "<div class=\"container\">\n" +
+            "                    <div class=\"course\">\n" +
+            "                        <div class=\"preview\">\n" +
+            "                            <h6>Solicitud</h6>\n" +
+            "                            <h2>" + lista.get(i).getNombreReceptor() + "</h2>\n" +
+            "                            <a href=\"../chat/chat.jsp?id=" + lista.get(i).getIdReceptor() + "\" >Mensaje</a>\n" +
+            "                        </div>\n" +
+            "                        <div class=\"info\">\n" +
+            "                            <h6>Contacto</h6>\n" +
+            "                            <h2>" + lista.get(i).getTitulo() + "</h2>\n" +
+            "                            <h3>Estado: <span class=\"Status\">" + lista.get(i).getEstado() + "</span></h3>\n" +
+            "                            <h3><span>Fecha de inicio: </span>" + lista.get(i).getInicio() + "</h3>\n" +
+            "                            <h3>Fecha de finalización: " + lista.get(i).getFin() + "</h3>\n" +
+            "                            <p class=\"p-trunc\">" + lista.get(i).getDescripcion() + "</p>\n" +
+            "\n" +
+            "                        </div>\n" +
+            "                    </div>\n" +
+            "                </div>";
+                }
+            }
         }
         
         response.getWriter().write(output);

@@ -167,9 +167,44 @@ public class OpcSolicitud extends conexion{
         return soli;
     }
     
-    public int[] getCounters(int idUser){
+    public int[] getCountersUsuario(int idUser){
         int[] data = new int[3];
         String sql = "CALL listarSolicitudesUsuario(?)";
+        PreparedStatement ps;
+        ResultSet rs;
+        data[0] = 0;
+        data[1] = 0;
+        data[2] = 0;
+        try{
+            this.conectar();
+            ps = this.getCon().prepareCall(sql);
+            ps.setInt(1, idUser);
+            rs = ps.executeQuery();
+            while(rs.next()){
+                if(rs.getString(9).equals("Pendiente")){
+                    data[0]++;
+                }
+                else{
+                    if(rs.getString(9).equals("Aceptada")){
+                      data[1]++;  
+                    }
+                    else{
+                        data[2]++;
+                    }
+                }
+            }
+        }
+        catch(Exception e){
+            e.printStackTrace();
+        }
+        
+        
+        return data;
+    }
+    
+    public int[] getCountersTrabajador(int idUser){
+        int[] data = new int[3];
+        String sql = "CALL listarSolicitudesTrabajador(?)";
         PreparedStatement ps;
         ResultSet rs;
         data[0] = 0;

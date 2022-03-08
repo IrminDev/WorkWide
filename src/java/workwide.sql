@@ -981,6 +981,8 @@ delimiter ;
 CALL listarTrabajosTrabajador(1);
 
 
+
+
 DROP PROCEDURE IF EXISTS getSolicitud;
 delimiter &&
 CREATE PROCEDURE getSolicitud(
