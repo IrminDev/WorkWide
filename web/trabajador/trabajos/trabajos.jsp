@@ -40,14 +40,14 @@
         <div class="nav_menu">
             <ul class="nav_list">
                 <li class="nav_item">
-                    <a href="" class="nav_link active-link">
+                    <a href="../index/index.jsp" class="nav_link active-link">
                         <i class='bx bx-home-alt nav_icon' ></i>
                         <span class="nav_name">Inicio</span>
                     </a>
                 </li>
 
                 <li class="nav_item">
-                    <a href="" class="nav_link">
+                    <a href="../chat/users.jsp" class="nav_link">
                         <i class='bx bx-chat nav_icon' ></i>
                         <span class="nav_name">Mensajes</span>
                     </a>
@@ -61,14 +61,14 @@
                 </li>
 
                 <li class="nav_item">
-                    <a href="" class="nav_link">
+                    <a href="../solicitudes/solicitudes.jsp" class="nav_link">
                         <i class='bx bx-receipt nav_icon'></i>
                         <span class="nav_name">Solicitudes</span>
                     </a>
                 </li>
 
                 <li class="nav_item">
-                    <a href="" class="nav_link">
+                   <a href="../perfil/MiPerfil.jsp" class="nav_link">
                         <i class='bx bx-user-circle nav_icon' ></i>
                         <span class="nav_name">Perfil</span>
                     </a>
