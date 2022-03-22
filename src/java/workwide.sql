@@ -970,7 +970,7 @@ usuario.id_usu
 FROM acepta_trabajo
 INNER JOIN trabajo ON trabajo.id_trab = acepta_trabajo.id_trab
 INNER JOIN provee_trabajo ON provee_trabajo.id_trab = trabajo.id_trab
-INNER JOIN usuario ON usuario.id_usu = acepta_trabajo.id_usu
+INNER JOIN usuario ON usuario.id_usu = provee_trabajo.id_usu
 INNER JOIN relacion_trabajo_estado ON relacion_trabajo_estado.id_trab = trabajo.id_trab
 INNER JOIN estado_trabajo ON estado_trabajo.id_est_trab = relacion_trabajo_estado.id_est_trab
 WHERE acepta_trabajo.id_usu = idTrabajador;

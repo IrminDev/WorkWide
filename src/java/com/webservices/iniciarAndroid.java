@@ -73,6 +73,13 @@ public class iniciarAndroid extends HttpServlet {
                     if(data[1] == 2){
                         traba = AUX.datosAntiguosTrabajador(data[0]);
                         if(traba.getRegionNombre() == null){
+                            Usuario user = AUX.iniciarUsuario(data[0]);
+                            traba.setNombre(user.getNombre());
+                            traba.setApellido(user.getApellido());
+                            traba.setCorreoUsu(user.getCorreoUsu());
+                            traba.setIdUsu(user.getIdUsu());
+                            traba.setDescripcion("");
+                            traba.setTrabajoNombre("");
                             traba.setRegionNombre("");
                         }
                     }
