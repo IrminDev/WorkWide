@@ -47,7 +47,7 @@
                 <div class="nav_menu">
                     <ul class="nav_list">
                         <li class="nav_item">
-                            <a href="#" class="nav_link active-link">
+                            <a href="../index/index.jsp" class="nav_link active-link">
                                 <i class='bx bx-home-alt nav_icon' ></i>
                                 <span class="nav_name">Inicio</span>
                             </a>

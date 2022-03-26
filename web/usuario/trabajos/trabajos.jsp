@@ -54,7 +54,7 @@
                         </li>
                         
                          <li class="nav__item">
-                            <a href="#" class="nav__link active-link">
+                            <a href="..trabajos/trabajos.jsp" class="nav__link active-link">
                                 <i class='bx bx-briefcase-alt-2 nav_icon' ></i>
                                 <span class="nav__name">Trabajos</span>
                             </a>

@@ -71,7 +71,7 @@
                     </li>
 
                     <li class="nav_item">
-                        <a href="#" class="nav_link active-link">
+                        <a href="..perfil/MiPerfil.jsp" class="nav_link active-link">
                             <i class='bx bx-user-circle nav_icon' ></i>
                             <span class="nav_name">Perfil</span>
                         </a>
