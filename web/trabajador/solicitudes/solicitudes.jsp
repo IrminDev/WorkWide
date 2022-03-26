@@ -4,7 +4,7 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>TODO supply a title</title>
+        <title>Solicitudes</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" href="https://maxst.icons8.com/vue-static/landings/line-awesome/line-awesome/1.3.0/css/line-awesome.min.css">
@@ -34,7 +34,7 @@
     <header class="header scroll-header" id="header">
         <nav class="nav container">
             <!-- LOGO DE LA APLICACIÓN -->
-            <a href="" class="nav_logo"><span>W</span>ork<span>W</span>ide</a>
+            <a href="../index/index.jsp" class="nav_logo"><span>W</span>ork<span>W</span>ide</a>
 
             <!-- LISTA DE LOS LINKS DEL NAV -->
             <div class="nav_menu">
@@ -61,7 +61,7 @@
                     </li>
 
                     <li class="nav_item">
-                        <a href="" class="nav_link">
+                        <a href="#" class="nav_link">
                             <i class='bx bx-receipt nav_icon'></i>
                             <span class="nav_name">Solicitudes</span>
                         </a>

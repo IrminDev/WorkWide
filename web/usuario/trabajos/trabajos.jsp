@@ -4,7 +4,7 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>TODO supply a title</title>
+        <title>Trabajos</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" href="https://maxst.icons8.com/vue-static/landings/line-awesome/line-awesome/1.3.0/css/line-awesome.min.css">
@@ -35,40 +35,40 @@
         <header class="header" id="header">
             <nav class="nav container1">
                  <!-- LOGO DE LA APLICACIÓN -->
-                  <a href="" class="nav__logo"><span>W</span>ork<span>W</span>ide</a>
+                  <a href="../listado/Encuentra.jsp" class="nav__logo"><span>W</span>ork<span>W</span>ide</a>
                <!-- LISTA DE LOS LINKS DEL NAV -->  
                 <div class="nav__menu" id="nav-menu">
                     <ul class="nav__list">
                         <li class="nav__item">
-                            <a href="#home" class="nav__link">
+                            <a href="../listado/Encuentra.jsp" class="nav__link">
                                 <i class='bx bx-home-alt nav_icon'></i>
                                 <span class="nav__name">Inicio</span>
                             </a>
                         </li>
                         
                          <li class="nav__item">
-                            <a href="#about" class="nav__link">
+                            <a href="../chat/users.jsp" class="nav__link">
                                 <i class='bx bx-chat nav_icon' ></i>
                                 <span class="nav__name">Mensajes</span>
                             </a>
                         </li>
                         
                          <li class="nav__item">
-                            <a href="#skills" class="nav__link active-link">
+                            <a href="#" class="nav__link active-link">
                                 <i class='bx bx-briefcase-alt-2 nav_icon' ></i>
                                 <span class="nav__name">Trabajos</span>
                             </a>
                         </li>
                         
                          <li class="nav__item">
-                            <a href="#portfolio" class="nav__link">
+                            <a href="../solicitudes/solicitudes.jsp" class="nav__link">
                                 <i class='bx bx-receipt nav_icon' ></i>
                                 <span class="nav__name">Solicitudes</span>
                             </a>
                         </li>
                         
                          <li class="nav__item">
-                            <a href="#contactme" class="nav__link">
+                            <a href="../perfil/MiPerfil.jsp" class="nav__link">
                                 <i class='bx bx-user-circle nav_icon'></i>
                                 <span class="nav__name">Perfil</span>
                             </a>

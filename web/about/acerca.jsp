@@ -56,7 +56,7 @@
                 </div>
                 <div class="column right">
                     <div class="text">Es una aplicación que te ayudará a <span class="typing2">crecer.</span></div>
-                    <p>WorkWide es una aplicación enfocada a solucionar una de las principlaes problemáticas que hay en México durante los últimos años, el desempleo. Es preocupante que estos números crezcan constantemente a pesar de que la población activa económicamente cada vez sea más .Nuestra aplicación consiste en hacer llegar a distintos trabajadores a un mercado más mplio en el que puedan tener abiertas las puertas a un puesto de trabajo, dentro de nuestra aplicación podrás conectarte con posibles clientes interesados en tus servicios, podrás ponerte de acuerdo con ellos en cómo realizar el trabajo y se llevará una ista acerca de los trabajos pendientes y que estás haciendo. Buscamos la mayor facilidad para los usuarios y que el trabajo no sea un estrés mayor.</p>
+                    <p>WorkWide es una aplicación enfocada a solucionar una de las principales problemáticas que hay en México durante los últimos años, el desempleo. Es preocupante que estos números crezcan constantemente a pesar de que la población activa económicamente cada vez sea más. Nuestra aplicación consiste en hacer llegar a distintos trabajadores a un mercado más amplio en el que puedan tener abiertas las puertas a un puesto de trabajo, dentro de nuestra aplicación podrás conectarte con posibles clientes interesados en tus servicios, podrás ponerte de acuerdo con ellos en cómo realizar el trabajo y se llevará una ista acerca de los trabajos pendientes y que estás haciendo. Buscamos la mayor facilidad para los usuarios y que el trabajo no sea un estrés mayor.</p>
                     <a href="#">Descarga nuestra app móvil</a>
                 </div>
             </div>
@@ -73,7 +73,7 @@
                     <div class="box">
                         <i class="fas fa-shield-alt"></i>
                         <div class="text">Seguridad</div>
-                        <p>Tu infromación es importante, por ello nos hacemos responsables de esta resguardándola</p>
+                        <p>Tu infromación es importante, por ello nos hacemos responsables de esta resguardándola.</p>
                     </div>
                 </div>
 
@@ -89,7 +89,7 @@
                     <div class="box">
                         <i class="fas fa-comments"></i>
                         <div class="text">Comunicación</div>
-                        <p>Sabemos que para un trabajo es importante la comunicación con tus clientes, por eso implementamos un sistema de mensajería</p>
+                        <p>Sabemos que para un trabajo es importante la comunicación con tus clientes, por eso implementamos un sistema de mensajería.</p>
                     </div>
                 </div>
 
