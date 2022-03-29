@@ -20,7 +20,8 @@ const formulario = document.querySelector(".profile-info form");
 const eliminar = document.querySelector(".profile-del"),
 cambiar = document.querySelector(".profile-conf"),
 cerrar = document.querySelector(".profile-close"),
-chat = document.querySelector(".profile-chat");
+chat = document.querySelector(".profile-chat"),
+soli = document.querySelector(".profile-req");
 
 formulario.onsubmit = (e)=>{
     e.preventDefault();
@@ -40,4 +41,8 @@ cerrar.onclick = ()=>{
 
 chat.onclick = ()=>{
     location.href = "../chat/users.jsp";
+};
+
+soli.onclick = ()=>{
+    location.href = '../solicitudes/solicitudes.jsp';
 };

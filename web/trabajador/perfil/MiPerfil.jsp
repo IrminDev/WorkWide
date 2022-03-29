@@ -68,7 +68,7 @@
                             <span class="nav_name">Solicitudes</span>
                         </a>
                     </li>
-
+<!-- links funcionales -->
                     <li class="nav_item">
                         <a href="#" class="nav_link active-link">
                             <i class='bx bx-user-circle nav_icon' ></i>
