@@ -68,7 +68,7 @@
                     </li>
 
                     <li class="nav_item">
-                        <a href="" class="nav_link active-link">
+                        <a href="users.jsp" class="nav_link active-link">
                             <i class='bx bx-chat nav_icon' ></i>
                             <span class="nav_name">Mensajes</span>
                         </a>

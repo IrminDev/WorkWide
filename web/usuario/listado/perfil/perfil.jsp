@@ -52,21 +52,21 @@
                     </li>
 
                     <li class="nav_item">
-                        <a href="" class="nav_link">
+                        <a href="../../chat/users.jsp" class="nav_link">
                             <i class='bx bx-chat nav_icon' ></i>
                             <span class="nav_name">Mensajes</span>
                         </a>
                     </li>
 
                     <li class="nav_item">
-                        <a href="" class="nav_link">
+                        <a href="../../trabajos/trabajos.jsp" class="nav_link">
                             <i class='bx bx-briefcase-alt-2 nav_icon' ></i>
                             <span class="nav_name">Trabajos</span>
                         </a>
                     </li>
 
                     <li class="nav_item">
-                        <a href="" class="nav_link">
+                        <a href="../../solicitudes/solicitudes.jsp" class="nav_link">
                             <i class='bx bx-receipt nav_icon'></i>
                             <span class="nav_name">Solicitudes</span>
                         </a>
@@ -125,7 +125,7 @@
                         <a href="../../chat/chat.jsp?id=<% out.print(idPerfil); %>" class="profile-chat">
                             <i class='bx bxs-message' ></i>Chat
                         </a>
-                        <a href="../Form/solicitud?idEnviar=<% out.print(idPerfil); %>" class="profile-req" >
+                        <a href="../../Form/solicitud.jsp?idEnviar=<% out.print(idPerfil); %>" class="profile-req" >
                             <i class='bx bxs-file-plus' ></i>Solicitud
                         </a>
                     </div>
