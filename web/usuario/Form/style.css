@@ -4,17 +4,17 @@
 :root{
     --header-height: 3rem;
 
-    --hue: 205;
-    --sat: 63%;
+    --hue: 207;
+    --sat: 89%;
 
-    --first-color: hsl(var(--hue), var(--sat), 40%);
-    --first-color-alt: hsl(var(--hue), var(--sat), 36%);
+    --first-color: hsl(var(--hue), var(--sat), 68%);
+    --first-color-alt: hsl(var(--hue), var(--sat), 56%);
     --title-color: hsl(var(--hue), 12%, 15%);
     --text-color: hsl(var(--hue), 8%, 35%);
     --body-color: hsl(var(--hue), 100%, 99%);
     --container-color: #FFF;
 
-    --body-font: 'Open Sans', sans-serif;
+    --body-font: 'Poppins', sans-serif;
 
     --h1-font-size: 1.5rem;
     --normal-font-size: .94rem;
@@ -23,6 +23,7 @@
     --z-tooltip: 10;
     --z-fixed: 100;
 }
+
 
 /* VARIACIÓN DE LAS LETRAS EN TAMAÑO DEPENDIENDO EL ANCHO DE LA PANTALLA  */
 @media screen and (min-width: 970px) {
@@ -197,9 +198,9 @@ body {
   }
   
   button {
-    border: 2px solid #2c9ce2;
+    border: 2px solid var(--first-color);
     padding: 10px 20px;
-    background: linear-gradient(130deg, #2493f5, #24dcf5);
+    background: var(--first-color);
     color: #fff;
     font-weight: 600;
     border-radius: 5px;
