@@ -31,56 +31,56 @@
         %>
     </head>
     <body>
-          <!-- HEADER CON EL QUE SE TRABAJARÁ -->
-        <header class="header" id="header">
-            <nav class="nav container1">
-                 <!-- LOGO DE LA APLICACIÓN -->
-                  <a href="../listado/Encuentra.jsp" class="nav__logo"><span>W</span>ork<span>W</span>ide</a>
-               <!-- LISTA DE LOS LINKS DEL NAV -->  
-                <div class="nav__menu" id="nav-menu">
-                    <ul class="nav__list">
-                        <li class="nav__item">
-                            <a href="../listado/Encuentra.jsp" class="nav__link">
-                                <i class='bx bx-home-alt nav_icon'></i>
-                                <span class="nav__name">Inicio</span>
-                            </a>
-                        </li>
-                        
-                         <li class="nav__item">
-                            <a href="../chat/users.jsp" class="nav__link">
-                                <i class='bx bx-chat nav_icon' ></i>
-                                <span class="nav__name">Mensajes</span>
-                            </a>
-                        </li>
-                        
-                         <li class="nav__item">
-                            <a href="..trabajos/trabajos.jsp" class="nav__link active-link">
-                                <i class='bx bx-briefcase-alt-2 nav_icon' ></i>
-                                <span class="nav__name">Trabajos</span>
-                            </a>
-                        </li>
-                        
-                         <li class="nav__item">
-                            <a href="../solicitudes/solicitudes.jsp" class="nav__link">
-                                <i class='bx bx-receipt nav_icon' ></i>
-                                <span class="nav__name">Solicitudes</span>
-                            </a>
-                        </li>
-                        
-                         <li class="nav__item">
-                            <a href="../perfil/MiPerfil.jsp" class="nav__link">
-                                <i class='bx bx-user-circle nav_icon'></i>
-                                <span class="nav__name">Perfil</span>
-                            </a>
-                        </li>
-                    </ul>
-               <!-- ICONO DEL USUARIO -->     
-                </div>
-                <img src="../../ControladorImagen?id=<% out.print(id); %>" alt="user" class="nav_img" onerror=this.src="../../user.svg">
-                
-            </nav>
-            
-        </header>
+       <!-- HEADER CON EL QUE SE TRABAJARÁ -->
+    <header class="header scroll-header" id="header">
+        <nav class="nav container">
+            <!-- LOGO DE LA APLICACIÓN -->
+            <a href="" class="nav_logo"><span>W</span>ork<span>W</span>ide</a>
+
+            <!-- LISTA DE LOS LINKS DEL NAV -->
+            <div class="nav_menu">
+                <ul class="nav_list">
+                    <li class="nav_item">
+                        <a href="../listado/Encuentra.jsp" class="nav_link">
+                            <i class='bx bx-home-alt nav_icon' ></i>
+                            <span class="nav_name">Inicio</span>
+                        </a>
+                    </li>
+
+                    <li class="nav_item">
+                        <a href="../chat/users.jsp" class="nav_link">
+                            <i class='bx bx-chat nav_icon' ></i>
+                            <span class="nav_name">Mensajes</span>
+                        </a>
+                    </li>
+
+                    <li class="nav_item">
+                        <a href="" class="nav_link active-link">
+                            <i class='bx bx-briefcase-alt-2 nav_icon' ></i>
+                            <span class="nav_name">Trabajos</span>
+                        </a>
+                    </li>
+
+                    <li class="nav_item">
+                        <a href="../solicitudes/solicitudes.jsp" class="nav_link">
+                            <i class='bx bx-receipt nav_icon'></i>
+                            <span class="nav_name">Solicitudes</span>
+                        </a>
+                    </li>
+
+                    <li class="nav_item">
+                        <a href="../perfil/MiPerfil.jsp" class="nav_link">
+                            <i class='bx bx-user-circle nav_icon' ></i>
+                            <span class="nav_name">Perfil</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+
+            <!-- ICONO DEL USUARIO -->
+            <img src="../../ControladorImagen?id=<% out.print(id); %>" alt="perfil" onerror="this.src='../../user.svg'" class="nav_img">
+        </nav>
+    </header>
           
         <main>                   
            <!-- CONTADOR -->    

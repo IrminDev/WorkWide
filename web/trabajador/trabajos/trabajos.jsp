@@ -40,7 +40,7 @@
         <div class="nav_menu">
             <ul class="nav_list">
                 <li class="nav_item">
-                    <a href="../index/index.jsp" class="nav_link active-link">
+                    <a href="../index/index.jsp" class="nav_link ">
                         <i class='bx bx-home-alt nav_icon' ></i>
                         <span class="nav_name">Inicio</span>
                     </a>
@@ -54,7 +54,7 @@
                 </li>
 
                 <li class="nav_item">
-                    <a href="#" class="nav_link">
+                    <a href="#" class="nav_link active-link">
                         <i class='bx bx-briefcase-alt-2 nav_icon' ></i>
                         <span class="nav_name">Trabajos</span>
                     </a>

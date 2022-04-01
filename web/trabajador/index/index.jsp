@@ -39,7 +39,7 @@
     <body>
         <!-- HEADER CON EL QUE SE TRABAJARÁ -->
         <header class="header scroll-header" id="header">
-            <nav class="nav container">
+            <nav class="nav containerH">
                 <!-- LOGO DE LA APLICACIÓN -->
                 <a href="#" class="nav_logo"><span>W</span>ork<span>W</span>ide</a>
     

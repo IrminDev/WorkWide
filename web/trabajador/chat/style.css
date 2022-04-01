@@ -4,17 +4,17 @@
 :root{
     --header-height: 3rem;
 
-    --hue: 205;
-    --sat: 63%;
+    --hue: 207;
+    --sat: 89%;
 
-    --first-color: hsl(var(--hue), var(--sat), 40%);
+    --first-color: hsl(var(--hue), var(--sat), 68%);
     --first-color-alt: hsl(var(--hue), var(--sat), 36%);
     --title-color: hsl(var(--hue), 12%, 15%);
     --text-color: hsl(var(--hue), 8%, 35%);
     --body-color: hsl(var(--hue), 100%, 99%);
     --container-color: #FFF;
 
-    --body-font: 'Open Sans', sans-serif;
+    --body-font: "Poppins", sans-serif;
 
     --h1-font-size: 1.5rem;
     --normal-font-size: .94rem;
@@ -28,7 +28,7 @@
 @media screen and (min-width: 970px) {
     _root{
         --h1-font-size: 2.25rem;
-        --normal-font-size: 1.3rem;
+        --normal-font-size: 1rem;
         --tiny-font-size: 0.8rem;
     }
 }
@@ -169,7 +169,7 @@ body {
 .users .head .logout {
   color: #fff;
   padding: 7px 15px;
-  background: #00a0bf;
+  background: var(--first-color);
   border-radius: 8px;
 }
 

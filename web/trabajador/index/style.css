@@ -1,41 +1,42 @@
-@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap");
 /* 
     Created on : 25 oct. 2021, 13:06:25
     Author     : danielasosa
+    Corrected by: Luu ;3
 */:root{
     --header-height: 3rem;
-    
-    --hue:174;
-    --sat: 63%;
-    
-    --first-color: hsl(var(--hue), var(--sat), 40%) ;
+
+    --hue: 207;
+    --sat: 89%;
+
+    --first-color: hsl(var(--hue), var(--sat), 68%);
     --first-color-alt: hsl(var(--hue), var(--sat), 36%);
     --title-color: hsl(var(--hue), 12%, 15%);
     --text-color: hsl(var(--hue), 8%, 35%);
     --body-color: hsl(var(--hue), 100%, 99%);
     --container-color: #FFF;
-    
-    --body-font: 'Open Sans', sans-serif;
+
+    --body-font: "Poppins", sans-serif;
+
     --h1-font-size: 1.5rem;
-    --normal-font-size: .938rem;
+    --normal-font-size: .94rem;
     --tiny-font-size: .625rem;
     
     --z-tooltip: 10;
     --z-fixed: 100;
 
-    --background:  linear-gradient(120deg, #37ecba7e 0%, #72afd398 100%);
-    --color-primary:hsl(var(--hue), var(--sat), 36%);
-    --color-secundary:hsl(var(--hue), var(--sat), 36%);
+    --background:  linear-gradient(120deg, rgba(0, 207, 254, 0.5) 0%, #72afd398 100%);
+    --color-primary:hsl(var(--hue), var(--sat), 68%);
+    --color-secundary:hsl(var(--hue), var(--sat), 68%);
     --boton-padding: 20px 40px;
         
    
  }
- 
+ ::-webkit-scrollbar{
+     display: none;
+ }
  @media screen and (min-width: 968px){
-     :root{
-         --h1-font-size: 2.25rem;
-         --normal-font-size:1rem;
-     }
+
  }
 
  *{
@@ -117,7 +118,7 @@ img{
 /* BARRA DE NAVEGACIÓN INFERIOR (DISPOSITIVOS MÓVILES) */
 @media screen and (max-width: 780px) {
     .nav_menu{
-        position: fixed;
+position: fixed;
         bottom: 0;
         left: 0;
         background-color: var(--container-color);
@@ -178,7 +179,10 @@ img{
     padding: 30px 0;
     max-width: 1200px;
 }
-
+ .containerH{
+    margin-left: 1rem;
+    margin-right: 1rem;
+}
 .subtitle{
     color: var(--color-primary);
     font-size: 2.5rem;
@@ -420,7 +424,7 @@ img{
 }
 
 .testimony__verification{
-    color:#E0AFA0;
+    color:#FFF;
     font-weight: 700;
 }
 
