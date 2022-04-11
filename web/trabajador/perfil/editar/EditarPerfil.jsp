@@ -36,6 +36,7 @@
                 apellido = trab.getApellido();
                 telefono = trab.getTelefono();
                 descripcion = trab.getDescripcion();
+                descripcion = descripcion.replace("<br>", "\n");
             }
             else{
                 response.sendRedirect("../../../usuario/listado/Encuentra.jsp");
