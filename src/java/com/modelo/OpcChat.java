@@ -8,7 +8,7 @@ import java.util.List;
  * 
  * Clase OpcChat encargada exclusivamente para la ejecución de métodos SQL
  */
-public class OpcChat extends conexion{
+public class OpcChat extends Conexion{
     
     //Método enviarMsg que servirá para enviar mensaje a partir de un objeto mensaje
     public void enviarMsg(Mensaje msg){

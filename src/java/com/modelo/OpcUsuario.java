@@ -10,7 +10,7 @@ import java.util.List;
 import javax.servlet.http.HttpServletResponse;
         
 //Clase que ejecutará el CRUD de usuario
-public class OpcUsuario extends conexion{
+public class OpcUsuario extends Conexion{
     
     //Método que registra al usuario
     public String[] registrar(Usuario usu) throws Exception{
@@ -305,7 +305,7 @@ public class OpcUsuario extends conexion{
         BufferedInputStream buferPortadaEntrada = null;
         BufferedOutputStream buferPortadaSalida = null;
         //Ajustamos la respuesta en un formato de imágen
-        response.setContentType("image/*");
+        response.setContentType("image/jpeg");
         //Instanciamos la clase preparedStatement, donde vamos a prepar nuestra sentencia SQL adelante
         PreparedStatement ps;
         //Instanciamos la clase ResultSet que nos ayudará para guardar los datos que regrese SQL

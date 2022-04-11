@@ -9,7 +9,7 @@ import java.util.List;
  *
  * @author IrminDev
  */
-public class OpcTrabajos extends conexion{
+public class OpcTrabajos extends Conexion{
     
     public List listarTrabajosUsuario(int id){
         List<Trabajo> lista = new ArrayList<>();

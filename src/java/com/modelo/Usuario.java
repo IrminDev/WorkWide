@@ -10,16 +10,16 @@ import java.io.InputStream;
 
 public class Usuario {
     //Atributos de la clase usuario
-    public InputStream perfil;
-    public InputStream portada;
-    public int idUsu;
-    public int tipoUsu;
-    public String nombre;
-    public String apellido;
-    public String contraUsu;
-    public String correoUsu;
-    public String telefono;
-    public String estado;
+    private InputStream perfil;
+    private InputStream portada;
+    private int idUsu;
+    private int tipoUsu;
+    private String nombre;
+    private String apellido;
+    private String contraUsu;
+    private String correoUsu;
+    private String telefono;
+    private String estado;
     
     //Setters and getters de los atributos de la clase usuario
     public String getEstado() {

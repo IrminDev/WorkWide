@@ -11,7 +11,7 @@ import java.util.List;
  * 
  * Clase esclusiva para los métodos para las solicitudes de usuario
  */
-public class OpcSolicitud extends conexion{
+public class OpcSolicitud extends Conexion{
     
     //Método altaSolicitud para dar de alta nuevas solicitudes
     public void altaSolicitud(Solicitud soli) throws Exception{
