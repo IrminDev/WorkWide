@@ -79,19 +79,19 @@
             </div>
 
             <!-- ICONO DEL USUARIO -->
-            <img src="../../ControladorImagen?id=<% out.print(id); %>" alt="user" class="nav_img">
+            <img src="../../perfilAndroid?id=<% out.print(id); %>" alt="user" class="nav_img">
         </nav>
     </header>
         <div class="container-card">
             <style>
                 .profile-header{
-                    background: url("../../ControladorPortada?id=<% out.print(id); %>");
+                    background: url("../../portadaAndroid?id=<% out.print(id); %>");
                     background-size: cover;
                 }
             </style>
             <div class="profile-header">
                 <div class="profile-img">
-                    <img src="../../ControladorImagen?id=<% out.print(id); %>" alt="perfil">
+                    <img src="../../perfilAndroid?id=<% out.print(id); %>" alt="perfil">
                 </div>
                 <div class="profile-nav-info">
                     <h3 class="username"><% out.print(traba.getNombre()); %> <% out.print(traba.getApellido()); %></h3>

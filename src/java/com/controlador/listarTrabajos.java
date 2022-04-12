@@ -57,7 +57,7 @@ public class listarTrabajos extends HttpServlet {
 "                        </div>\n" +
 "                        <div class=\"info\">\n" +
 "                            <h2>" + lista.get(i).getTitulo() + "</h2>\n" +
-"                            <h6>Estado: Finalizsdo</h6>\n" +
+"                            <h6>Estado: Finalizado</h6>\n" +
 "                            <h6>Fecha de inicio: " + lista.get(i).getFechaInicio() + "</h6>\n" +
 "                            <h6>Fecha de fin: " + lista.get(i).getFechaFin() + "</h6>\n" +
 "                            <p class=\"p-trunc\">Descripción: </p>\n" +

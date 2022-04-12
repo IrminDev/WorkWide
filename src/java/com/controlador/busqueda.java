@@ -56,7 +56,7 @@ public class busqueda extends HttpServlet {
 "                                .card__cover.usu" + lista.get(i).getIdUsu() + "{\n" +
 "                                    width: 100%;\n" +
 "                                    height: 12rem;\n" +
-"                                    background-image: linear-gradient(120deg, #37ecba7e 0%, #72afd398 100%), url(\"../../ControladorPortada?id=" + lista.get(i).getIdUsu() + "\");\n" +
+"                                    background-image: linear-gradient(120deg, #37ecba7e 0%, #72afd398 100%), url(\"../../portadaAndroid?id=" + lista.get(i).getIdUsu() + "\");\n" +
 "                                    background-size: cover;\n" +
 "                                    clip-path: polygon(0 0, 100% 0, 100% 80%, 0% 100%);\n" +
 "                                }\n" +
@@ -65,7 +65,7 @@ public class busqueda extends HttpServlet {
 "\n" +
 "                                <!-- imagen-->\n" +
 "                                <div class=\"card__user-pic\">\n" +
-"                                    <img src=\"../../ControladorImagen?id=" + lista.get(i).getIdUsu() + "\" alt=\"perfil\">\n" +
+"                                    <img src=\"../../perfilAndroid?id=" + lista.get(i).getIdUsu() + "\" alt=\"perfil\">\n" +
 "                                </div>\n" +
 "                                <!-- datos del trabajador-->\n" +
 "                                <h1 class=\"heading\">\n" +
