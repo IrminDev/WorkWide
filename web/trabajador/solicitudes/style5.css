@@ -508,6 +508,7 @@ img {
   left: 50%;
   transform: translate(-50%, -50%);
   margin-bottom: 50px;
+  padding: 10px;
 }
 
 .course h6 {
@@ -607,13 +608,14 @@ img {
 /* ESTILOS DE LOS BOTONES DEL TRABAJO*/
 
 .btn {
-  background: var(--si);
+  background: var(--first-color);
   border: 1px solid transparent;
   box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.2);
   color: #fff;
   font-size: 16px;
   padding: 10px 20px;
   position: relative;
+  display: inline-block;
 
   margin-top: 2rem;
   transition: all 0.4s ease-in-out;
@@ -621,7 +623,7 @@ img {
   border-radius: 20px;
 }
 .btn2 {
-  background: var(--no);
+  background: var(--first-color);
   border: 1px solid transparent;
   box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.2);
   color: #fff;
@@ -629,6 +631,7 @@ img {
   padding: 10px 20px;
   position: relative;
   margin-top: 2rem;
+  display: inline-block;
 
   cursor: pointer;
   transition: all 0.4s ease-in-out;
@@ -676,13 +679,13 @@ img {
 
   .btn {
     padding: 10px 15px;
-    margin-top: 0rem;
+    margin-top: 2rem;
     margin-bottom: 2rem;
     font-size: 14px;
   }
   .btn2 {
     padding: 10px 15px;
-    margin-top: 0rem;
+    margin-top: 2rem;
     margin-bottom: 2rem;
     font-size: 14px;
   }

@@ -89,6 +89,7 @@ public class registrar extends HttpServlet {
                 else{
                     //Si el usuario todavía no estaba registrado, creamos su sesión
                     objSesion.setAttribute("id", estado[1]);
+                    objSesion.setAttribute("correo", correo);
                     aux.cambiarEstado(Integer.parseInt(estado[1]));
                     //Si el usuario es un trabajador, lo mandamos a completar su registro
                     if(tipoUsu == 2){

@@ -107,16 +107,14 @@ public class iniciar extends HttpServlet {
                         //Guardamos la información básica del trabajador en la sesión
                         objSesion.setAttribute("id", datos[0]);
                         
-                        //Respondemos a javascript que se trata de un usuario tipo trabajador
-                        response.getWriter().write("Trabajador");
-                        
                         //Guardamos en la sesión a que tipo de usuario le mandaremos mensaje (revisar lógica de la mensajería)
                         objSesion.setAttribute("tipont", 1);
                         
                         //Si el campo de su región no está vació, significa que finalizó su registro 
                         if(traba.getRegionNombre() != null){
                             objSesion.setAttribute("descripcion", traba.getDescripcion());
-                           
+                             //Respondemos a javascript que se trata de un usuario tipo trabajador
+                            response.getWriter().write("Trabajador");
                         }
                         //Si el campo de descripción está vacío, significa que no finalizó el registro, por lo tanto lo redireccionamos
                         else{
