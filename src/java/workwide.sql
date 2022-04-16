@@ -79,6 +79,12 @@ foreign key (id_soli) references solicitud(id_soli),
 foreign key (id_usu) references usuario(id_usu) ON DELETE cascade
 );
 
+CREATE TABLE token_recovery(
+id_usu int,
+token nvarchar(100) primary key not null,
+fecha_exp timestamp
+);
+
 create table recibe_solicitud(
 id_soli int,
 id_usu int,
@@ -286,6 +292,8 @@ select * from relacion_usuario_tipoUsuario;
 select * from relacion_usuario_trabajo;
 select * from relacion_usuario_region;
 select * from relacion_usuario_estado;
+select * from relacion_solicitud_estado;
+SELECT * FROM token_recovery;
 
 
 -- PROCEDIMIENTOS ALMACENADOS
@@ -342,6 +350,7 @@ where usuario.id_usu = id_usuario;
 end $$
 delimiter ;
 
+CALL desplegarPerfilPropioTrabajador(1);
 
 
 
@@ -776,7 +785,7 @@ SET id_estado_usu = 1
 WHERE id_usu = idUsuario;
 
 END &&
-delimiter ;
+&& delimiter ;
 
 
 
@@ -806,6 +815,7 @@ delimiter &&
 CREATE PROCEDURE listarSolicitudesTrabajador(
 idTrabajador int
 )
+
 BEGIN
 
 SELECT 
@@ -828,6 +838,7 @@ WHERE recibe_solicitud.id_usu = idTrabajador;
 
 END
 && delimiter ;
+call listarSolicitudesTrabajador(1);
 
 
 
@@ -836,6 +847,7 @@ delimiter &&
 CREATE PROCEDURE listarSolicitudesUsuario(
 idUsuario int
 )
+
 BEGIN
 
 SELECT 
@@ -859,6 +871,7 @@ WHERE envia_solicitud.id_usu = idUsuario;
 END
 && delimiter ;
 
+CALL listarSolicitudesUsuario(1);
 
 
 DROP PROCEDURE IF EXISTS aceptarSolicitud;
@@ -873,6 +886,7 @@ fechaFin date,
 id_emisor int,
 id_receptor int
 )
+
 BEGIN
 
 INSERT INTO
@@ -881,8 +895,11 @@ VALUES
 (defaulT,tituloTrab,descTrab,fechaInicio,fechaFin);
 
 SET @id_trab = last_insert_id();
+
 INSERT INTO acepta_trabajo values(@id_trab, id_receptor);
+
 INSERT INTO provee_trabajo values(@id_trab, id_emisor);
+
 INSERT INTO relacion_trabajo_estado VALUES(@id_trab, 1);
 
 
@@ -897,11 +914,15 @@ END
 && delimiter ;
 
 
+
+
 DROP PROCEDURE IF EXISTS rechazarSolicitud;
+
 delimiter &&
 CREATE PROCEDURE rechazarSolicitud(
 idSoli int
 )
+
 BEGIN
 
 UPDATE relacion_solicitud_estado
@@ -910,11 +931,9 @@ id_est_soli = 3
 WHERE
 id_soli = idSoli;
 
+
 END
 && delimiter ;
-
-
-
 
 DROP PROCEDURE IF EXISTS listarTrabajosUsuario;
 delimiter &&
@@ -944,7 +963,7 @@ WHERE provee_trabajo.id_usu = idUsuario;
 END &&
 delimiter ;
 
-CALL listarTrabajosUsuario(1);
+CALL listarTrabajosUsuario(10);
 
 
 
@@ -981,8 +1000,6 @@ delimiter ;
 CALL listarTrabajosTrabajador(1);
 
 
-
-
 DROP PROCEDURE IF EXISTS getSolicitud;
 delimiter &&
 CREATE PROCEDURE getSolicitud(
@@ -1005,3 +1022,90 @@ WHERE solicitud.id_soli = idSoli;
 END
 && delimiter ;
 CALL getSolicitud(1);
+
+DROP PROCEDURE IF EXISTS cambiarEstadoTrabajo;
+delimiter &&
+CREATE PROCEDURE cambiarEstadoTrabajo(
+idTrabajo int,
+idEstado int
+)
+BEGIN
+
+UPDATE relacion_trabajo_estado
+SET
+id_est_trab = idEstado
+WHERE
+id_trab = idTrabajo;
+
+END
+&& delimiter ;
+
+
+
+
+DROP PROCEDURE IF EXISTS setToken;
+delimiter &&
+CREATE PROCEDURE setToken(
+tokenN nvarchar(100),
+idUsuario int,
+expiracion timestamp
+)
+BEGIN
+
+INSERT INTO token_recovery VALUES
+(idUsuario, tokenN, expiracion);
+
+END &&
+delimiter ;
+
+DROP PROCEDURE IF EXISTS setTokenExisT;
+delimiter &&
+CREATE PROCEDURE setTokenExisT(
+tokenN nvarchar(100),
+idUsuario int,
+expiracion timestamp
+)
+BEGIN
+
+UPDATE token_recovery
+SET token = tokenN,
+fecha_exp = expiracion
+WHERE id_usu = idUsuario;
+
+END &&
+delimiter ;
+
+
+
+
+DROP PROCEDURE IF EXISTS getToken;
+delimiter &&
+CREATE PROCEDURE getToken(
+idUsuario int
+)
+BEGIN
+
+SELECT * FROM token_recovery
+WHERE id_usu = idUsuario;
+
+END &&
+delimiter ;
+
+CALL getToken(1);
+
+
+
+
+DROP PROCEDURE IF EXISTS cambiarContra;
+delimiter &&
+CREATE PROCEDURE cambiarContra(
+idUser int,
+nuevaContra nvarchar(200)
+)
+BEGIN
+
+UPDATE usuario
+SET contrasena_usu = nuevaContra
+WHERE id_usu = idUser;
+
+END &&
