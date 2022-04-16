@@ -71,7 +71,7 @@ public class enviarSolicitud extends HttpServlet {
             System.out.println(fechaFin);
             
             //Obtenemos IDs del receptor y emisor, respectivamente
-            int idDes = aux.obtenerIdCoreeo(correoDes);
+            int idDes = aux.obtenerIdCorreo(correoDes);
             HttpSession objSesion = request.getSession();
             int idEmisor = Integer.parseInt(objSesion.getAttribute("id").toString());
             

@@ -13,14 +13,23 @@ public class CodeFactory {
     private Timestamp exp;
     private int idUser;
     
-    public CodeFactory(Date date, int min){
+    public CodeFactory(Date date, int id) throws Exception{
         Calendar cal = Calendar.getInstance();
         cal.setTime(date);
-        cal.add(Calendar.MINUTE, min);
+        cal.add(Calendar.MINUTE, 10);
         
         this.setExp(new Timestamp(cal.getTimeInMillis()));
-        
-        this.setUniqueId(UUID.randomUUID().toString());
+        this.setIdUser(id);
+        this.setUniqueId(new Cifrado().encriptar("WW-" + UUID.randomUUID().toString().substring(0, 5)));
+    }
+    
+    public CodeFactory(String token, Timestamp ts){
+             this.setExp(ts);
+             this.setUniqueId(token);
+    }
+    
+    public CodeFactory(){
+             
     }
 
     public String getUniqueId() {
@@ -35,7 +44,7 @@ public class CodeFactory {
         return idUser;
     }
 
-    public void setIdUser(int idUser) {
+    private void setIdUser(int idUser) {
         this.idUser = idUser;
     }
     

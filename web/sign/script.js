@@ -41,7 +41,7 @@ function enviarRegistro(){
 
     //Expresiones regulares
     let regexmail = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
-	let regexname = /^([A-ZÁÉÍÓÚ]{1}[a-zñáéíóú]+[\s]*)+$/;
+    let regexname = /^([A-ZÁÉÍÓÚ]{1}[a-zñáéíóú]+[\s]*)+$/;
     let regextel =  /^[0-9]+$/;
 
     //Limpiamos las advertencias anteriores para esperar las nuevas

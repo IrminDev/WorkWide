@@ -1,5 +1,5 @@
-
 package com.modelo;
+
 import java.io.BufferedInputStream;
 import java.io.BufferedOutputStream;
 import java.io.InputStream;
@@ -583,7 +583,7 @@ public class OpcUsuario extends Conexion{
     }
     
     //Método para obtener el id de un usuraio a partir de su correo
-    public int obtenerIdCoreeo(String correo){
+    public int obtenerIdCorreo(String correo){
         //Declaramos el id inicialmente como 0
         int id = 0;
         //Preparamos nuestra sentencia SQL en una cadena
@@ -659,4 +659,72 @@ public class OpcUsuario extends Conexion{
         }
     }
     
+    
+    public void setToken(CodeFactory token){
+           String sql = "CALL setToken(?, ?, ?)";
+           String sql2 = "CALL setTokenExisT(?, ?, ?)";
+           PreparedStatement ps;
+           ResultSet rs;
+           PreparedStatement ps1;
+           try{
+                  this.conectar();
+                  ps = this.getCon().prepareStatement("SELECT * FROM token_recovery WHERE id_usu = " + token.getIdUser() + ";" );
+                  rs = ps.executeQuery();
+                  if(rs.next()){
+                           ps1 = this.getCon().prepareCall(sql2);
+                           ps1.setString(1, token.getUniqueId());
+                           ps1.setInt(2, token.getIdUser());
+                           ps1.setTimestamp(3, token.getExp());
+                           ps1.executeUpdate();
+                  }
+                  else{
+                           ps1 = this.getCon().prepareCall(sql);
+                           ps1.setString(1, token.getUniqueId());
+                           ps1.setInt(2, token.getIdUser());
+                           ps1.setTimestamp(3, token.getExp());
+                           ps1.executeUpdate();
+                  }
+                  this.desconectar();
+           }
+           catch(Exception e){
+                  e.printStackTrace();
+           }
+    }
+    
+    public CodeFactory getToken(int id){
+             CodeFactory token = new CodeFactory();
+             String sql = "CALL getToken(?)";
+             PreparedStatement ps;
+             ResultSet rs;
+             try{
+                      this.conectar();
+                      ps = this.getCon().prepareCall(sql);
+                      ps.setInt(1, id);
+                      rs = ps.executeQuery();
+                      if(rs.next()){
+                               token = new CodeFactory(rs.getString(2), rs.getTimestamp(3));
+                      }
+             }
+             catch(Exception e){
+                      e.printStackTrace();
+             }
+             
+             return token;
+    }
+    
+    public void cambiarContra(int id, String contra){
+             String sql = "CALL cambiarContra(?, ?)";
+             PreparedStatement ps;
+             
+             try{
+                      this.conectar();
+                      ps = this.getCon().prepareCall(sql);
+                      ps.setInt(1, id);
+                      ps.setString(2, contra);
+                      ps.executeUpdate();
+             }
+             catch(Exception e){
+                      e.printStackTrace();
+             }
+    }
 }

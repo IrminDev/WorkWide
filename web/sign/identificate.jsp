@@ -45,6 +45,7 @@
                             <p class="social-text">¿No estás registrado? <a href="" class="link">Regístrate</a></p>
                         </div>
                             <p class="social-text">Para regresar al inicio da clic <a href="../index/index.jsp" class="link">aquí</a></p>
+                            <p class="social-text">¿Olvidaste tu contraseña? <a href="forgot/recupera.jsp" class="link">Recupérala</a></p>
                     </form>
 
                     <form class="registroForm" action="../ControlUsuarios" method="POST">

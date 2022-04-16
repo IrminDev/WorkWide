@@ -1,0 +1,364 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap");
+
+/* VARIABLE DE TAMAÑOS, COLORES, ETC */
+:root{
+    --header-height: 3rem;
+
+    --hue: 207;
+    --sat: 89%;
+
+    --first-color: hsl(var(--hue), var(--sat), 68%);
+    --first-color-alt: hsl(var(--hue), var(--sat), 36%);
+    --title-color: hsl(var(--hue), 12%, 15%);
+    --text-color: hsl(var(--hue), 8%, 35%);
+    --body-color: hsl(var(--hue), 100%, 99%);
+    --container-color: #FFF;
+
+    --body-font: "Poppins", sans-serif;
+
+    --h1-font-size: 1.5rem;
+    --normal-font-size: .94rem;
+    --tiny-font-size: .625rem;
+
+    --z-tooltip: 10;
+    --z-fixed: 100;
+}
+
+/* VARIACIÓN DE LAS LETRAS EN TAMAÑO DEPENDIENDO EL ANCHO DE LA PANTALLA  */
+@media screen and (min-width: 970px) {
+    _root{
+        --h1-font-size: 2.25rem;
+        --normal-font-size: 1.3rem;
+        --tiny-font-size: 0.8rem;
+    }
+}
+
+/* ESTILO GENERAL */
+*{
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+}
+
+body{
+    margin: var(--header-height) 0 0 0;
+    font-family: var(--body-font);
+    font-size: var(--normal-font-size);
+    background-color: var(--body-color);
+    color: var(--text-color);
+}
+
+ul{
+    list-style: none;
+}
+
+a{
+    text-decoration: none;
+}
+
+img{
+    max-width: 100%;
+    height: auto;
+}
+
+
+/* ESTILO PARA EL HEADER*/
+.container{
+    margin-left: 1rem;
+    margin-right: 1rem;
+}
+
+
+.header{
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background-color: var(--container-color);
+    z-index: var(--z-fixed);
+    transition: .4s;
+}
+
+
+/* ESTILO PARA LA BARRA DE NAVEGACIÓN */
+.nav{
+    height: var(--header-height);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.nav_img{
+    width: 32px;
+    border-radius: 50%;
+}
+
+.nav_logo{
+    color: var(--title-color);
+    font-size: var(--h1-font-size);
+    font-weight: 600;
+}
+
+.nav_logo span{
+    color: var(--first-color);
+}
+
+
+/* ESTILO DEL FORMULARIO */
+body {
+    height: 100vh;
+    background: url(wave.svg);
+    background-size: cover;
+}
+
+.content {
+    background-color: #fff;
+    width: 95%;
+    padding: 30px 50px;
+    transform: translate(-50%, -50%);
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    margin-top: 100px;
+  }
+  
+  .content h1 {
+    font-size: 30px;
+    text-align: center;
+    color: #1f2223;
+    margin-bottom: 20px;
+  }
+  
+  .content p {
+    position: relative;
+    margin: auto;
+    width: 100%;
+    text-align: center;
+    color: #1f2223;
+    font-size: 14px;
+    font-weight: 400;
+  }
+  
+  .content form {
+    width: 100%;
+    position: relative;
+    margin: 30px auto 0 auto;
+  }
+  
+  .content .row {
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(20px, 1fr));
+    margin-bottom: 20px;
+  }
+  
+  label {
+    color: #252727;
+    font-size: 14px;
+  }
+  
+  textarea,
+  input,
+  select {
+    text-align: center;
+    font-size: 1rem;
+    width: 80%;
+    height: 50px;
+    font-weight: 400;
+    padding: 0px;
+    border: 1.2px solid #d1d6d6;
+    margin-top: 5px;
+  }
+  
+  textarea {
+    resize: none;
+  }
+  
+  textarea:focus,
+  input:focus {
+    outline: none;
+    border-color: #2493f5;
+  }
+  
+  ::-webkit-file-upload-button {
+    background: #2c9ce2;
+    color: #fff;
+    border-radius: 5px;
+    border: 2px solid #2c9ce2;
+    padding: 5px 8px;
+    transition: 0.3s ease;
+    cursor: pointer;
+  }
+  
+  ::-webkit-file-upload-button:hover {
+    background: #fff;
+    color: #2493f5;
+  }
+  
+  button {
+    border: 2px solid var(--first-color);
+    padding: 10px 20px;
+    background: var(--first-color);
+    color: #fff;
+    font-weight: 600;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: 0.3s ease;
+  }
+  
+  .form-button:hover {
+    color: #2c9ce2;
+    background: #fff;
+  }
+  
+  .warning {
+    display: none;
+  }
+  
+  .warning.active,
+  .warning.active p {
+    display: block;
+    color: crimson;
+  }
+  
+  label.incorrect {
+    color: crimson;
+    font-weight: 600;
+  }
+  
+  input.incorrect {
+    border: 1px solid crimson;
+  }
+  
+
+/* BARRA DE NAVEGACIÓN INFERIOR (DISPOSITIVOS MÓVILES) */
+@media screen and (max-width: 780px) {
+    .nav_menu{
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        background-color: var(--container-color);
+        box-shadow: 0 -1px 12px hsla(var(--hue), var(--sat), 15%, 0.15);
+        width: 100%;
+        height: 4rem;
+        padding: 0 1rem;
+        display: grid;
+        align-content: center;
+        border-radius: 1.25rem 1.25rem 0 0;
+        transition: .4s;
+    }
+}
+
+/* ESTILO DE LOS COMPONENTES DE LA BARRA DE NAVEGACIÓN */
+.nav_list,
+.nav_link{
+    display: flex;
+}
+
+.nav_link{
+    flex-direction: column;
+    align-items: center;
+    row-gap: .25rem;
+    color: var(--title-color);
+    font-weight: 600;
+}
+
+.nav_list{
+    justify-content: space-around;
+}
+
+.nav_name{
+    font-size: var(--tiny-font-size);
+}
+
+.nav_icon{
+    font-size: 1.5rem;
+}
+
+
+/* ESTILOS ADICIONALES */
+.active-link{
+    position: relative;
+    color: var(--first-color);
+    transition: 3s;
+}
+
+.scroll-header{
+    box-shadow: 0 1px 12px hsla(var(--hue), var(--sat), 15%, 0.15);
+}
+
+/* DIPOSITIVOS MUY PEQUEÑOS */
+@media screen and (max-width: 320px) {
+    .nav_name{
+        display: none;
+    }
+}
+
+/* DISPOSITIVOS MEDIANOS */
+@media screen and (min-width: 580px){
+    .nav_list{
+        justify-content: center;
+        column-gap: 3rem;
+    }
+    
+        textarea,
+    input,
+    select {
+    font-size: 1.5rem;
+    padding: 5px;
+  }
+}
+
+@media screen and (min-width: 780px){
+    body{
+        margin: 0;
+    }
+
+    .section{
+        padding: 7rem 0 2rem;
+    }
+
+    .nav{
+        height: calc(var(--header-height) + 1.5rem);
+    }
+    
+        textarea,
+    input,
+    select {
+    font-size: 2rem;
+    padding: 5px;
+  }
+
+    .nav_img{
+        display: none;
+    }
+
+    .nav_icon{
+        display: none;
+    }
+
+    .nav_name{
+        font-size: var(--normal-font-size);
+    }
+
+    .nav_link:hover{
+        color: var(--first-color);
+    }
+}
+
+/* DISPOSITIVOS GRANDES */
+@media screen and (min-width: 1024px){
+    .nav{
+        width: 100%;
+        padding-left: 10%;
+        padding-right: 10%;
+        justify-content: space-between;
+    }
+}
+
+@media screen and (max-width: 350px){
+
+    .content{
+        width: 100%;
+    }
+}
