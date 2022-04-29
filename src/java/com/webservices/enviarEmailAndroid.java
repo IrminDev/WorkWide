@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Servlet.java to edit this template
- */
 package com.webservices;
 
 import com.modelo.Cifrado;
@@ -22,7 +18,6 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 import org.json.simple.JSONObject;
 
 /**
@@ -50,11 +45,12 @@ public class enviarEmailAndroid extends HttpServlet {
         response.setCharacterEncoding("UTF-8");
         request.setCharacterEncoding("UTF-8");
         
-        String remitente  = request.getParameter("email");
+        String remitente  = request.getParameter("correo");
 
         int id = AUX.obtenerIdCorreo(remitente);
         JSONObject obj = new JSONObject();
-
+        obj.put("id", id);
+        
         if(id == 0){
             response.getWriter().write("El correo no existe");
             System.out.println(remitente);
@@ -62,8 +58,6 @@ public class enviarEmailAndroid extends HttpServlet {
         }
         else{
             Date fecha = new Date();
-            HttpSession objSesion = request.getSession();
-            objSesion.setAttribute("id_prov", id);
 
             fecha.setTime(System.currentTimeMillis());
             Trabajador traba = AUX.datosAntiguosTrabajador(id);                     

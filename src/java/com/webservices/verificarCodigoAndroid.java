@@ -7,16 +7,17 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.Timestamp;
 import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 import org.json.simple.JSONObject;
 
 /**
  *
  * @author IrminDev
  */
+@WebServlet(name = "verificarCodigoAndroid", urlPatterns = {"/verificarCodigoAndroid"})
 public class verificarCodigoAndroid extends HttpServlet {
     OpcUsuario AUX = new OpcUsuario();
 

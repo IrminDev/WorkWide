@@ -8,6 +8,7 @@ import java.io.PrintWriter;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -17,6 +18,7 @@ import org.json.simple.JSONObject;
  *
  * @author IrminDev
  */
+@WebServlet(name = "cambiarContraAndroid", urlPatterns = {"/cambiarContraAndroid"})
 public class cambiarContraAndroid extends HttpServlet {
     OpcUsuario AUX = new OpcUsuario();
 
@@ -29,15 +31,15 @@ public class cambiarContraAndroid extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        String contra = request.getParameter("contran");
+        String contra = request.getParameter("contra");
+        int id = Integer.parseInt(request.getParameter("id"));
         
         JSONObject obj =  new JSONObject();
                   
         try {
-            contra = new Cifrado().encriptar(contra);
-            int id = Integer.parseInt(request.getSession().getAttribute("id").toString());
-            AUX.cambiarContra(id, contra);
-            request.getSession().invalidate();
+                  System.out.println(contra);
+            String contraBd = new Cifrado().encriptar(contra);
+            AUX.cambiarContra(id, contraBd);
             obj.put("bandera", "true");
         } 
         catch (Exception ex) {
