@@ -4,6 +4,7 @@ import com.modelo.Cifrado;
 import com.modelo.CodeFactory;
 import com.modelo.OpcUsuario;
 import com.modelo.Trabajador;
+import com.modelo.Usuario;
 import java.io.IOException;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -56,7 +57,7 @@ public class enviarEmail extends HttpServlet {
                      objSesion.setAttribute("id_prov", id);
                      
                      fecha.setTime(System.currentTimeMillis());
-                     Trabajador traba = AUX.datosAntiguosTrabajador(id);                     
+                     Usuario traba = AUX.iniciarUsuario(id);                     
                      
                      
                      Properties props = System.getProperties();
