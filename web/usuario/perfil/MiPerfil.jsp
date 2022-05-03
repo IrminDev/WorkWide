@@ -80,20 +80,20 @@
             </div>
 
             <!-- ICONO DEL USUARIO -->
-            <img src="../../ControladorImagen?id=<% out.print(id); %>" alt="user" class="nav_img" onerror=this.src="../../user.svg">
+            <img src="../../perfilAndroid?id=<% out.print(id); %>" alt="user" class="nav_img" onerror=this.src="../../user.svg">
                      
         </nav>
     </header>
         <div class="container-card">
             <style>
                 .profile-header{
-                    background: url("../../ControladorPortada?id=<% out.print(id); %>");
+                    background: url("../../portadaAndroid?id=<% out.print(id); %>");
                     background-size: cover;
                 }
             </style>
             <div class="profile-header">
                 <div class="profile-img">
-                    <img src="../../ControladorImagen?id=<% out.print(id); %>" alt="perfil" onerror=this.src="user.svg"> 
+                    <img src="../../perfilAndroid?id=<% out.print(id); %>" alt="perfil" onerror=this.src="user.svg"> 
                 </div>
                 <div class="profile-nav-info">
                     <h3 class="username"><% out.print(usu.getNombre()); %> <% out.print(usu.getApellido()); %></h3>
