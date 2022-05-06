@@ -87,7 +87,7 @@ public class obtenerChat extends HttpServlet {
                     
                     //Agregamos al string el nuevo mensaje con la estructura de HTML
                     output += "\n<div class=\"chat incoming\">\n" +
-"                    <img src=\"../../ControladorImagen?id=" + receptor + "\" alt=\"perfil\" onerror=\"this.src='../../user.svg'\">\n" +
+"                    <img src=\"../../perfilAndroid?id=" + receptor + "\" alt=\"perfil\" onerror=\"this.src='../../user.svg'\">\n" +
 "                    <div class=\"details\">\n" +
 "                        <p>" + mensaje + "</p>\n" +
 "                    </div>\n" +

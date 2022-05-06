@@ -77,7 +77,7 @@
             </div>
 
             <!-- ICONO DEL USUARIO -->
-            <img src="../../ControladorImagen?id=<% out.print(id); %>" alt="user" class="nav_img">
+            <img src="../../perfilAndroid?id=<% out.print(id); %>" alt="user" class="nav_img">
         </nav>
     </header>
           

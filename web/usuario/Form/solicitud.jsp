@@ -89,7 +89,7 @@
                 </ul>
             </div>
             <!-- ICONO DEL USUARIO -->
-            <img src="ControladorImagen?id=<% out.print(id); %>" alt="user" class="nav_img" onerror=this.src="../../user.svg">
+            <img src="perfilAndroid?id=<% out.print(id); %>" alt="user" class="nav_img" onerror=this.src="../../user.svg">
         </nav>
     </header>
     <div class="content">

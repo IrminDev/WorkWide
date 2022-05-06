@@ -98,7 +98,7 @@
             </div>
 
             <!-- ICONO DEL USUARIO -->
-            <img src="../../ControladorImagen?id=<% out.print(id); %>" alt="perfil" onerror="this.src='../../user.svg'" class="nav_img">
+            <img src="../../perfilAndroid?id=<% out.print(id); %>" alt="perfil" onerror="this.src='../../user.svg'" class="nav_img">
         </nav>
     </header>
 
@@ -108,7 +108,7 @@
         <section class="chat-area">
             <div class="head">
                 <a href="users.jsp" class="back-icon"><i class="fa fa-arrow-left"></i></a>
-                <img src="../../ControladorImagen?id=<% out.print(receptor); %>" alt="perfil" onerror="this.src='../../user.svg'">
+                <img src="../../perfilAndroid?id=<% out.print(receptor); %>" alt="perfil" onerror="this.src='../../user.svg'">
                 <div class="details">
                     <span><% out.print(usu.getNombre() + " " + usu.getApellido()); %></span>
                     <p><% out.print(usu.getEstado()); %></p>
