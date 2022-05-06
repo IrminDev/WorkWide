@@ -4,7 +4,6 @@ import com.google.gson.Gson;
 import com.modelo.OpcSolicitud;
 import com.modelo.Solicitud;
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
@@ -24,6 +23,12 @@ public class listarSolicitudesAndroid extends HttpServlet {
     
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+       
+    }
+
+    @Override
+    protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/plain");
         response.setCharacterEncoding("UTF-8");
@@ -58,16 +63,7 @@ public class listarSolicitudesAndroid extends HttpServlet {
             
         response.getWriter().write(jsonOp);
 
-        PrintWriter pw = response.getWriter();
-        pw.print(jsonOp);
-        System.out.println(lista);
-        
-        
-    }
-
-    @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
+        System.out.println(jsonOp);
         
     }
 

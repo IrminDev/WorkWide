@@ -82,7 +82,7 @@
             </div>
 
             <!-- ICONO DEL USUARIO -->
-            <img src="../../../ControladorImagen?id=<% out.print(id); %>" alt="user" class="nav_img" onerror=this.src="../../../user.svg">
+            <img src="../../../perfilAndroid?id=<% out.print(id); %>" alt="user" class="nav_img" onerror=this.src="../../../user.svg">
         </nav>
     </header>
         
@@ -90,13 +90,13 @@
     <div class="container-card">
         <style>
             .profile-header{
-                background: url("../../../ControladorPortada?id=<% out.print(idPerfil); %>");
+                background: url("../../../portadaAndroid?id=<% out.print(idPerfil); %>");
                 background-size: cover;
             }
         </style>
         <div class="profile-header">
             <div class="profile-img">
-                <img src="../../../ControladorImagen?id=<% out.print(idPerfil); %>" alt="perfil">
+                <img src="../../../perfilAndroid?id=<% out.print(idPerfil); %>" alt="perfil">
             </div>
             <div class="profile-nav-info">
                 <h3 class="username"><% out.print(traba.getNombre()); %> <% out.print(traba.getApellido()); %></h3>
@@ -114,7 +114,7 @@
                                 out.print("<p class=\"mobile-number\"><i class='bx bxs-phone'></i>+52 " + traba.getTelefono() + "</p>");
                             }
                     %>
-                    <p><i class='bx bxs-envelope' ></i><% out.print(traba.getCorreoUsu()); %></p>
+                    <p><i class='bx bxs-envelope' ></i><% out.print(traba.getCorreoUsu().length() > 20 ? traba.getCorreoUsu().substring(0, 20).concat("...") : traba.getCorreoUsu()); %></p>
                     <div class="user-work">
                         <h3>Trabajo</h3>
                         <p class="work">

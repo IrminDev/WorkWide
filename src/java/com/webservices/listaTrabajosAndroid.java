@@ -25,6 +25,12 @@ public class listaTrabajosAndroid extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        
+    }
+
+    @Override
+    protected void doPost(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
         response.setContentType("text/plain");
         response.setCharacterEncoding("UTF-8");
         request.setCharacterEncoding("UTF-8");
@@ -60,15 +66,7 @@ public class listaTrabajosAndroid extends HttpServlet {
             
         response.getWriter().write(jsonOp);
 
-        PrintWriter pw = response.getWriter();
-        pw.print(jsonOp);
         System.out.println(jsonOp);
-    }
-
-    @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        
     }
 
     @Override

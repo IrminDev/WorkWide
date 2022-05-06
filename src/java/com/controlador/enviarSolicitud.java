@@ -5,10 +5,7 @@ import com.modelo.OpcSolicitud;
 import com.modelo.OpcUsuario;
 import com.modelo.Solicitud;
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.sql.Date;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.annotation.WebServlet;
@@ -31,11 +28,6 @@ public class enviarSolicitud extends HttpServlet {
     OpcUsuario aux = new OpcUsuario();
     OpcSolicitud auxSoli = new OpcSolicitud();
 
-    protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
-
-    }
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
@@ -79,7 +71,7 @@ public class enviarSolicitud extends HttpServlet {
             Solicitud soli = new Solicitud();
             
             //Guardamos los datos en el objeto solicitud
-            soli.setDescripcion(descripcion);
+            soli.setDescripcion(descripcion.replace("\n", "<br>"));
             soli.setFin(fechaFin);
             soli.setIdEmisor(idEmisor);
             soli.setIdReceptor(idDes);
